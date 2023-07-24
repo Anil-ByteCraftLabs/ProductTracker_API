@@ -1,0 +1,17 @@
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Logging\bin\Debug\net6.0\CleanArch.Logging.deps.json
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Logging\bin\Debug\net6.0\CleanArch.Logging.dll
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Logging\bin\Debug\net6.0\CleanArch.Logging.pdb
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Logging\bin\Debug\net6.0\CleanArch.Application.dll
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Logging\bin\Debug\net6.0\CleanArch.Core.dll
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Logging\bin\Debug\net6.0\CleanArch.Application.pdb
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Logging\bin\Debug\net6.0\CleanArch.Core.pdb
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Logging\obj\Debug\net6.0\CleanArch.Logging.csproj.AssemblyReference.cache
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Logging\obj\Debug\net6.0\CleanArch.Logging.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Logging\obj\Debug\net6.0\CleanArch.Logging.AssemblyInfoInputs.cache
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Logging\obj\Debug\net6.0\CleanArch.Logging.AssemblyInfo.cs
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Logging\obj\Debug\net6.0\CleanArch.Logging.csproj.CoreCompileInputs.cache
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Logging\obj\Debug\net6.0\CleanArch.Logging.csproj.CopyComplete
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Logging\obj\Debug\net6.0\CleanArch.Logging.dll
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Logging\obj\Debug\net6.0\refint\CleanArch.Logging.dll
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Logging\obj\Debug\net6.0\CleanArch.Logging.pdb
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Logging\obj\Debug\net6.0\ref\CleanArch.Logging.dll

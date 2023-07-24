@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "JAAOYyOyurcQvCHKz15SSWNTJmd9jPIAdOlNZGzhRnY=",
+  "Source": "ProductTracker.Api",
+  "BasePath": "_content/ProductTracker.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -1,0 +1,12 @@
+D:\Work\ProductTracker\ProductTracker.Sql\bin\Debug\net6.0\ProductTracker.Sql.deps.json
+D:\Work\ProductTracker\ProductTracker.Sql\bin\Debug\net6.0\ProductTracker.Sql.dll
+D:\Work\ProductTracker\ProductTracker.Sql\bin\Debug\net6.0\ProductTracker.Sql.pdb
+D:\Work\ProductTracker\ProductTracker.Sql\obj\Debug\net6.0\ProductTracker.Sql.csproj.AssemblyReference.cache
+D:\Work\ProductTracker\ProductTracker.Sql\obj\Debug\net6.0\ProductTracker.Sql.GeneratedMSBuildEditorConfig.editorconfig
+D:\Work\ProductTracker\ProductTracker.Sql\obj\Debug\net6.0\ProductTracker.Sql.AssemblyInfoInputs.cache
+D:\Work\ProductTracker\ProductTracker.Sql\obj\Debug\net6.0\ProductTracker.Sql.AssemblyInfo.cs
+D:\Work\ProductTracker\ProductTracker.Sql\obj\Debug\net6.0\ProductTracker.Sql.csproj.CoreCompileInputs.cache
+D:\Work\ProductTracker\ProductTracker.Sql\obj\Debug\net6.0\ProductTracker.Sql.dll
+D:\Work\ProductTracker\ProductTracker.Sql\obj\Debug\net6.0\refint\ProductTracker.Sql.dll
+D:\Work\ProductTracker\ProductTracker.Sql\obj\Debug\net6.0\ProductTracker.Sql.pdb
+D:\Work\ProductTracker\ProductTracker.Sql\obj\Debug\net6.0\ref\ProductTracker.Sql.dll

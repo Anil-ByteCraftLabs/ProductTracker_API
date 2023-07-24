@@ -1,0 +1,193 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\anil.kumar\\Downloads\\CleanArch-master\\CleanArch-master\\CleanArch.Logging\\CleanArch.Logging.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\anil.kumar\\Downloads\\CleanArch-master\\CleanArch-master\\CleanArch.Application\\ProductTracker.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\anil.kumar\\Downloads\\CleanArch-master\\CleanArch-master\\CleanArch.Application\\ProductTracker.Application.csproj",
+        "projectName": "ProductTracker.Application",
+        "projectPath": "C:\\Users\\anil.kumar\\Downloads\\CleanArch-master\\CleanArch-master\\CleanArch.Application\\ProductTracker.Application.csproj",
+        "packagesPath": "C:\\Users\\anil.kumar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\anil.kumar\\Downloads\\CleanArch-master\\CleanArch-master\\CleanArch.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\anil.kumar\\Downloads\\NuGet.Config",
+          "C:\\Users\\anil.kumar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\anil.kumar\\Downloads\\CleanArch-master\\CleanArch-master\\CleanArch.Core\\ProductTracker.Core.csproj": {
+                "projectPath": "C:\\Users\\anil.kumar\\Downloads\\CleanArch-master\\CleanArch-master\\CleanArch.Core\\ProductTracker.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\anil.kumar\\Downloads\\CleanArch-master\\CleanArch-master\\CleanArch.Core\\ProductTracker.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\anil.kumar\\Downloads\\CleanArch-master\\CleanArch-master\\CleanArch.Core\\ProductTracker.Core.csproj",
+        "projectName": "ProductTracker.Core",
+        "projectPath": "C:\\Users\\anil.kumar\\Downloads\\CleanArch-master\\CleanArch-master\\CleanArch.Core\\ProductTracker.Core.csproj",
+        "packagesPath": "C:\\Users\\anil.kumar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\anil.kumar\\Downloads\\CleanArch-master\\CleanArch-master\\CleanArch.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\anil.kumar\\Downloads\\NuGet.Config",
+          "C:\\Users\\anil.kumar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\anil.kumar\\Downloads\\CleanArch-master\\CleanArch-master\\CleanArch.Logging\\CleanArch.Logging.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\anil.kumar\\Downloads\\CleanArch-master\\CleanArch-master\\CleanArch.Logging\\CleanArch.Logging.csproj",
+        "projectName": "CleanArch.Logging",
+        "projectPath": "C:\\Users\\anil.kumar\\Downloads\\CleanArch-master\\CleanArch-master\\CleanArch.Logging\\CleanArch.Logging.csproj",
+        "packagesPath": "C:\\Users\\anil.kumar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\anil.kumar\\Downloads\\CleanArch-master\\CleanArch-master\\CleanArch.Logging\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\anil.kumar\\Downloads\\NuGet.Config",
+          "C:\\Users\\anil.kumar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\anil.kumar\\Downloads\\CleanArch-master\\CleanArch-master\\CleanArch.Application\\ProductTracker.Application.csproj": {
+                "projectPath": "C:\\Users\\anil.kumar\\Downloads\\CleanArch-master\\CleanArch-master\\CleanArch.Application\\ProductTracker.Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "log4net": {
+              "target": "Package",
+              "version": "[2.0.14, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

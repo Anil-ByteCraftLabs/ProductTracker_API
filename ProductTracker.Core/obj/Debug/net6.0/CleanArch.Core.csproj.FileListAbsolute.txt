@@ -1,0 +1,12 @@
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Core\bin\Debug\net6.0\CleanArch.Core.deps.json
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Core\bin\Debug\net6.0\CleanArch.Core.dll
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Core\bin\Debug\net6.0\CleanArch.Core.pdb
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Core\obj\Debug\net6.0\CleanArch.Core.csproj.AssemblyReference.cache
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Core\obj\Debug\net6.0\CleanArch.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Core\obj\Debug\net6.0\CleanArch.Core.AssemblyInfoInputs.cache
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Core\obj\Debug\net6.0\CleanArch.Core.AssemblyInfo.cs
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Core\obj\Debug\net6.0\CleanArch.Core.csproj.CoreCompileInputs.cache
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Core\obj\Debug\net6.0\CleanArch.Core.dll
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Core\obj\Debug\net6.0\refint\CleanArch.Core.dll
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Core\obj\Debug\net6.0\CleanArch.Core.pdb
+C:\Users\anil.kumar\Downloads\CleanArch-master\CleanArch-master\CleanArch.Core\obj\Debug\net6.0\ref\CleanArch.Core.dll

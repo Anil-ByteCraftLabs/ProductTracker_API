@@ -1,0 +1,17 @@
+D:\Work\ProductTracker\ProductTracker.Logging\bin\Debug\net6.0\ProductTracker.Logging.deps.json
+D:\Work\ProductTracker\ProductTracker.Logging\bin\Debug\net6.0\ProductTracker.Logging.dll
+D:\Work\ProductTracker\ProductTracker.Logging\bin\Debug\net6.0\ProductTracker.Logging.pdb
+D:\Work\ProductTracker\ProductTracker.Logging\bin\Debug\net6.0\ProductTracker.Application.dll
+D:\Work\ProductTracker\ProductTracker.Logging\bin\Debug\net6.0\ProductTracker.Core.dll
+D:\Work\ProductTracker\ProductTracker.Logging\bin\Debug\net6.0\ProductTracker.Application.pdb
+D:\Work\ProductTracker\ProductTracker.Logging\bin\Debug\net6.0\ProductTracker.Core.pdb
+D:\Work\ProductTracker\ProductTracker.Logging\obj\Debug\net6.0\ProductTracker.Logging.csproj.AssemblyReference.cache
+D:\Work\ProductTracker\ProductTracker.Logging\obj\Debug\net6.0\ProductTracker.Logging.GeneratedMSBuildEditorConfig.editorconfig
+D:\Work\ProductTracker\ProductTracker.Logging\obj\Debug\net6.0\ProductTracker.Logging.AssemblyInfoInputs.cache
+D:\Work\ProductTracker\ProductTracker.Logging\obj\Debug\net6.0\ProductTracker.Logging.AssemblyInfo.cs
+D:\Work\ProductTracker\ProductTracker.Logging\obj\Debug\net6.0\ProductTracker.Logging.csproj.CoreCompileInputs.cache
+D:\Work\ProductTracker\ProductTracker.Logging\obj\Debug\net6.0\ProductTracker.Logging.csproj.CopyComplete
+D:\Work\ProductTracker\ProductTracker.Logging\obj\Debug\net6.0\ProductTracker.Logging.dll
+D:\Work\ProductTracker\ProductTracker.Logging\obj\Debug\net6.0\refint\ProductTracker.Logging.dll
+D:\Work\ProductTracker\ProductTracker.Logging\obj\Debug\net6.0\ProductTracker.Logging.pdb
+D:\Work\ProductTracker\ProductTracker.Logging\obj\Debug\net6.0\ref\ProductTracker.Logging.dll
