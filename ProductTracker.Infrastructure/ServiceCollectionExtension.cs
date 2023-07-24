@@ -9,7 +9,7 @@ namespace ProductTracker.Infrastructure
     {
         public static void RegisterServices(this IServiceCollection services)
         {
-            services.AddTransient<IContactRepository, ContactRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IOrganizationRepository, OrganizationRepository>();
 

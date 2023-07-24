@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace ProductTracker.Api.Controllers
 {
-    public class ContactController : BaseApiController
+    public class UserController : BaseApiController
     {
         #region ===[ Private Members ]=============================================================
 
@@ -20,7 +20,7 @@ namespace ProductTracker.Api.Controllers
         /// <summary>
         /// Initialize ContactController by injecting an object type of IUnitOfWork
         /// </summary>
-        public ContactController(IUnitOfWork unitOfWork)
+        public UserController(IUnitOfWork unitOfWork)
         {
             this._unitOfWork = unitOfWork;
         }
@@ -30,13 +30,13 @@ namespace ProductTracker.Api.Controllers
         #region ===[ Public Methods ]==============================================================
 
         [HttpGet]
-        public async Task<ApiResponse<List<Contact>>> GetAll()
+        public async Task<ApiResponse<List<User>>> GetAll()
         {
-            var apiResponse = new ApiResponse<List<Contact>>();
+            var apiResponse = new ApiResponse<List<User>>();
 
             try
             {
-                var data = await _unitOfWork.Contacts.GetAllAsync();
+                var data = await _unitOfWork.Users.GetAllAsync();
                 apiResponse.Success = true;
                 apiResponse.Result = data.ToList();
             }
@@ -57,14 +57,14 @@ namespace ProductTracker.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ApiResponse<Contact>> GetById(int id)
+        public async Task<ApiResponse<User>> GetById(int id)
         {
 
-            var apiResponse = new ApiResponse<Contact>();
+            var apiResponse = new ApiResponse<User>();
 
             try
             {
-                var data = await _unitOfWork.Contacts.GetByIdAsync(id);
+                var data = await _unitOfWork.Users.GetByIdAsync(id);
                 apiResponse.Success = true;
                 apiResponse.Result = data;
             }
@@ -85,13 +85,13 @@ namespace ProductTracker.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ApiResponse<string>> Add(Contact contact)
+        public async Task<ApiResponse<string>> Add(User contact)
         {
             var apiResponse = new ApiResponse<string>();
 
             try
             {
-                var data = await _unitOfWork.Contacts.AddAsync(contact);
+                var data = await _unitOfWork.Users.AddAsync(contact);
                 apiResponse.Success = true;
                 apiResponse.Result = data;
             }
@@ -112,13 +112,13 @@ namespace ProductTracker.Api.Controllers
         }
 
         [HttpPut]
-        public async Task<ApiResponse<string>> Update(Contact contact)
+        public async Task<ApiResponse<string>> Update(User contact)
         {
             var apiResponse = new ApiResponse<string>();
 
             try
             {
-                var data = await _unitOfWork.Contacts.UpdateAsync(contact);
+                var data = await _unitOfWork.Users.UpdateAsync(contact);
                 apiResponse.Success = true;
                 apiResponse.Result = data;
             }
@@ -145,7 +145,7 @@ namespace ProductTracker.Api.Controllers
 
             try
             {
-                var data = await _unitOfWork.Contacts.DeleteAsync(id);
+                var data = await _unitOfWork.Users.DeleteAsync(id);
                 apiResponse.Success = true;
                 apiResponse.Result = data;
             }

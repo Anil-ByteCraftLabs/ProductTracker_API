@@ -2,7 +2,7 @@
 {
     public interface IUnitOfWork
     {
-        IContactRepository Contacts { get; }
+        IUserRepository Users { get; }
 
         IProductRepository Products { get; }
 

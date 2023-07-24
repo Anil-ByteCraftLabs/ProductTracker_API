@@ -2,7 +2,7 @@
 
 namespace ProductTracker.Application.Interfaces
 {
-    public interface IContactRepository : IRepository<Contact>
+    public interface IUserRepository : IRepository<User>
     {
     }
 }

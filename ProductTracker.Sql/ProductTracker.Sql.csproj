@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Stored Procedures\" />
+    <Folder Include="Scripts\Admin\Tables\" />
+    <Folder Include="Scripts\Manufacturer\Tables\" />
+    <Folder Include="Scripts\Product Tracker\Tables\" />
   </ItemGroup>
 
 </Project>
