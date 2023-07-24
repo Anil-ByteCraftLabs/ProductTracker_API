@@ -26,7 +26,7 @@ namespace ProductTracker.Sql.Queries
 				[PhoneNumber] = @PhoneNumber
             WHERE [ContactId] = @ContactId";
 
-		public static string DeleteBatch => "DELETE FROM [Contact] WHERE [Id] = @OrgId";
+		public static string DeleteBatch => "DELETE FROM [BatchData] WHERE [Id] = @BatchId";
 
 		public static string SaveBatchData => "usp_SaveBatchData";
 	}

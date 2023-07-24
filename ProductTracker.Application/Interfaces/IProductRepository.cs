@@ -6,5 +6,6 @@ namespace ProductTracker.Application.Interfaces
 {
     public interface IProductRepository : IRepository<Product>
     {
+
     }
 }

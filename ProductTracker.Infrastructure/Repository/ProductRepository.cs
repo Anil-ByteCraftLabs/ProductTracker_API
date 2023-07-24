@@ -27,23 +27,15 @@ namespace ProductTracker.Infrastructure.Repository
 
         public async Task<string> AddAsync(Product entity)
         {
-            //using (IDbConnection connection = new SqlConnection(configuration.GetConnectionString("DBConnection")))
+            return await SaveProduct(entity);
 
-            using (var connection = _dapperContext.CreateDefaultConnection())
-            {
-             //   connection.Open();
-                var result = await connection.ExecuteAsync(ProductQueries.AddProduct, entity);
-                return result.ToString();
-            }
         }
 
         public async Task<string> DeleteAsync(long id)
         {
-            //using (IDbConnection connection = new SqlConnection(configuration.GetConnectionString("DBConnection")))
-            using (var connection = _dapperContext.CreateDefaultConnection())
+            using (var connection = _dapperContext.CreateManufacturerConnection())
             {
-                //connection.Open();
-                var result = await connection.ExecuteAsync(ProductQueries.DeleteProduct, new { ContactId = id });
+                var result = await connection.ExecuteAsync(ProductQueries.DeleteProduct, new { ProductId = id });
                 return result.ToString();
             }
         }
@@ -51,7 +43,7 @@ namespace ProductTracker.Infrastructure.Repository
         public async Task<IReadOnlyList<Product>> GetAllAsync()
         {
             //using (IDbConnection connection = new SqlConnection(configuration.GetConnectionString("DBConnection")))
-            using (var connection = _dapperContext.CreateDefaultConnection())
+            using (var connection = _dapperContext.CreateManufacturerConnection())
             {
                 //connection.Open();
                 var result = await connection.QueryAsync<Product>(ProductQueries.AllProduct);
@@ -71,16 +63,24 @@ namespace ProductTracker.Infrastructure.Repository
 
         public async Task<string> UpdateAsync(Product entity)
         {
-            //using (IDbConnection connection = new SqlConnection(configuration.GetConnectionString("DBConnection")))
-            using (var connection = _dapperContext.CreateDefaultConnection())
-            {
-                // connection.Open();
-                var result = await connection.ExecuteAsync(ProductQueries.UpdateProduct, entity);
-                return result.ToString();
-            }
+            return await SaveProduct(entity);
         }
 
+        private async Task<string> SaveProduct(Product entity)
+        {
+            using var connection = _dapperContext.CreateManufacturerConnection();
+            var parameters = new DynamicParameters();
+            parameters.Add("ProductId", entity.Id);
+            parameters.Add("Name", entity.ProductName);
+            parameters.Add("Type", entity.ProductType);
+            parameters.Add("Weight", entity.ProductWeight);
+            parameters.Add("FssaiCode", entity.FSSICode);
+            parameters.Add("CreatedBy", entity.CreatedBy);
 
+            var result = await connection.ExecuteAsync(ProductDataQueries.SaveProduct, parameters, commandType: CommandType.StoredProcedure);
+            return result.ToString();
+
+        }
 
     }
 }

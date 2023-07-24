@@ -5,6 +5,7 @@ using ProductTracker.Infrastructure.Context;
 using ProductTracker.Sql.Queries;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,24 +22,22 @@ namespace ProductTracker.Infrastructure.Repository
         }
         public async Task<string> AddAsync(CouponsData entity)
         {
-            using (var connection = _dapperContext.CreateManufacturerConnection())
-            {
-                //connection.Open();
-                var result = await connection.ExecuteAsync(CouponsDataQueries.AddCoupon, entity);
-                return result.ToString();
-            }
+            return await SaveCoupon(entity);
         }
 
-        public Task<string> DeleteAsync(long id)
+        public async Task<string> DeleteAsync(long id)
         {
-            throw new NotImplementedException();
+            using (var connection = _dapperContext.CreateManufacturerConnection())
+            {
+                var result = await connection.QueryAsync<CouponsData>(CouponsDataQueries.DeleteCoupon);
+                return result.ToString();
+            }
         }
 
         public async Task<IReadOnlyList<CouponsData>> GetAllAsync()
         {
             using (var connection = _dapperContext.CreateManufacturerConnection())
             {
-                //connection.Open();
                 var result = await connection.QueryAsync<CouponsData>(CouponsDataQueries.AllCoupons);
                 return result.ToList();
             }
@@ -48,7 +47,6 @@ namespace ProductTracker.Infrastructure.Repository
         {
             using (var connection = _dapperContext.CreateManufacturerConnection())
             {
-                //connection.Open();
                 var result = await connection.QuerySingleOrDefaultAsync<CouponsData>(CouponsDataQueries.CouponById, new { CouponId = id });
                 return result;
             }
@@ -56,12 +54,23 @@ namespace ProductTracker.Infrastructure.Repository
 
         public async Task<string> UpdateAsync(CouponsData entity)
         {
-            using (var connection = _dapperContext.CreateManufacturerConnection())
-            {
-                //connection.Open();
-                var result = await connection.ExecuteAsync(CouponsDataQueries.UpdateCoupon, entity);
-                return result.ToString();
-            }
+            return await SaveCoupon(entity);
         }
+
+        private async Task<string> SaveCoupon(CouponsData entity)
+        {
+            using var connection = _dapperContext.CreateManufacturerConnection();
+            var parameters = new DynamicParameters();
+            parameters.Add("CouponId", entity.Id);
+            parameters.Add("BatchId", entity.BatchId);
+            parameters.Add("OrgAlias", entity.OrgAliasName);
+            parameters.Add("ParentCouponId", entity.ParentCouponId);
+            parameters.Add("CreatedBy", entity.CreatedBy);
+
+            var result = await connection.ExecuteAsync(CouponsDataQueries.SaveCoupon, parameters, commandType: CommandType.StoredProcedure);
+            return result.ToString();
+
+        }
+
     }
 }

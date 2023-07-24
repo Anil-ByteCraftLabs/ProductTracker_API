@@ -23,15 +23,10 @@ namespace ProductTracker.Infrastructure.Repository
 
         public async Task<string> AddAsync(BatchData entity)
         {
-            //using (var connection = _dapperContext.CreateManufacturerConnection())
-            //{
-            //    //connection.Open();
-            //    var result = await connection.ExecuteAsync(BatchDataQueries.AddBatch, entity);
-            //    return result.ToString();
-            //}
-
+          
             using var connection = _dapperContext.CreateManufacturerConnection();
             var parameters = new DynamicParameters();
+            parameters.Add("@BatchId", entity.Id);
             parameters.Add("Name", entity.Name);
             parameters.Add("BatchNo", entity.BatchNo);
             parameters.Add("NoOfCoupons", entity.NoOfCoupons);
@@ -43,9 +38,14 @@ namespace ProductTracker.Infrastructure.Repository
 
         }
 
-        public Task<string> DeleteAsync(long id)
+        public async Task<string> DeleteAsync(long id)
         {
-            throw new NotImplementedException();
+            using (var connection = _dapperContext.CreateManufacturerConnection())
+            {
+                //connection.Open();
+                var result = await connection.QueryAsync<BatchData>(BatchDataQueries.DeleteBatch,new { BatchId = id });
+                return result.ToString();
+            }
         }
 
         public async Task<IReadOnlyList<BatchData>> GetAllAsync()
@@ -70,12 +70,17 @@ namespace ProductTracker.Infrastructure.Repository
 
         public async Task<string> UpdateAsync(BatchData entity)
         {
-            using (var connection = _dapperContext.CreateManufacturerConnection())
-            {
-                //connection.Open();
-                var result = await connection.ExecuteAsync(BatchDataQueries.UpdateBatch, entity);
-                return result.ToString();
-            }
+            using var connection = _dapperContext.CreateManufacturerConnection();
+            var parameters = new DynamicParameters();
+            parameters.Add("@BatchId", entity.Id);
+            parameters.Add("Name", entity.Name);
+            parameters.Add("BatchNo", entity.BatchNo);
+            parameters.Add("NoOfCoupons", entity.NoOfCoupons);
+            parameters.Add("OrgId", entity.OrgId);
+            parameters.Add("CreatedBy", entity.CreatedBy);
+
+            var result = await connection.ExecuteAsync(BatchDataQueries.SaveBatchData, parameters, commandType: CommandType.StoredProcedure);
+            return result.ToString();
         }
     }
 }

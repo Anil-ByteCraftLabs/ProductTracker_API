@@ -26,6 +26,7 @@ namespace ProductTracker.Infrastructure.Repository
         {
             using var connection = _dapperContext.CreateAdminConnection();
             var parameters = new DynamicParameters();
+            parameters.Add("OrgId", entity.Id);
             parameters.Add("OrgName", entity.OrgName);
             parameters.Add("AliasName", entity.AliasName);
             parameters.Add("DBPath", entity.DBPath);
@@ -40,7 +41,7 @@ namespace ProductTracker.Infrastructure.Repository
         public async Task<string> DeleteAsync(long id)
         {
             using var connection = _dapperContext.CreateAdminConnection();
-            var result = await connection.ExecuteAsync(OrganizationQueries.DeleteOrganization, new { ContactId = id });
+            var result = await connection.ExecuteAsync(OrganizationQueries.DeleteOrganization, new { OrgId = id });
             return result.ToString();
         }
 
@@ -58,9 +59,19 @@ namespace ProductTracker.Infrastructure.Repository
             return result;
         }
 
-        public Task<string> UpdateAsync(Organization entity)
+        public async Task<string> UpdateAsync(Organization entity)
         {
-            throw new NotImplementedException();
+            using var connection = _dapperContext.CreateAdminConnection();
+            var parameters = new DynamicParameters();
+            parameters.Add("OrgId", entity.Id);
+            parameters.Add("OrgName", entity.OrgName);
+            parameters.Add("AliasName", entity.AliasName);
+            parameters.Add("DBPath", entity.DBPath);
+            parameters.Add("DeActivationDate", entity.DeActivationDate);
+            parameters.Add("CreatedBy", entity.CreatedBy);
+
+            var result = await connection.ExecuteAsync(OrganizationQueries.SaveOrganization, parameters, commandType: CommandType.StoredProcedure);
+            return result.ToString();
         }
     }
 }

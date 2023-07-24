@@ -14,9 +14,7 @@ namespace ProductTracker.Sql.Queries
 
 		public static string ProductById => "SELECT * FROM [ProductData] (NOLOCK) WHERE [Id] = @OrgId";
 
-		public static string AddProduct =>
-			@"INSERT INTO [Contact] ([FirstName], [LastName], [Email], [PhoneNumber]) 
-				VALUES (@FirstName, @LastName, @Email, @PhoneNumber)";
+		public static string SaveProduct => "usp_SaveProduct";
 
 		public static string UpdateProduct =>
 			@"UPDATE [Contact] 

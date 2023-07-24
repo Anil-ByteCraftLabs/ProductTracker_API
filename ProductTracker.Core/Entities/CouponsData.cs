@@ -14,6 +14,9 @@ namespace ProductTracker.Core.Entities
         public DateTime ScannedDate { get; set; }
         public int ScannedBy { get; set; }
         public string ScannedLocation { get; set; }
+        public int ParentCouponId { get; set; }
+
+        public string UniqueId { get; set; }
 
     }
 }

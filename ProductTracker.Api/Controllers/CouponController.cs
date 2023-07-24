@@ -22,13 +22,13 @@ namespace ProductTracker.Api.Controllers
         #region ===[ Public Methods ]==============================================================
 
         [HttpGet]
-        public async Task<ApiResponse<List<BatchData>>> GetAll()
+        public async Task<ApiResponse<List<CouponsData>>> GetAll()
         {
-            var apiResponse = new ApiResponse<List<BatchData>>();
+            var apiResponse = new ApiResponse<List<CouponsData>>();
 
             try
             {
-                var data = await _unitOfWork.Batches.GetAllAsync();
+                var data = await _unitOfWork.Coupons.GetAllAsync();
                 apiResponse.Success = true;
                 apiResponse.Result = data.ToList();
             }
@@ -49,14 +49,14 @@ namespace ProductTracker.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ApiResponse<BatchData>> GetById(int id)
+        public async Task<ApiResponse<CouponsData>> GetById(int id)
         {
 
-            var apiResponse = new ApiResponse<BatchData>();
+            var apiResponse = new ApiResponse<CouponsData>();
 
             try
             {
-                var data = await _unitOfWork.Batches.GetByIdAsync(id);
+                var data = await _unitOfWork.Coupons.GetByIdAsync(id);
                 apiResponse.Success = true;
                 apiResponse.Result = data;
             }

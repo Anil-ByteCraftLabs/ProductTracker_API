@@ -14,18 +14,10 @@ namespace ProductTracker.Sql.Queries
 
 		public static string CouponById => "SELECT * FROM [CouponsData] (NOLOCK) WHERE [Id] = @CouponId";
 
-		public static string AddCoupon =>
-			@"INSERT INTO [Contact] ([FirstName], [LastName], [Email], [PhoneNumber]) 
-				VALUES (@FirstName, @LastName, @Email, @PhoneNumber)";
+		public static string SaveCoupon => "usp_SaveCoupon";
+			
 
-		public static string UpdateCoupon =>
-			@"UPDATE [Contact] 
-            SET [FirstName] = @FirstName, 
-				[LastName] = @LastName, 
-				[Email] = @Email, 
-				[PhoneNumber] = @PhoneNumber
-            WHERE [ContactId] = @ContactId";
-
-		public static string DeleteCoupon => "DELETE FROM [Contact] WHERE [Id] = @OrgId";
+		
+		public static string DeleteCoupon => "DELETE FROM [CouponsData] WHERE [Id] = @CouponId";
 	}
 }

@@ -10,23 +10,15 @@ namespace ProductTracker.Sql.Queries
     [ExcludeFromCodeCoverage]
     public static class ProductQueries
     {
-		public static string AllProduct => "SELECT * FROM [ProductDetail] (NOLOCK)";
+		public static string AllProduct => "SELECT * FROM [ProductData] (NOLOCK)";
 
-		public static string ProductById => "SELECT * FROM [ProductDetail] (NOLOCK) WHERE [Id] = @ProductId";
+		public static string ProductById => "SELECT * FROM [ProductData] (NOLOCK) WHERE [Id] = @ProductId";
 
-		public static string AddProduct =>
-			@"INSERT INTO [Contact] ([FirstName], [LastName], [Email], [PhoneNumber]) 
-				VALUES (@FirstName, @LastName, @Email, @PhoneNumber)";
+		public static string SaveProduct => "usp_SaveProduct";
+			
 
-		public static string UpdateProduct =>
-			@"UPDATE [Contact] 
-            SET [FirstName] = @FirstName, 
-				[LastName] = @LastName, 
-				[Email] = @Email, 
-				[PhoneNumber] = @PhoneNumber
-            WHERE [ContactId] = @ContactId";
 
-		public static string DeleteProduct => "DELETE FROM [Product] WHERE [Id] = @ProductId";
+		public static string DeleteProduct => "DELETE FROM [ProductData] WHERE [Id] = @ProductId";
 
 	}
 }
