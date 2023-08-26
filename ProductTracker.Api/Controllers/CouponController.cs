@@ -26,25 +26,9 @@ namespace ProductTracker.Api.Controllers
         {
             var apiResponse = new ApiResponse<List<CouponsData>>();
 
-            try
-            {
-                var data = await _unitOfWork.Coupons.GetAllAsync();
-                apiResponse.Success = true;
-                apiResponse.Result = data.ToList();
-            }
-            catch (SqlException ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("SQL Exception:", ex);
-            }
-            catch (Exception ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("Exception:", ex);
-            }
-
+            var data = await _unitOfWork.Coupons.GetAllAsync();
+            apiResponse.Success = true;
+            apiResponse.Result = data.ToList();
             return apiResponse;
         }
 
@@ -53,25 +37,9 @@ namespace ProductTracker.Api.Controllers
         {
 
             var apiResponse = new ApiResponse<CouponsData>();
-
-            try
-            {
-                var data = await _unitOfWork.Coupons.GetByIdAsync(id);
-                apiResponse.Success = true;
-                apiResponse.Result = data;
-            }
-            catch (SqlException ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("SQL Exception:", ex);
-            }
-            catch (Exception ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("Exception:", ex);
-            }
+            var data = await _unitOfWork.Coupons.GetByIdAsync(id);
+            apiResponse.Success = true;
+            apiResponse.Result = data;
 
             return apiResponse;
         }
@@ -81,25 +49,9 @@ namespace ProductTracker.Api.Controllers
         {
             var apiResponse = new ApiResponse<string>();
 
-            try
-            {
-                var data = await _unitOfWork.Coupons.AddAsync(couponsData);
-                apiResponse.Success = true;
-                apiResponse.Result = data;
-            }
-            catch (SqlException ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("SQL Exception:", ex);
-            }
-            catch (Exception ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("Exception:", ex);
-            }
-
+            var data = await _unitOfWork.Coupons.AddAsync(couponsData);
+            apiResponse.Success = true;
+            apiResponse.Result = data;
             return apiResponse;
         }
 
@@ -108,25 +60,9 @@ namespace ProductTracker.Api.Controllers
         {
             var apiResponse = new ApiResponse<string>();
 
-            try
-            {
-                var data = await _unitOfWork.Coupons.UpdateAsync(couponsData);
-                apiResponse.Success = true;
-                apiResponse.Result = data;
-            }
-            catch (SqlException ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("SQL Exception:", ex);
-            }
-            catch (Exception ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("Exception:", ex);
-            }
-
+            var data = await _unitOfWork.Coupons.UpdateAsync(couponsData);
+            apiResponse.Success = true;
+            apiResponse.Result = data;
             return apiResponse;
         }
 
@@ -135,24 +71,9 @@ namespace ProductTracker.Api.Controllers
         {
             var apiResponse = new ApiResponse<string>();
 
-            try
-            {
-                var data = await _unitOfWork.Coupons.DeleteAsync(id);
-                apiResponse.Success = true;
-                apiResponse.Result = data;
-            }
-            catch (SqlException ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("SQL Exception:", ex);
-            }
-            catch (Exception ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("Exception:", ex);
-            }
+            var data = await _unitOfWork.Coupons.DeleteAsync(id);
+            apiResponse.Success = true;
+            apiResponse.Result = data;
 
             return apiResponse;
         }

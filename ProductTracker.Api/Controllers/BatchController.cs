@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿//using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ProductTracker.Api.Authorization;
 using ProductTracker.Api.Models;
 using ProductTracker.Application.Interfaces;
 using ProductTracker.Core.Entities;
@@ -8,6 +10,7 @@ using System.Data.SqlClient;
 
 namespace ProductTracker.Api.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class BatchController : BaseApiController
@@ -21,30 +24,15 @@ namespace ProductTracker.Api.Controllers
 
         #region ===[ Public Methods ]==============================================================
 
+        [Authorize("Admin")]
         [HttpGet]
         public async Task<ApiResponse<List<BatchData>>> GetAll()
         {
             var apiResponse = new ApiResponse<List<BatchData>>();
 
-            try
-            {
-                var data = await _unitOfWork.Batches.GetAllAsync();
-                apiResponse.Success = true;
-                apiResponse.Result = data.ToList();
-            }
-            catch (SqlException ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("SQL Exception:", ex);
-            }
-            catch (Exception ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("Exception:", ex);
-            }
-
+            var data = await _unitOfWork.Batches.GetAllAsync();
+            apiResponse.Success = true;
+            apiResponse.Result = data.ToList(); 
             return apiResponse;
         }
 
@@ -54,25 +42,9 @@ namespace ProductTracker.Api.Controllers
 
             var apiResponse = new ApiResponse<BatchData>();
 
-            try
-            {
-                var data = await _unitOfWork.Batches.GetByIdAsync(id);
-                apiResponse.Success = true;
-                apiResponse.Result = data;
-            }
-            catch (SqlException ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("SQL Exception:", ex);
-            }
-            catch (Exception ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("Exception:", ex);
-            }
-
+            var data = await _unitOfWork.Batches.GetByIdAsync(id);
+            apiResponse.Success = true;
+            apiResponse.Result = data;
             return apiResponse;
         }
 
@@ -81,25 +53,9 @@ namespace ProductTracker.Api.Controllers
         {
             var apiResponse = new ApiResponse<string>();
 
-            try
-            {
-                var data = await _unitOfWork.Batches.AddAsync(batchData);
-                apiResponse.Success = true;
-                apiResponse.Result = data;
-            }
-            catch (SqlException ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("SQL Exception:", ex);
-            }
-            catch (Exception ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("Exception:", ex);
-            }
-
+            var data = await _unitOfWork.Batches.AddAsync(batchData);
+            apiResponse.Success = true;
+            apiResponse.Result = data;
             return apiResponse;
         }
 
@@ -108,25 +64,9 @@ namespace ProductTracker.Api.Controllers
         {
             var apiResponse = new ApiResponse<string>();
 
-            try
-            {
-                var data = await _unitOfWork.Batches.UpdateAsync(batchData);
-                apiResponse.Success = true;
-                apiResponse.Result = data;
-            }
-            catch (SqlException ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("SQL Exception:", ex);
-            }
-            catch (Exception ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("Exception:", ex);
-            }
-
+            var data = await _unitOfWork.Batches.UpdateAsync(batchData);
+            apiResponse.Success = true;
+            apiResponse.Result = data;
             return apiResponse;
         }
 
@@ -135,25 +75,9 @@ namespace ProductTracker.Api.Controllers
         {
             var apiResponse = new ApiResponse<string>();
 
-            try
-            {
-                var data = await _unitOfWork.Batches.DeleteAsync(id);
-                apiResponse.Success = true;
-                apiResponse.Result = data;
-            }
-            catch (SqlException ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("SQL Exception:", ex);
-            }
-            catch (Exception ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("Exception:", ex);
-            }
-
+            var data = await _unitOfWork.Batches.DeleteAsync(id);
+            apiResponse.Success = true;
+            apiResponse.Result = data;
             return apiResponse;
         }
 

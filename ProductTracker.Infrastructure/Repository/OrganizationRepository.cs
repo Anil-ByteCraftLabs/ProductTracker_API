@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using ProductTracker.Application.Interfaces;
+using ProductTracker.Application.Interfaces.FileStorage;
 using ProductTracker.Core.Entities;
 using ProductTracker.Infrastructure.Context;
 using ProductTracker.Sql;
@@ -16,14 +17,19 @@ namespace ProductTracker.Infrastructure.Repository
     public class OrganizationRepository : IOrganizationRepository
     {
         private readonly DapperContext _dapperContext;
+        private readonly IFileStorageProvider _storageProvider;
 
-        public OrganizationRepository(DapperContext dapperContext)
+        public OrganizationRepository(DapperContext dapperContext,IFileStorageProvider storageProvider)
         {
             _dapperContext = dapperContext;
+            _storageProvider = storageProvider;
         }
 
         public async Task<string> AddAsync(Organization entity)
         {
+            // _storageProvider.SaveFileAsync(importDataFile.FilePath, importDataFileModel.FileStream).Wait();
+            _storageProvider?.SaveFileAsync(entity.LogoFileName, entity.Logo);
+
             using var connection = _dapperContext.CreateAdminConnection();
             var parameters = new DynamicParameters();
             parameters.Add("OrgId", entity.Id);
@@ -58,6 +64,13 @@ namespace ProductTracker.Infrastructure.Repository
             var result = await connection.QuerySingleOrDefaultAsync<Organization>(OrganizationQueries.OrganizationById, new { OrgId = id });
             return result;
         }
+        public async Task<string> GetDataBase(string alias)
+        {
+            using var connection = _dapperContext.CreateAdminConnection();
+            var result = await connection.QuerySingleOrDefaultAsync<string>(OrganizationQueries.GetDataBase, new { AliasName = alias });
+            return result;
+        }
+
 
         public async Task<string> UpdateAsync(Organization entity)
         {

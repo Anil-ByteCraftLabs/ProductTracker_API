@@ -2,6 +2,8 @@
 using ProductTracker.Infrastructure.Repository;
 using Microsoft.Extensions.DependencyInjection;
 using ProductTracker.Infrastructure.Context;
+using ProductTracker.Application.Interfaces.FileStorage;
+using ProductTracker.Infrastructure.Repository.FileStorage;
 
 namespace ProductTracker.Infrastructure
 {
@@ -15,8 +17,13 @@ namespace ProductTracker.Infrastructure
 
             services.AddTransient<IBatchDataRepository, BatchDataRepository>();
             services.AddTransient<ICouponsDataRepository, CouponsDataRepository>();
+            services.AddTransient<IPlantRepository, PlantRepository>();
 
+            services.AddSingleton<IFileStorageProvider, AzureBlobStorageProvider>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            
+
+            // JwtUtils : IJwtUtils
 
             services.AddSingleton<DapperContext>();
         }

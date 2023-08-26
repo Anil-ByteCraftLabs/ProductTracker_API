@@ -6,13 +6,14 @@ namespace ProductTracker.Infrastructure.Repository
     {
         public UnitOfWork(IUserRepository userRepository, IProductRepository products,
             IOrganizationRepository organizations,IBatchDataRepository batchDataRepository,
-            ICouponsDataRepository couponsDataRepository)
+            ICouponsDataRepository couponsDataRepository, IPlantRepository plants)
         {
             Users = userRepository;
             Products = products;
             Organizations = organizations;
-            Batches = batchDataRepository;  
+            Batches = batchDataRepository;
             Coupons = couponsDataRepository;
+            Plants = plants;
         }
 
         public IUserRepository Users { get; set; }
@@ -22,5 +23,6 @@ namespace ProductTracker.Infrastructure.Repository
         public IBatchDataRepository Batches { get; set; }
         public ICouponsDataRepository Coupons { get; set; }
 
-    }
+        public IPlantRepository Plants  { get; set; }
+}
 }

@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProductTracker.Application.Interfaces
 {
-    public  interface IOrganizationRepository :  IRepository<Organization>
+    public interface IPlantRepository :  IRepository<Plant>
     {
-        Task<string> GetDataBase(string alias);
     }
 }

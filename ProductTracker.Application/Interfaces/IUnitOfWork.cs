@@ -10,6 +10,7 @@
 
         IBatchDataRepository Batches { get; }
         ICouponsDataRepository Coupons { get; }
+        IPlantRepository Plants { get; }
 
     }
 }

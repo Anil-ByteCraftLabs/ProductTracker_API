@@ -25,25 +25,9 @@ namespace ProductTracker.Api.Controllers
         {
             var apiResponse = new ApiResponse<List<Product>>();
 
-            try
-            {
-                var data = await _unitOfWork.Products.GetAllAsync();
-                apiResponse.Success = true;
-                apiResponse.Result = data.ToList();
-            }
-            catch (SqlException ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("SQL Exception:", ex);
-            }
-            catch (Exception ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("Exception:", ex);
-            }
-
+            var data = await _unitOfWork.Products.GetAllAsync();
+            apiResponse.Success = true;
+            apiResponse.Result = data.ToList();
             return apiResponse;
         }
 
@@ -53,25 +37,9 @@ namespace ProductTracker.Api.Controllers
 
             var apiResponse = new ApiResponse<Product>();
 
-            try
-            {
-                var data = await _unitOfWork.Products.GetByIdAsync(id);
-                apiResponse.Success = true;
-                apiResponse.Result = data;
-            }
-            catch (SqlException ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("SQL Exception:", ex);
-            }
-            catch (Exception ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("Exception:", ex);
-            }
-
+            var data = await _unitOfWork.Products.GetByIdAsync(id);
+            apiResponse.Success = true;
+            apiResponse.Result = data;
             return apiResponse;
         }
 
@@ -80,25 +48,10 @@ namespace ProductTracker.Api.Controllers
         {
             var apiResponse = new ApiResponse<string>();
 
-            try
-            {
                 var data = await _unitOfWork.Products.AddAsync(product);
                 apiResponse.Success = true;
                 apiResponse.Result = data;
-            }
-            catch (SqlException ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("SQL Exception:", ex);
-            }
-            catch (Exception ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("Exception:", ex);
-            }
-
+            
             return apiResponse;
         }
 
@@ -107,24 +60,9 @@ namespace ProductTracker.Api.Controllers
         {
             var apiResponse = new ApiResponse<string>();
 
-            try
-            {
-                var data = await _unitOfWork.Products.UpdateAsync(product);
-                apiResponse.Success = true;
-                apiResponse.Result = data;
-            }
-            catch (SqlException ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("SQL Exception:", ex);
-            }
-            catch (Exception ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("Exception:", ex);
-            }
+            var data = await _unitOfWork.Products.UpdateAsync(product);
+            apiResponse.Success = true;
+            apiResponse.Result = data;
 
             return apiResponse;
         }
@@ -134,25 +72,9 @@ namespace ProductTracker.Api.Controllers
         {
             var apiResponse = new ApiResponse<string>();
 
-            try
-            {
-                var data = await _unitOfWork.Products.DeleteAsync(id);
-                apiResponse.Success = true;
-                apiResponse.Result = data;
-            }
-            catch (SqlException ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("SQL Exception:", ex);
-            }
-            catch (Exception ex)
-            {
-                apiResponse.Success = false;
-                apiResponse.Message = ex.Message;
-                Logger.Instance.Error("Exception:", ex);
-            }
-
+            var data = await _unitOfWork.Products.DeleteAsync(id);
+            apiResponse.Success = true;
+            apiResponse.Result = data;
             return apiResponse;
         }
 

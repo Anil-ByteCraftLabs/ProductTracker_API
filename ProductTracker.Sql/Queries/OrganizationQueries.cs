@@ -11,6 +11,7 @@ namespace ProductTracker.Sql.Queries
     public static class OrganizationQueries
     {
 		public static string AllOrganization => "SELECT * FROM [Organization] (NOLOCK)";
+		public static string GetDataBase => "SELECT DBPath FROM [Organization] where AliasName =  @OrgId";
 
 		public static string OrganizationById => "SELECT * FROM [Organization] (NOLOCK) WHERE [Id] = @OrgId";
 
