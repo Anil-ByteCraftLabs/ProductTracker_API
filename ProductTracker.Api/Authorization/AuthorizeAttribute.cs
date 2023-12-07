@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using ProductTracker.Api.Models;
+using ProductTracker.Core.DTO.Response;
 
 namespace ProductTracker.Api.Authorization
 {
@@ -24,7 +25,12 @@ namespace ProductTracker.Api.Authorization
             if (user == null || (user.Role.ToLower() != _role.ToLower()))
             {
                 // not logged in or role not authorized
-                context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+                var apiResponse = new ApiResponse<string>();
+                apiResponse.Success = true;
+                apiResponse.Message = "Unauthorized";
+                apiResponse.Result = "";
+
+                context.Result = new JsonResult(apiResponse);
             }
         }
     }

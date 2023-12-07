@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using ProductTracker.Application.Interfaces;
 using ProductTracker.Application.Interfaces.FileStorage;
+using ProductTracker.Core.DTO.Response;
 using ProductTracker.Core.Entities;
 using ProductTracker.Infrastructure.Context;
 using ProductTracker.Sql;
@@ -18,17 +19,19 @@ namespace ProductTracker.Infrastructure.Repository
     {
         private readonly DapperContext _dapperContext;
         private readonly IFileStorageProvider _storageProvider;
+        private readonly IUserRepository _userRepository;
 
-        public OrganizationRepository(DapperContext dapperContext,IFileStorageProvider storageProvider)
+        public OrganizationRepository(DapperContext dapperContext,IFileStorageProvider storageProvider, IUserRepository userRepository)
         {
             _dapperContext = dapperContext;
             _storageProvider = storageProvider;
+            _userRepository = userRepository;   
         }
 
         public async Task<string> AddAsync(Organization entity)
         {
             // _storageProvider.SaveFileAsync(importDataFile.FilePath, importDataFileModel.FileStream).Wait();
-            _storageProvider?.SaveFileAsync(entity.LogoFileName, entity.Logo);
+            //_storageProvider?.SaveFileAsync(entity.LogoFileName, entity.Logo);
 
             using var connection = _dapperContext.CreateAdminConnection();
             var parameters = new DynamicParameters();
@@ -38,6 +41,7 @@ namespace ProductTracker.Infrastructure.Repository
             parameters.Add("DBPath", entity.DBPath);
             parameters.Add("DeActivationDate", entity.DeActivationDate);
             parameters.Add("CreatedBy", entity.CreatedBy);
+            parameters.Add("UpdatedBy", entity.UpdatedBy);
 
             var result = await connection.ExecuteAsync(OrganizationQueries.SaveOrganization, parameters, commandType: CommandType.StoredProcedure);
             return result.ToString();
@@ -55,14 +59,39 @@ namespace ProductTracker.Infrastructure.Repository
         {
             using var connection = _dapperContext.CreateAdminConnection();
             var result = await connection.QueryAsync<Organization>(OrganizationQueries.AllOrganization);
-            return result.ToList();
+            var data =  result.ToList();
+            connection.Close();
+            using var defaultConnection = _dapperContext.CreateDefaultConnection();
+            var allUser = await defaultConnection.QueryAsync<UserResponseDTOs>(UserQueries.AllUsers, commandType: CommandType.StoredProcedure);
+            for (int i = 0; i < data.Count; i++)
+            {
+               
+                data[i].CreatedByName = allUser.ToList().Where(u => u.Id == data[i].CreatedBy).SingleOrDefault().UserName;
+
+                if(!string.IsNullOrEmpty(data[i].UpdatedBy))
+                {
+                    data[i].UpdatedByName = allUser.ToList().Where(u => u.Id == data[i].UpdatedBy).SingleOrDefault().UserName;
+
+                }
+            }
+            return data;
         }
 
         public async Task<Organization> GetByIdAsync(long id)
         {
             using var connection = _dapperContext.CreateAdminConnection();
-            var result = await connection.QuerySingleOrDefaultAsync<Organization>(OrganizationQueries.OrganizationById, new { OrgId = id });
-            return result;
+            var data = await connection.QuerySingleOrDefaultAsync<Organization>(OrganizationQueries.OrganizationById, new { OrgId = id });
+            connection.Close();
+            using var defaultConnection = _dapperContext.CreateDefaultConnection();
+            var allUser = await defaultConnection.QueryAsync<UserResponseDTOs>(UserQueries.AllUsers, commandType: CommandType.StoredProcedure);
+            data.CreatedByName = allUser.ToList().Where(u => u.Id == data.CreatedBy).SingleOrDefault().UserName;
+
+            if (!string.IsNullOrEmpty(data.UpdatedBy))
+            {
+                data.UpdatedByName = allUser.ToList().Where(u => u.Id == data.UpdatedBy).SingleOrDefault().UserName;
+
+            }
+            return data;
         }
         public async Task<string> GetDataBase(string alias)
         {
@@ -71,6 +100,31 @@ namespace ProductTracker.Infrastructure.Repository
             return result;
         }
 
+        public async Task<IReadOnlyList<Organization>> GetOrganizationByUserId(string userId)
+        {
+            using var defaultConnection = _dapperContext.CreateDefaultConnection();
+            var allUser = await defaultConnection.QueryAsync<UserResponseDTOs>(UserQueries.AllUsers, commandType: CommandType.StoredProcedure);
+            var selectedUser = allUser.ToList().Where(u => u.Id == userId).SingleOrDefault();
+           
+            using var connection = _dapperContext.CreateAdminConnection();
+            var result = await connection.QueryAsync<Organization>(OrganizationQueries.AllOrganization);
+            var data = result.Where(o => o.Id == selectedUser.OrganizationId).ToList();
+            connection.Close();
+          
+            for (int i = 0; i < data.Count; i++)
+            {
+
+                data[i].CreatedByName = allUser.ToList().Where(u => u.Id == data[i].CreatedBy).SingleOrDefault().UserName;
+
+                if (!string.IsNullOrEmpty(data[i].UpdatedBy))
+                {
+                    data[i].UpdatedByName = allUser.ToList().Where(u => u.Id == data[i].UpdatedBy).SingleOrDefault().UserName;
+
+                }
+            }
+            return data;
+
+        }
 
         public async Task<string> UpdateAsync(Organization entity)
         {
@@ -80,8 +134,14 @@ namespace ProductTracker.Infrastructure.Repository
             parameters.Add("OrgName", entity.OrgName);
             parameters.Add("AliasName", entity.AliasName);
             parameters.Add("DBPath", entity.DBPath);
-            parameters.Add("DeActivationDate", entity.DeActivationDate);
+            // new SqlParameter("visitDate", (object)visitDate ?? DBNull.Value),
+            if (entity.DeActivationDate!= null )
+            {
+                parameters.Add("DeActivationDate", entity.DeActivationDate);
+            }
+            
             parameters.Add("CreatedBy", entity.CreatedBy);
+            parameters.Add("UpdatedBy", entity.UpdatedBy);
 
             var result = await connection.ExecuteAsync(OrganizationQueries.SaveOrganization, parameters, commandType: CommandType.StoredProcedure);
             return result.ToString();

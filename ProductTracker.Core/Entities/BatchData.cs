@@ -13,7 +13,8 @@ namespace ProductTracker.Core.Entities
         public int NoOfCoupons { get; set; }
         public int NoOfPrintedCoupons { get; set; }
         public int Status { get; set; }
-        public int OrgId { get; set; }
+        public int PlantId { get; set; }
+        public int ProductId { get; set; }
 
     }
 }

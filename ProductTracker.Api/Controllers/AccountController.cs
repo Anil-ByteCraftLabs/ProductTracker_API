@@ -5,91 +5,130 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using ProductTracker.Api.Authorization;
 using ProductTracker.Api.Models;
+using ProductTracker.Application.Interfaces;
+using ProductTracker.Core.DTO.Request;
+using ProductTracker.Core.DTO.Response;
+using ProductTracker.Core.Entities;
+using ProductTracker.Infrastructure.Repository;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace ProductTracker.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize("Super Admin")]
     public class AccountController : ControllerBase
     {
-
+        private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
         private readonly IJwtUtils _jwtUtils;
-        public AccountController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<ApplicationUser> signInManager, IConfiguration configuration, IJwtUtils jwtUtils)
+        public AccountController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<ApplicationUser> signInManager, IConfiguration configuration, IJwtUtils jwtUtils, IUnitOfWork unitOfWork)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _configuration = configuration;
             _roleManager = roleManager;
             _jwtUtils = jwtUtils;
+            _unitOfWork = unitOfWork;
         }
 
+        [AllowAnonymousAttribute]
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        public async Task<ApiResponse<string>> Login(LoginViewModel model)
         {
-             var user = await _userManager.FindByNameAsync(model.Username);
-            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+            var apiResponse = new ApiResponse<string>();
+            var user = await _userManager.FindByNameAsync(model.Username);
+            if (user == null || !(await _userManager.CheckPasswordAsync(user, model.Password)))
             {
-                var roles = await _userManager.GetRolesAsync(user);
-                //var token = GenerateJwtToken(user, roles);
-                var token = _jwtUtils.GenerateJwtToken(user, roles);
-
-                return Ok(new { token });
+                apiResponse.Success = false;
+                apiResponse.Message = "Invalid login ID or password";
+                return apiResponse;
             }
 
-            return Unauthorized();
+
+            var roles = await _userManager.GetRolesAsync(user);
+            var token = _jwtUtils.GenerateJwtToken(user, roles);
+
+            apiResponse.Success = true;
+            apiResponse.Message = "Login Successed.";
+            apiResponse.Result = token;
+            return apiResponse;
         }
+
         [HttpPost]
-        [HttpPost]
-        public async Task<IActionResult> CreateUser(string username, string email, string password, string roleid, int CompanyId, int PlantId)
+        public async Task<ApiResponse<string>> CreateUser(UserRequestDTOs userRequestDTOs)
         {
+            // Validations 
+            if(string.IsNullOrEmpty(userRequestDTOs.Username))
+                throw new Exception("Please provide a valid user name.");
+            if (!IsValidEmail(userRequestDTOs.Email))
+                throw new Exception("Please provide a valid user email.");
+            if (string.IsNullOrEmpty(userRequestDTOs.Password))
+                throw new Exception("Please provide a valid password.");
+            if (string.IsNullOrEmpty(userRequestDTOs.Roleid))
+                throw new Exception("Please select a valid role.");
+            if (userRequestDTOs.OrganizationId<=0)
+                throw new Exception("Please select a valid organization.");
+            if (userRequestDTOs.PlantId <= 0)
+                throw new Exception("Please select a valid plant.");
+            if (!IsValidPassword(userRequestDTOs.Password))
+                throw new Exception("Please provide a valid password.");
+
+
+            
+            var apiResponse = new ApiResponse<string>();
+
             // Check if a user with the same username already exists
-            var existingUser = await _userManager.FindByNameAsync(username);
+            var existingUser = await _userManager.FindByNameAsync(userRequestDTOs.Username);
             if (existingUser != null)
             {
-                return BadRequest("Username already exists.");
+                throw new Exception("Username already exists.");
             }
 
             // Check if a user with the same email already exists
-            existingUser = await _userManager.FindByEmailAsync(email);
+            existingUser = await _userManager.FindByEmailAsync(userRequestDTOs.Email);
             if (existingUser != null)
             {
-                return BadRequest("Email already exists.");
+                throw new Exception("Email already exists.");
             }
-            var roleName = await _roleManager.FindByIdAsync(roleid);
+            var roleName = await _roleManager.FindByIdAsync(userRequestDTOs.Roleid);
             // Create a new ApplicationUser object
             var newUser = new ApplicationUser
             {
-                UserName = username,
-                Email = email,
-                CompanyId = CompanyId,
-                PlantId = PlantId,
-                IsActive =true
-                
+                UserName = userRequestDTOs.Username,
+                Email = userRequestDTOs.Email,
+                OrganizationId = userRequestDTOs.OrganizationId,
+                PlantId = userRequestDTOs.PlantId,
+                IsActive = true
+
                 // You can add additional properties to ApplicationUser here if needed.
             };
 
             // Create the user with the specified password
-            var result = await _userManager.CreateAsync(newUser, password);
-            var newUserDetails = _userManager.Users.FirstOrDefaultAsync(u => u.Email == email);
+            var result = await _userManager.CreateAsync(newUser, userRequestDTOs.Password);
+            var newUserDetails = _userManager.Users.FirstOrDefaultAsync(u => u.Email == userRequestDTOs.Email);
 
 
             if (result.Succeeded)
             {
                 var userId = newUser.Id;
-                await AddUserToRole(userId, roleid);
-                return Ok("User created successfully.");
+                await AddUserToRole(userId, userRequestDTOs.Roleid);
+                apiResponse.Success = true;
+                apiResponse.Message = "User created successfully.";
+                
+                return apiResponse;
 
             }
             else
             {
-                return BadRequest(result.Errors);
+                throw new Exception(result.Errors.ToString());
+               // return BadRequest(result.Errors);
             }
         }
 
@@ -107,66 +146,46 @@ namespace ProductTracker.Api.Controllers
 
             return false; // User not found
         }
-        private string GenerateJwtToken(ApplicationUser user, IList<string> roles)
+        private bool IsValidEmail(string email)
         {
-            var claims = new List<Claim>
-        {
-            new Claim(ClaimTypes.NameIdentifier, user.Id),
-            new Claim(ClaimTypes.Name, user.UserName),
-            new Claim("IsActive", user.IsActive.ToString())
-            
-        };
+            // Regular expression for a simple email format validation
+            string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
 
-            foreach (var role in roles)
-            {
-                claims.Add(new Claim(ClaimTypes.Role, role));
-            }
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expires = DateTime.Now.AddDays(Convert.ToDouble(_configuration["Jwt:ExpireDays"]));
-
-            var token = new JwtSecurityToken(
-                _configuration["Jwt:Issuer"],
-                _configuration["Jwt:Issuer"],
-                claims,
-                expires: expires,
-                signingCredentials: creds
-            );
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            // Use Regex.IsMatch to check if the email matches the pattern
+            return Regex.IsMatch(email, emailPattern);
         }
 
-        //public int? ValidateJwtToken(string token)
-        //{
-        //    if (token == null)
-        //        return null;
+        private  bool IsValidPassword(string password)
+        {
+            // Check for at least one non-alphanumeric character
+            if (!Regex.IsMatch(password, @"[^\w\d]"))
+                return false;
 
-        //    var tokenHandler = new JwtSecurityTokenHandler();
-        //    var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
-        //    try
-        //    {
-        //        tokenHandler.ValidateToken(token, new TokenValidationParameters
-        //        {
-        //            ValidateIssuerSigningKey = true,
-        //            IssuerSigningKey = new SymmetricSecurityKey(key),
-        //            ValidateIssuer = false,
-        //            ValidateAudience = false,
-        //            // set clockskew to zero so tokens expire exactly at token expiration time (instead of 5 minutes later)
-        //            ClockSkew = TimeSpan.Zero
-        //        }, out SecurityToken validatedToken);
+            // Check for at least one digit
+            if (!Regex.IsMatch(password, @"\d"))
+                return false;
 
-        //        var jwtToken = (JwtSecurityToken)validatedToken;
-        //        var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
+            // Check for at least one uppercase letter
+            if (!Regex.IsMatch(password, @"[A-Z]"))
+                return false;
 
-        //        // return user id from JWT token if validation successful
-        //        return userId;
-        //    }
-        //    catch
-        //    {
-        //        // return null if validation fails
-        //        return null;
-        //    }
-        //}
+            // All requirements met
+            return true;
+        }
+
+
+        [HttpGet]
+        public async Task<ApiResponse<List<UserResponseDTOs>>> GetAll()
+        {
+            var apiResponse = new ApiResponse<List<UserResponseDTOs>>();
+
+            var data = await _unitOfWork.Users.GetAllUsers();
+            apiResponse.Success = true;
+            apiResponse.Result = data.ToList();
+
+            return apiResponse;
+
+        }
+
     }
 }

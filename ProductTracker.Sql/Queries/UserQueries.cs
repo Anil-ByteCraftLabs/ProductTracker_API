@@ -5,9 +5,9 @@ namespace ProductTracker.Sql.Queries
     [ExcludeFromCodeCoverage]
 	public static class UserQueries
 	{
-		public static string AllUsers => "SELECT * FROM [User] (NOLOCK)";
+		public static string AllUsers => "usp_GetUsers";
 
-		public static string UserById => "SELECT * FROM [User] (NOLOCK) WHERE [Id] = @UserId";
+		public static string UserById => "SELECT * FROM [AspNetUsers] (NOLOCK) WHERE [Id] = @UserId";
 
 		public static string AddUser => "usp_SaveUser";
 

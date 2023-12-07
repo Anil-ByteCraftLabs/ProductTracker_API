@@ -10,5 +10,6 @@ namespace ProductTracker.Application.Interfaces
     public  interface IOrganizationRepository :  IRepository<Organization>
     {
         Task<string> GetDataBase(string alias);
+        Task<IReadOnlyList<Organization>> GetOrganizationByUserId( string userId);
     }
 }

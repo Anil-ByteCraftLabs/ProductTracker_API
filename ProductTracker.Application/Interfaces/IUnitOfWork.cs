@@ -12,5 +12,10 @@
         ICouponsDataRepository Coupons { get; }
         IPlantRepository Plants { get; }
 
+        IProductTypeRepository ProductTypes { get; }
+        IProductWeightRepository ProductWeights { get; }
+        IProductCategoryRepository ProductCategorys { get; }
+        ITemplateRepository TemplateRepositorys { get; }
+
     }
 }

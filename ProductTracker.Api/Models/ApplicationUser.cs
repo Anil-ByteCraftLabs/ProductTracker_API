@@ -22,7 +22,7 @@ namespace ProductTracker.Api.Models
         //public string PasswordHash { get; set; }
 
         // Additional properties can be added here if needed.
-        public int CompanyId { get; set; }
+        public int OrganizationId { get; set; }
         public int PlantId { get; set; }
 
         public string? Role { get; set; }

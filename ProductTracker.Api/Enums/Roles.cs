@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-public enum UserRole
+public enum UserRoles
 {
     //[StringEnumValue("Admin")]
     Admin,

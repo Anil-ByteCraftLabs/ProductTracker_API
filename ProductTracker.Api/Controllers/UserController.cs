@@ -27,64 +27,64 @@ namespace ProductTracker.Api.Controllers
 
         #endregion
 
-        #region ===[ Public Methods ]==============================================================
+        //#region ===[ Public Methods ]==============================================================
 
-        [HttpGet]
-        public async Task<ApiResponse<List<User>>> GetAll()
-        {
-            var apiResponse = new ApiResponse<List<User>>();
+        //[HttpGet]
+        //public async Task<ApiResponse<List<User>>> GetAll()
+        //{
+        //    var apiResponse = new ApiResponse<List<User>>();
 
-            var data = await _unitOfWork.Users.GetAllAsync();
-            apiResponse.Success = true;
-            apiResponse.Result = data.ToList();
-            return apiResponse;
-        }
+        //    var data = await _unitOfWork.Users.GetAllAsync();
+        //    apiResponse.Success = true;
+        //    apiResponse.Result = data.ToList();
+        //    return apiResponse;
+        //}
 
-        [HttpGet("{id}")]
-        public async Task<ApiResponse<User>> GetById(int id)
-        {
+        //[HttpGet("{id}")]
+        //public async Task<ApiResponse<User>> GetById(int id)
+        //{
 
-            var apiResponse = new ApiResponse<User>();
+        //    var apiResponse = new ApiResponse<User>();
 
-            var data = await _unitOfWork.Users.GetByIdAsync(id);
-            apiResponse.Success = true;
-            apiResponse.Result = data;
-            return apiResponse;
-        }
+        //    var data = await _unitOfWork.Users.GetByIdAsync(id);
+        //    apiResponse.Success = true;
+        //    apiResponse.Result = data;
+        //    return apiResponse;
+        //}
 
-        [HttpPost]
-        public async Task<ApiResponse<string>> Add(User contact)
-        {
-            var apiResponse = new ApiResponse<string>();
+        //[HttpPost]
+        //public async Task<ApiResponse<string>> Add(User contact)
+        //{
+        //    var apiResponse = new ApiResponse<string>();
 
-            var data = await _unitOfWork.Users.AddAsync(contact);
-            apiResponse.Success = true;
-            apiResponse.Result = data;
-            return apiResponse;
-        }
+        //    var data = await _unitOfWork.Users.AddAsync(contact);
+        //    apiResponse.Success = true;
+        //    apiResponse.Result = data;
+        //    return apiResponse;
+        //}
 
-        [HttpPut]
-        public async Task<ApiResponse<string>> Update(User contact)
-        {
-            var apiResponse = new ApiResponse<string>();
+        //[HttpPut]
+        //public async Task<ApiResponse<string>> Update(User contact)
+        //{
+        //    var apiResponse = new ApiResponse<string>();
 
-            var data = await _unitOfWork.Users.UpdateAsync(contact);
-            apiResponse.Success = true;
-            apiResponse.Result = data;
-            return apiResponse;
-        }
+        //    var data = await _unitOfWork.Users.UpdateAsync(contact);
+        //    apiResponse.Success = true;
+        //    apiResponse.Result = data;
+        //    return apiResponse;
+        //}
 
-        [HttpDelete]
-        public async Task<ApiResponse<string>> Delete(int id)
-        {
-            var apiResponse = new ApiResponse<string>();
+        //[HttpDelete]
+        //public async Task<ApiResponse<string>> Delete(int id)
+        //{
+        //    var apiResponse = new ApiResponse<string>();
 
-            var data = await _unitOfWork.Users.DeleteAsync(id);
-            apiResponse.Success = true;
-            apiResponse.Result = data;
-            return apiResponse;
-        }
+        //    var data = await _unitOfWork.Users.DeleteAsync(id);
+        //    apiResponse.Success = true;
+        //    apiResponse.Result = data;
+        //    return apiResponse;
+        //}
 
-        #endregion
+        //#endregion
     }
 }

@@ -51,7 +51,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowOrigin",
-          builder => builder.WithOrigins("http://localhost:4200")
+          builder => builder.WithOrigins("http://localhost:4200", "http://bytecraftlabs.in")
                             .AllowAnyMethod()
                             .AllowAnyHeader());
 });

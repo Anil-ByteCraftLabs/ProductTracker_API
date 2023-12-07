@@ -10,7 +10,7 @@ namespace ProductTracker.Sql.Queries
     [ExcludeFromCodeCoverage]
     public static class PlantQueries
     {
-        public static string AllPlants => "SELECT * FROM [Plant] (NOLOCK)";
+        public static string AllPlants => "usp_GetPlants";
 
         public static string PlantById => "SELECT * FROM [Plant] (NOLOCK) WHERE [Id] = @PlantId";
 
@@ -21,5 +21,6 @@ namespace ProductTracker.Sql.Queries
 
         public static string DeletePlant => "DELETE FROM [Plant] WHERE [Id] = @PlantId";
 
+        public static string CanPlantBeDeleted => "usp_CanPlantBeDeleted";
     }
 }

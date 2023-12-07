@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using ProductTracker.Infrastructure.Context;
+using ProductTracker.Core.DTO.Response;
 
 namespace ProductTracker.Infrastructure.Repository
 {
@@ -81,6 +82,57 @@ namespace ProductTracker.Infrastructure.Repository
             using var connection = _dapperContext.CreateDefaultConnection();
             var result = await connection.ExecuteAsync(UserQueries.DeleteUser, new { Id = id });
             return result.ToString();
+        }
+
+        public async Task<IReadOnlyList<UserResponseDTOs>> GetAllUsers()
+        {
+            using var connection = _dapperContext.CreateDefaultConnection();
+            var result = await connection.QueryAsync<UserResponseDTOs>(UserQueries.AllUsers, commandType: CommandType.StoredProcedure);
+            var data = result.ToList();
+            connection.Close();
+            using var adminConnection = _dapperContext.CreateAdminConnection();
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                var organization = await adminConnection.QuerySingleOrDefaultAsync<Organization>(OrganizationQueries.OrganizationById, new { OrgId = data[i].OrganizationId });
+                data[i].Organization = organization.OrgName;
+
+                var plant = await adminConnection.QuerySingleOrDefaultAsync<Plant>(PlantQueries.PlantById, new { PlantId = data[i].PlantId });
+                data[i].Plant = plant.PlantName;
+
+            }
+            adminConnection.Close();
+
+
+            return data;
+
+        }
+
+        public async Task<UserResponseDTOs> GetAllUserById(long id)
+        {
+            using var connection = _dapperContext.CreateDefaultConnection();
+            var result = await connection.QueryAsync<UserResponseDTOs>(UserQueries.AllUsers, commandType: CommandType.StoredProcedure);
+            var data = result.ToList().Where(u => u.Id == id.ToString()).SingleOrDefault();
+            connection.Close();
+            using var adminConnection = _dapperContext.CreateAdminConnection();
+
+                var organization = await adminConnection.QuerySingleOrDefaultAsync<Organization>(OrganizationQueries.OrganizationById, new { OrgId = data.OrganizationId });
+                data.Organization = organization.OrgName;
+
+                var plant = await adminConnection.QuerySingleOrDefaultAsync<Plant>(PlantQueries.PlantById, new { PlantId = data.PlantId });
+                data.Plant = plant.PlantName;
+
+            adminConnection.Close();
+
+
+            return data;
+        }
+
+        public async Task<UserResponseDTOs> GetByIdAsync(string id)
+        {
+            using var connection = _dapperContext.CreateDefaultConnection();
+            var result = await connection.QuerySingleOrDefaultAsync<UserResponseDTOs>(UserQueries.UserById, new { UserId = id });
+            return result;
         }
 
         #endregion

@@ -6,7 +6,7 @@ namespace ProductTracker.Infrastructure.Repository
     {
         public UnitOfWork(IUserRepository userRepository, IProductRepository products,
             IOrganizationRepository organizations,IBatchDataRepository batchDataRepository,
-            ICouponsDataRepository couponsDataRepository, IPlantRepository plants)
+            ICouponsDataRepository couponsDataRepository, IPlantRepository plants, IProductTypeRepository producttypes, IProductWeightRepository productWeights, IProductCategoryRepository productCategorys, ITemplateRepository templateRepositorys)
         {
             Users = userRepository;
             Products = products;
@@ -14,6 +14,10 @@ namespace ProductTracker.Infrastructure.Repository
             Batches = batchDataRepository;
             Coupons = couponsDataRepository;
             Plants = plants;
+            ProductWeights = productWeights;
+            ProductTypes = producttypes;
+            ProductCategorys = productCategorys;
+            TemplateRepositorys = templateRepositorys;
         }
 
         public IUserRepository Users { get; set; }
@@ -24,5 +28,14 @@ namespace ProductTracker.Infrastructure.Repository
         public ICouponsDataRepository Coupons { get; set; }
 
         public IPlantRepository Plants  { get; set; }
-}
+
+        public ITemplateRepository TemplateRepositorys { get; set; }
+
+        public IProductTypeRepository ProductTypes  { get; set; }
+
+    public IProductWeightRepository ProductWeights { get; set; }
+        public IProductCategoryRepository ProductCategorys { get; set; }
+
+
+    }
 }

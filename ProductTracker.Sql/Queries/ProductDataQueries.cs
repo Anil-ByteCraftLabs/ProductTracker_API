@@ -10,9 +10,9 @@ namespace ProductTracker.Sql.Queries
     [ExcludeFromCodeCoverage]
     public class ProductDataQueries
     {
-		public static string AllProduct => "SELECT * FROM [ProductData] (NOLOCK)";
+		public static string AllProduct => "usp_GetProducts";
 
-		public static string ProductById => "SELECT * FROM [ProductData] (NOLOCK) WHERE [Id] = @OrgId";
+		public static string ProductById => "SELECT * FROM [ProductData] (NOLOCK) WHERE [Id] = @ProductId";
 
 		public static string SaveProduct => "usp_SaveProduct";
 
@@ -24,6 +24,6 @@ namespace ProductTracker.Sql.Queries
 				[PhoneNumber] = @PhoneNumber
             WHERE [ContactId] = @ContactId";
 
-		public static string DeleteProduct => "DELETE FROM [ProductData] WHERE [Id] = @OrgId";
+		public static string DeleteProduct => "DELETE FROM [ProductData] WHERE [Id] = @ProductId";
 	}
 }

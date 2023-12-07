@@ -10,7 +10,9 @@ namespace ProductTracker.Sql.Queries
     [ExcludeFromCodeCoverage]
     public class BatchDataQueries
     {
-		public static string AllBatches => "SELECT * FROM [BatchData] (NOLOCK)";
+		public static string AllBatches => "usp_GetBatchData";
+		public static string AllUserBatches => "usp_GetUserBatches";
+
 
 		public static string BatchById => "SELECT * FROM [BatchData] (NOLOCK) WHERE [Id] = @OrgId";
 
