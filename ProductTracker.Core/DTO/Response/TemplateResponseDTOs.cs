@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProductTracker.Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,13 +17,5 @@ namespace ProductTracker.Core.DTO.Response
         public string TempFormat { get; set; }
         public List<TempFormat> TempFormatJson { get; set; }
     }
-    public class TempFormat
-    {
-        public string Width { get; set; }
-        public string Height { get; set; }
-        public string MRP { get; set; }
-        public string SKU { get; set; }
-        public string ProductName { get; set; }
-        public string QRCode { get; set; }
-    }
+   
 }

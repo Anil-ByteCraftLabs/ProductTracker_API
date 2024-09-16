@@ -21,14 +21,15 @@ namespace ProductTracker.Api.Controllers
         {
             _unitOfWork = unitOfWork;
         }
+
         [HttpPost]
         public async Task<ApiResponse<string>> Add(TemplateRequestDTOs templateRequestDTOs)
         {
-            if (templateRequestDTOs.TempFormat.Count <=0)
+            if (templateRequestDTOs.TempFormat.Count <= 0)
                 throw new Exception("Template format can not be blank.");
-           if (templateRequestDTOs.OrgId <= 0)
+            if (templateRequestDTOs.OrgId <= 0)
                 throw new Exception("Organization Id is not valid.");
-           
+
 
             var template = new Template
             {

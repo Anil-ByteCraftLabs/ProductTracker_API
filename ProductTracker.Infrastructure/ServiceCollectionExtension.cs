@@ -19,6 +19,14 @@ namespace ProductTracker.Infrastructure
             services.AddTransient<ICouponsDataRepository, CouponsDataRepository>();
             services.AddTransient<IPlantRepository, PlantRepository>();
 
+            services.AddTransient<IProductTypeRepository, ProductType>();
+
+            services.AddTransient<IProductWeightRepository, ProductWeight>();
+            services.AddTransient<IProductCategoryRepository, ProductCategoryRepository>();
+
+            services.AddTransient<ITemplateRepository, TemplateRepository>();
+
+
             services.AddSingleton<IFileStorageProvider, AzureBlobStorageProvider>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             
