@@ -2,275 +2,269 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-
-# User-specific files
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
-
-# User-specific files (MonoDevelop/Xamarin Studio)
-*.userprefs
-
-# Build results
-[Dd]ebug/
-[Dd]ebugPublic/
-[Rr]elease/
-[Rr]eleases/
-x64/
-x86/
-bld/
-[Bb]in/
-[Oo]bj/
-[Ll]og/
-
-# Visual Studio 2015 cache/options directory
-.vs/
-# Uncomment if you have tasks that create the project's static files in wwwroot
-#wwwroot/
-
-# MSTest test Results
-[Tt]est[Rr]esult*/
-[Bb]uild[Ll]og.*
-
-# NUNIT
-*.VisualState.xml
-TestResult.xml
-
-# Build Results of an ATL Project
-[Dd]ebugPS/
-[Rr]eleasePS/
-dlldata.c
-
-# DNX
-project.lock.json
-project.fragment.lock.json
-artifacts/
-
-*_i.c
-*_p.c
-*_i.h
-*.ilk
-*.meta
-*.obj
-*.pch
-*.pdb
-*.pgc
-*.pgd
-*.rsp
-*.sbr
-*.tlb
-*.tli
-*.tlh
-*.tmp
-*.tmp_proj
-*.log
-*.vspscc
-*.vssscc
-.builds
-*.pidb
-*.svclog
-*.scc
-
-# Chutzpah Test files
-_Chutzpah*
-
-# Visual C++ cache files
-ipch/
-*.aps
-*.ncb
-*.opendb
-*.opensdf
-*.sdf
-*.cachefile
-*.VC.db
-*.VC.VC.opendb
-
-# Visual Studio profiler
-*.psess
-*.vsp
-*.vspx
-*.sap
-
-# TFS 2012 Local Workspace
-$tf/
-
-# Guidance Automation Toolkit
-*.gpState
-
-# ReSharper is a .NET coding add-in
-_ReSharper*/
-*.[Rr]e[Ss]harper
-*.DotSettings.user
-
-# JustCode is a .NET coding add-in
-.JustCode
-
-# TeamCity is a build add-in
-_TeamCity*
-
-# DotCover is a Code Coverage Tool
-*.dotCover
-
-# NCrunch
-_NCrunch_*
-.*crunch*.local.xml
-nCrunchTemp_*
-
-# MightyMoose
-*.mm.*
-AutoTest.Net/
-
-# Web workbench (sass)
-.sass-cache/
-
-# Installshield output folder
-[Ee]xpress/
-
-# DocProject is a documentation generator add-in
-DocProject/buildhelp/
-DocProject/Help/*.HxT
-DocProject/Help/*.HxC
-DocProject/Help/*.hhc
-DocProject/Help/*.hhk
-DocProject/Help/*.hhp
-DocProject/Help/Html2
-DocProject/Help/html
-
-# Click-Once directory
-publish/
-
-# Publish Web Output
-*.[Pp]ublish.xml
-*.azurePubxml
-# TODO: Comment the next line if you want to checkin your web deploy settings
-# but database connection strings (with potential passwords) will be unencrypted
-*.pubxml
-*.publishproj
-
-# Microsoft Azure Web App publish settings. Comment the next line if you want to
-# checkin your Azure Web App publish settings, but sensitive information contained
-# in these scripts will be unencrypted
-PublishScripts/
-
-# NuGet Packages
-*.nupkg
-# The packages folder can be ignored because of Package Restore
-**/packages/*
-# except build/, which is used as an MSBuild target.
-!**/packages/build/
-# Uncomment if necessary however generally it will be regenerated when needed
-#!**/packages/repositories.config
-# NuGet v3's project.json files produces more ignoreable files
-*.nuget.props
-*.nuget.targets
-
-# Microsoft Azure Build Output
-csx/
-*.build.csdef
-
-# Microsoft Azure Emulator
-ecf/
-rcf/
-
-# Windows Store app package directories and files
-AppPackages/
-BundleArtifacts/
-Package.StoreAssociation.xml
-_pkginfo.txt
-
-# Visual Studio cache files
-# files ending in .cache can be ignored
-*.[Cc]ache
-# but keep track of directories ending in .cache
-!*.[Cc]ache/
-
-# Others
-ClientBin/
-~$*
-*~
-*.dbmdl
-*.jfm
-*.dbproj.schemaview
-*.pfx
-*.publishsettings
-node_modules/
-orleans.codegen.cs
-
-# Since there are multiple workflows, uncomment next line to ignore bower_components
-# (https://github.com/github/gitignore/pull/1529#issuecomment-104372622)
-#bower_components/
-
-# RIA/Silverlight projects
-Generated_Code/
-
-# Backup & report files from converting an old project file
-# to a newer Visual Studio version. Backup files are not needed,
-# because we have git ;-)
-_UpgradeReport_Files/
-Backup*/
-UpgradeLog*.XML
-UpgradeLog*.htm
-
-# SQL Server files
-*.mdf
-*.ldf
-
-# Business Intelligence projects
-*.rdl.data
-*.bim.layout
-*.bim_*.settings
-
-# Microsoft Fakes
-FakesAssemblies/
-
-# GhostDoc plugin setting file
-*.GhostDoc.xml
-
-# Node.js Tools for Visual Studio
-.ntvs_analysis.dat
-
-# Visual Studio 6 build log
-*.plg
-
-# Visual Studio 6 workspace options file
-*.opt
-
-# Visual Studio LightSwitch build output
-**/*.HTMLClient/GeneratedArtifacts
-**/*.DesktopClient/GeneratedArtifacts
-**/*.DesktopClient/ModelManifest.xml
-**/*.Server/GeneratedArtifacts
-**/*.Server/ModelManifest.xml
-_Pvt_Extensions
-
-# Paket dependency manager
-.paket/paket.exe
-paket-files/
-
-# FAKE - F# Make
-.fake/
-
-# JetBrains Rider
-.idea/
-*.sln.iml
-
-
-
-/.vs/CleanArch/v17
-/CleanArch.Api/bin/Debug/net6.0
-/CleanArch.Api/obj
-/CleanArch.Api/CleanArch.Api.csproj.user
-/CleanArch.Application/bin/Debug/net6.0
-/CleanArch.Application/obj
-/CleanArch.Core/bin/Debug/net6.0
-/CleanArch.Core/obj
-/CleanArch.Infrastructure/bin/Debug/net6.0
-/CleanArch.Infrastructure/obj
-/CleanArch.Logging/bin/Debug/net6.0
-/CleanArch.Logging/obj
-/CleanArch.Sql/bin/Debug/net6.0
-/CleanArch.Sql/obj
-/CleanArch.Test/bin/Debug/net6.0
-/CleanArch.Test/obj
-/.vs/CleanArch/config/applicationhost.config
+/.vs/CleanArch/FileContentIndex/57d7eae4-21d5-4323-b9aa-695f56e164cb.vsidx
+/.vs/CleanArch/FileContentIndex/a603ea17-f790-46bd-8252-a6581d62165f.vsidx
+/.vs/CleanArch/FileContentIndex/read.lock
+/.vs/ProductTracker/config/applicationhost.config
+/.vs/ProductTracker/DesignTimeBuild/.dtbcache.v2
+/.vs/ProductTracker/FileContentIndex/7161079d-ab0e-4b02-9432-3af0a8b12bde.vsidx
+/.vs/ProductTracker/FileContentIndex/a85e563e-eb00-4c38-b237-9c72fe7cf009.vsidx
+/.vs/ProductTracker/FileContentIndex/cdca0602-affe-4b35-bfa7-057f483b10a9.vsidx
+/.vs/ProductTracker/FileContentIndex/e8785e8a-410f-43fe-a44f-63b7b2fab523.vsidx
+/.vs/ProductTracker/FileContentIndex/read.lock
+/.vs/ProductTracker/v17/.futdcache.v1
+/.vs/ProductTracker/v17/.futdcache.v2
+/.vs/ProductTracker/v17/.suo
+/.vs/ProductTracker/v17/DocumentLayout.json
+/.vs/ProjectEvaluation/cleanarch.metadata.v2
+/.vs/ProjectEvaluation/cleanarch.projects.v2
+/.vs/ProjectEvaluation/producttracker.metadata.v2
+/.vs/ProjectEvaluation/producttracker.projects.v2
+/Images/ca_01.png
+/Images/ca_02.png
+/Images/ca_03.png
+/Images/ca_04.png
+/Images/ca_05.png
+/Images/ca_06.png
+/Images/ca_07.png
+/Images/ca_08.png
+/Images/ca_09.png
+/Images/ca_10.png
+/Images/ca_11.png
+/Images/ca_12.png
+/Images/ca_13.png
+/Images/ca_14.png
+/Images/ca_15.png
+/Images/ca_16.png
+/Images/ca_17.png
+/Images/ca_18.png
+/Images/ca_19.png
+/ProductTracker.Api/bin/Debug/net6.0/runtimes/unix/lib/net6.0/System.Drawing.Common.dll
+/ProductTracker.Api/bin/Debug/net6.0/runtimes/unix/lib/netcoreapp2.1/System.Data.SqlClient.dll
+/ProductTracker.Api/bin/Debug/net6.0/runtimes/unix/lib/netcoreapp3.1/Microsoft.Data.SqlClient.dll
+/ProductTracker.Api/bin/Debug/net6.0/ProductTracker.Core.pdb
+/ProductTracker.Api/bin/Debug/net6.0/ProductTracker.Infrastructure.dll
+/ProductTracker.Api/bin/Debug/net6.0/ProductTracker.Infrastructure.pdb
+/ProductTracker.Api/bin/Debug/net6.0/ProductTracker.Logging.dll
+/ProductTracker.Api/bin/Debug/net6.0/ProductTracker.Logging.pdb
+/ProductTracker.Api/bin/Debug/net6.0/ProductTracker.Sql.dll
+/ProductTracker.Api/bin/Debug/net6.0/ProductTracker.Sql.pdb
+/ProductTracker.Api/bin/Debug/net6.0/System.Configuration.ConfigurationManager.dll
+/ProductTracker.Api/bin/Debug/net6.0/System.Data.SqlClient.dll
+/ProductTracker.Api/bin/Debug/net6.0/System.Drawing.Common.dll
+/ProductTracker.Api/bin/Debug/net6.0/System.IdentityModel.Tokens.Jwt.dll
+/ProductTracker.Api/bin/Debug/net6.0/System.Memory.Data.dll
+/ProductTracker.Api/bin/Debug/net6.0/System.Runtime.Caching.dll
+/ProductTracker.Api/bin/Debug/net6.0/System.Security.Cryptography.ProtectedData.dll
+/ProductTracker.Api/bin/Debug/net6.0/System.Security.Permissions.dll
+/ProductTracker.Api/bin/Debug/net6.0/System.Windows.Extensions.dll
+/ProductTracker.Api/bin/Debug/net6.0/Azure.Core.dll
+/ProductTracker.Api/bin/Debug/net6.0/Azure.Identity.dll
+/ProductTracker.Api/bin/Debug/net6.0/CleanArch.Api.deps.json
+/ProductTracker.Api/bin/Debug/net6.0/CleanArch.Api.dll
+/ProductTracker.Api/bin/Debug/net6.0/CleanArch.Api.exe
+/ProductTracker.Api/bin/Debug/net6.0/CleanArch.Api.pdb
+/ProductTracker.Api/bin/Debug/net6.0/CleanArch.Api.runtimeconfig.json
+/ProductTracker.Api/bin/Debug/net6.0/CleanArch.Application.dll
+/ProductTracker.Api/bin/Debug/net6.0/CleanArch.Application.pdb
+/ProductTracker.Api/bin/Debug/net6.0/CleanArch.Core.dll
+/ProductTracker.Api/bin/Debug/net6.0/CleanArch.Core.pdb
+/ProductTracker.Api/bin/Debug/net6.0/CleanArch.Infrastructure.dll
+/ProductTracker.Api/bin/Debug/net6.0/CleanArch.Infrastructure.pdb
+/ProductTracker.Api/bin/Debug/net6.0/CleanArch.Logging.dll
+/ProductTracker.Api/bin/Debug/net6.0/CleanArch.Logging.pdb
+/ProductTracker.Api/bin/Debug/net6.0/CleanArch.Sql.dll
+/ProductTracker.Api/bin/Debug/net6.0/CleanArch.Sql.pdb
+/ProductTracker.Api/bin/Debug/net6.0/Dapper.dll
+/ProductTracker.Api/bin/Debug/net6.0/log4net.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.AspNetCore.SystemWebAdapters.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.Bcl.AsyncInterfaces.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.Data.SqlClient.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Relational.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.SqlServer.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.Extensions.Caching.Abstractions.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.Extensions.Caching.Memory.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.Extensions.Configuration.Abstractions.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.Extensions.Configuration.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.Extensions.DependencyInjection.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.Extensions.Identity.Core.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.Extensions.Identity.Stores.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.Extensions.Logging.Abstractions.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.Extensions.Logging.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.Extensions.Options.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.Extensions.Primitives.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.Identity.Client.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.Identity.Client.Extensions.Msal.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.IdentityModel.Abstractions.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.IdentityModel.Logging.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.IdentityModel.Protocols.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.IdentityModel.Tokens.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.SqlServer.Server.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.Win32.SystemEvents.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.WindowsAzure.Configuration.dll
+/ProductTracker.Api/bin/Debug/net6.0/Microsoft.WindowsAzure.Storage.dll
+/ProductTracker.Api/bin/Debug/net6.0/Newtonsoft.Json.dll
+/ProductTracker.Api/bin/Debug/net6.0/ProductTracker.Api.deps.json
+/ProductTracker.Api/bin/Debug/net6.0/ProductTracker.Api.dll
+/ProductTracker.Api/bin/Debug/net6.0/ProductTracker.Api.exe
+/ProductTracker.Api/bin/Debug/net6.0/ProductTracker.Api.pdb
+/ProductTracker.Api/bin/Debug/net6.0/ProductTracker.Api.runtimeconfig.json
+/ProductTracker.Api/bin/Debug/net6.0/ProductTracker.Application.dll
+/ProductTracker.Api/bin/Debug/net6.0/ProductTracker.Application.pdb
+/ProductTracker.Api/bin/Debug/net6.0/ProductTracker.Core.dll
+/ProductTracker.Test/obj/Debug/net6.0/ProductTracker.Test.AssemblyInfo.cs
+/ProductTracker.Test/obj/Debug/net6.0/ProductTracker.Test.AssemblyInfoInputs.cache
+/ProductTracker.Test/obj/Debug/net6.0/ProductTracker.Test.assets.cache
+/ProductTracker.Test/obj/Debug/net6.0/ProductTracker.Test.csproj.AssemblyReference.cache
+/ProductTracker.Test/obj/Debug/net6.0/ProductTracker.Test.GeneratedMSBuildEditorConfig.editorconfig
+/ProductTracker.Sql/obj/Debug/net6.0/ProductTracker.Sql.assets.cache
+/ProductTracker.Sql/obj/Debug/net6.0/ProductTracker.Sql.csproj.AssemblyReference.cache
+/ProductTracker.Sql/obj/Debug/net6.0/ProductTracker.Sql.csproj.CoreCompileInputs.cache
+/ProductTracker.Sql/obj/Debug/net6.0/ProductTracker.Sql.csproj.FileListAbsolute.txt
+/ProductTracker.Sql/obj/Debug/net6.0/ProductTracker.Sql.dll
+/ProductTracker.Sql/obj/Debug/net6.0/ProductTracker.Sql.GeneratedMSBuildEditorConfig.editorconfig
+/ProductTracker.Sql/obj/Debug/net6.0/ProductTracker.Sql.pdb
+/ProductTracker.Sql/obj/Debug/net6.0/ProductTracker.Sql.sourcelink.json
+/ProductTracker.Sql/obj/Debug/net6.0/ProductTracker.Sql.AssemblyInfo.cs
+/ProductTracker.Sql/obj/Debug/net6.0/ProductTracker.Sql.AssemblyInfoInputs.cache
+/ProductTracker.Sql/obj/ProductTracker.Sql.csproj.nuget.dgspec.json
+/ProductTracker.Sql/obj/ProductTracker.Sql.csproj.nuget.g.props
+/ProductTracker.Sql/obj/project.assets.json
+/ProductTracker.Sql/obj/project.nuget.cache
+/ProductTracker.Test/obj/ProductTracker.Test.csproj.nuget.dgspec.json
+/ProductTracker.Test/obj/ProductTracker.Test.csproj.nuget.g.props
+/ProductTracker.Test/obj/ProductTracker.Test.csproj.nuget.g.targets
+/ProductTracker.Test/obj/project.assets.json
+/ProductTracker.Test/obj/project.nuget.cache
+/ProductTracker.Api/obj/Debug/net6.0/apphost.exe
+/ProductTracker.Api/obj/Debug/net6.0/ProductT.40841727.Up2Date
+/ProductTracker.Api/obj/Debug/net6.0/ProductTracker.Api.AssemblyInfo.cs
+/ProductTracker.Api/obj/Debug/net6.0/ProductTracker.Api.AssemblyInfoInputs.cache
+/ProductTracker.Api/obj/Debug/net6.0/ProductTracker.Api.assets.cache
+/ProductTracker.Api/obj/Debug/net6.0/ProductTracker.Api.csproj.AssemblyReference.cache
+/ProductTracker.Api/obj/Debug/net6.0/ProductTracker.Api.csproj.CoreCompileInputs.cache
+/ProductTracker.Api/obj/Debug/net6.0/ProductTracker.Api.csproj.FileListAbsolute.txt
+/ProductTracker.Api/obj/Debug/net6.0/ProductTracker.Api.dll
+/ProductTracker.Api/obj/Debug/net6.0/ProductTracker.Api.GeneratedMSBuildEditorConfig.editorconfig
+/ProductTracker.Api/obj/Debug/net6.0/ProductTracker.Api.genruntimeconfig.cache
+/ProductTracker.Api/obj/Debug/net6.0/ProductTracker.Api.pdb
+/ProductTracker.Api/obj/Debug/net6.0/ProductTracker.Api.sourcelink.json
+/ProductTracker.Api/obj/Debug/net6.0/staticwebassets/msbuild.build.ProductTracker.Api.props
+/ProductTracker.Api/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.ProductTracker.Api.props
+/ProductTracker.Api/obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.ProductTracker.Api.props
+/ProductTracker.Api/obj/ProductTracker.Api.csproj.nuget.dgspec.json
+/ProductTracker.Api/obj/ProductTracker.Api.csproj.nuget.g.props
+/ProductTracker.Api/obj/ProductTracker.Api.csproj.nuget.g.targets
+/ProductTracker.Api/obj/project.assets.json
+/ProductTracker.Api/obj/project.nuget.cache
+/ProductTracker.Api/bin/Debug/net6.0/runtimes/win-arm/native/Microsoft.Data.SqlClient.SNI.dll
+/ProductTracker.Api/bin/Debug/net6.0/runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll
+/ProductTracker.Api/bin/Debug/net6.0/runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll
+/ProductTracker.Api/bin/Debug/net6.0/runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll
+/.vs/ProductTracker/FileContentIndex/d1782081-f312-44bd-a739-97cccc4c71e2.vsidx
+/ProductTracker.Api/bin/Debug/net6.0/runtimes/win/lib/netcoreapp2.1/System.Data.SqlClient.dll
+*.dll
+/ProductTracker.Api/bin/Debug/net6.0/runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll
+/ProductTracker.Api/obj/Debug/net6.0/ref/ProductTracker.Api.dll
+/ProductTracker.Api/obj/Debug/net6.0/refint/ProductTracker.Api.dll
+/ProductTracker.Application/bin/Debug/net6.0/ProductTracker.Application.dll
+/ProductTracker.Application/bin/Debug/net6.0/ProductTracker.Application.pdb
+/ProductTracker.Application/bin/Debug/net6.0/ProductTracker.Core.dll
+/ProductTracker.Application/bin/Debug/net6.0/ProductTracker.Core.pdb
+/ProductTracker.Application/obj/Debug/net6.0/ref/ProductTracker.Application.dll
+/ProductTracker.Application/obj/Debug/net6.0/refint/ProductTracker.Application.dll
+/ProductTracker.Application/obj/Debug/net6.0/ProductT.A802025B.Up2Date
+/ProductTracker.Application/obj/Debug/net6.0/ProductTracker.Application.AssemblyInfoInputs.cache
+/ProductTracker.Application/obj/Debug/net6.0/ProductTracker.Application.assets.cache
+/ProductTracker.Application/obj/Debug/net6.0/ProductTracker.Application.csproj.AssemblyReference.cache
+/ProductTracker.Application/obj/Debug/net6.0/ProductTracker.Application.csproj.CoreCompileInputs.cache
+/ProductTracker.Application/obj/Debug/net6.0/ProductTracker.Application.csproj.FileListAbsolute.txt
+/ProductTracker.Application/obj/Debug/net6.0/ProductTracker.Application.dll
+/ProductTracker.Application/obj/Debug/net6.0/ProductTracker.Application.GeneratedMSBuildEditorConfig.editorconfig
+/ProductTracker.Application/obj/Debug/net6.0/ProductTracker.Application.pdb
+/ProductTracker.Application/obj/Debug/net6.0/ProductTracker.Application.sourcelink.json
+/ProductTracker.Application/obj/ProductTracker.Application.csproj.nuget.dgspec.json
+/ProductTracker.Application/obj/ProductTracker.Application.csproj.nuget.g.props
+/ProductTracker.Application/obj/project.assets.json
+/ProductTracker.Application/obj/project.nuget.cache
+/ProductTracker.Core/bin/Debug/net6.0/ProductTracker.Core.dll
+/ProductTracker.Core/bin/Debug/net6.0/ProductTracker.Core.pdb
+/ProductTracker.Core/obj/Debug/net6.0/ref/ProductTracker.Core.dll
+/ProductTracker.Core/obj/Debug/net6.0/refint/ProductTracker.Core.dll
+/ProductTracker.Core/obj/Debug/net6.0/ProductTracker.Core.AssemblyInfoInputs.cache
+/ProductTracker.Core/obj/Debug/net6.0/ProductTracker.Core.assets.cache
+/ProductTracker.Core/obj/Debug/net6.0/ProductTracker.Core.csproj.AssemblyReference.cache
+/ProductTracker.Core/obj/Debug/net6.0/ProductTracker.Core.csproj.CoreCompileInputs.cache
+/ProductTracker.Core/obj/Debug/net6.0/ProductTracker.Core.csproj.FileListAbsolute.txt
+/ProductTracker.Core/obj/Debug/net6.0/ProductTracker.Core.dll
+/ProductTracker.Core/obj/Debug/net6.0/ProductTracker.Core.GeneratedMSBuildEditorConfig.editorconfig
+/ProductTracker.Core/obj/Debug/net6.0/ProductTracker.Core.pdb
+/ProductTracker.Core/obj/Debug/net6.0/ProductTracker.Core.sourcelink.json
+/ProductTracker.Infrastructure/bin/Debug/net6.0/ProductTracker.Application.dll
+/ProductTracker.Infrastructure/bin/Debug/net6.0/ProductTracker.Application.pdb
+/ProductTracker.Infrastructure/bin/Debug/net6.0/ProductTracker.Core.dll
+/ProductTracker.Infrastructure/bin/Debug/net6.0/ProductTracker.Core.pdb
+/ProductTracker.Infrastructure/bin/Debug/net6.0/ProductTracker.Infrastructure.deps.json
+/ProductTracker.Infrastructure/bin/Debug/net6.0/ProductTracker.Infrastructure.dll
+/ProductTracker.Infrastructure/bin/Debug/net6.0/ProductTracker.Infrastructure.pdb
+/ProductTracker.Infrastructure/bin/Debug/net6.0/ProductTracker.Sql.dll
+/ProductTracker.Infrastructure/bin/Debug/net6.0/ProductTracker.Sql.pdb
+/ProductTracker.Infrastructure/obj/Debug/net6.0/ref/ProductTracker.Infrastructure.dll
+/ProductTracker.Infrastructure/obj/Debug/net6.0/refint/ProductTracker.Infrastructure.dll
+/ProductTracker.Infrastructure/obj/Debug/net6.0/ProductTracker.Infrastructure.AssemblyInfoInputs.cache
+/ProductTracker.Infrastructure/obj/Debug/net6.0/ProductTracker.Infrastructure.assets.cache
+/ProductTracker.Infrastructure/obj/Debug/net6.0/ProductTracker.Infrastructure.csproj.AssemblyReference.cache
+/ProductTracker.Infrastructure/obj/Debug/net6.0/ProductTracker.Infrastructure.csproj.CoreCompileInputs.cache
+/ProductTracker.Infrastructure/obj/Debug/net6.0/ProductTracker.Infrastructure.csproj.FileListAbsolute.txt
+/ProductTracker.Infrastructure/obj/Debug/net6.0/ProductTracker.Infrastructure.dll
+/ProductTracker.Infrastructure/obj/Debug/net6.0/ProductTracker.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/ProductTracker.Infrastructure/obj/Debug/net6.0/ProductTracker.Infrastructure.pdb
+/ProductTracker.Infrastructure/obj/Debug/net6.0/ProductTracker.Infrastructure.sourcelink.json
+/ProductTracker.Infrastructure/obj/ProductTracker.Infrastructure.csproj.nuget.dgspec.json
+/ProductTracker.Infrastructure/obj/ProductTracker.Infrastructure.csproj.nuget.g.props
+/ProductTracker.Infrastructure/obj/project.assets.json
+/ProductTracker.Infrastructure/obj/project.nuget.cache
+/ProductTracker.Logging/obj/Debug/net6.0/ProductT.0063B656.Up2Date
+/ProductTracker.Logging/obj/Debug/net6.0/ProductTracker.Logging.AssemblyInfo.cs
+/ProductTracker.Logging/obj/Debug/net6.0/ProductTracker.Logging.AssemblyInfoInputs.cache
+/ProductTracker.Logging/obj/Debug/net6.0/ProductTracker.Logging.assets.cache
+/ProductTracker.Logging/obj/Debug/net6.0/ProductTracker.Logging.csproj.AssemblyReference.cache
+/ProductTracker.Logging/obj/Debug/net6.0/ProductTracker.Logging.csproj.CoreCompileInputs.cache
+/ProductTracker.Logging/obj/Debug/net6.0/ProductTracker.Logging.csproj.FileListAbsolute.txt
+/ProductTracker.Logging/obj/Debug/net6.0/ProductTracker.Logging.dll
+/ProductTracker.Logging/obj/Debug/net6.0/ProductTracker.Logging.GeneratedMSBuildEditorConfig.editorconfig
+/ProductTracker.Logging/obj/Debug/net6.0/ProductTracker.Logging.pdb
+/ProductTracker.Logging/obj/Debug/net6.0/ProductTracker.Logging.sourcelink.json
+/ProductTracker.Logging/obj/Debug/net6.0/refint/ProductTracker.Logging.dll
+/ProductTracker.Logging/obj/ProductTracker.Logging.csproj.nuget.dgspec.json
+/ProductTracker.Logging/obj/ProductTracker.Logging.csproj.nuget.g.props
+/ProductTracker.Logging/obj/project.assets.json
+/ProductTracker.Logging/obj/project.nuget.cache
+/ProductTracker.Logging/bin/Debug/net6.0/ProductTracker.Application.dll
+/ProductTracker.Logging/bin/Debug/net6.0/ProductTracker.Application.pdb
+/ProductTracker.Logging/bin/Debug/net6.0/ProductTracker.Core.dll
+/ProductTracker.Logging/bin/Debug/net6.0/ProductTracker.Core.pdb
+/ProductTracker.Logging/bin/Debug/net6.0/ProductTracker.Logging.deps.json
+/ProductTracker.Logging/bin/Debug/net6.0/ProductTracker.Logging.dll
+/ProductTracker.Logging/bin/Debug/net6.0/ProductTracker.Logging.pdb
+/ProductTracker.Infrastructure/obj/Debug/net6.0/ProductT.26F29A1F.Up2Date
+/ProductTracker.Logging/obj/Debug/net6.0/ref/ProductTracker.Logging.dll
+/ProductTracker.Core/obj/ProductTracker.Core.csproj.nuget.dgspec.json
+/ProductTracker.Core/obj/ProductTracker.Core.csproj.nuget.g.props
+/ProductTracker.Core/obj/project.assets.json
+/ProductTracker.Core/obj/project.nuget.cache
+/ProductTracker.Sql/bin/Debug/net6.0/ProductTracker.Sql.dll
+/ProductTracker.Sql/bin/Debug/net6.0/ProductTracker.Sql.pdb
+/ProductTracker.Sql/obj/Debug/net6.0/ref/ProductTracker.Sql.dll
+/ProductTracker.Sql/obj/Debug/net6.0/refint/ProductTracker.Sql.dll
+/ProductTracker.Test/bin/Debug/net6.0/CoverletSourceRootsMapping
+/.gitattributes
