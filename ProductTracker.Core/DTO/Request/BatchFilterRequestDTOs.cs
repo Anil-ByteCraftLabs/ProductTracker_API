@@ -8,8 +8,8 @@ namespace ProductTracker.Core.DTO.Request
 {
     public class BatchFilterRequestDTOs
     {
-        public string UserId { get; set; }
-        public string StartDate { get; set; }
-        public string EndDate { get; set; }
+        public string? UserId { get; set; }
+        public string? StartDate { get; set; }
+        public string? EndDate { get; set; }
     }
 }
