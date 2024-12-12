@@ -64,12 +64,13 @@ namespace ProductTracker.Api.Controllers
                 throw new Exception("Please select an organization for plant.");
             var apiResponse = new ApiResponse<string>();
 
+            var user = HttpContext.Items["User"] as dynamic;
             var plant = new Plant
             {
                 PlantName = plantRequestDTOs.PlantName,   
                 PlantLocation = plantRequestDTOs.Location,
                 Orgid = plantRequestDTOs.OrgId,
-                CreatedBy = plantRequestDTOs.CreatedBy
+                CreatedBy = user?.Id
             };
             var data = await _unitOfWork.Plants.AddAsync(plant);
             apiResponse.Success = true;
@@ -91,6 +92,7 @@ namespace ProductTracker.Api.Controllers
             if (plantRequestDTOs.OrgId <= 0)
                 throw new Exception("Please select an organization for plant.");
 
+            var user = HttpContext.Items["User"] as dynamic;
             var apiResponse = new ApiResponse<string>();
 
             var plant = new Plant
@@ -99,7 +101,7 @@ namespace ProductTracker.Api.Controllers
                 PlantName = plantRequestDTOs.PlantName,
                 PlantLocation = plantRequestDTOs.Location,
                 Orgid = plantRequestDTOs.OrgId,
-                UpdatedBy = plantRequestDTOs.CreatedBy,
+                UpdatedBy = user?.Id,
                 IsActive= plantRequestDTOs.IsActive
             };
             var data = await _unitOfWork.Plants.UpdateAsync(plant);

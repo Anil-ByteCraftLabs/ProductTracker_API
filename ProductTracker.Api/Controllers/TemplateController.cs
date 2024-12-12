@@ -30,13 +30,13 @@ namespace ProductTracker.Api.Controllers
             if (templateRequestDTOs.OrgId <= 0)
                 throw new Exception("Organization Id is not valid.");
 
-
+            var user = HttpContext.Items["User"] as dynamic;
             var template = new Template
             {
                 OrgId = templateRequestDTOs.OrgId,
                 TempFormat = JsonSerializer.Serialize(templateRequestDTOs.TempFormat),
                 IsDefault = templateRequestDTOs.IsDefault,
-                CreatedBy = templateRequestDTOs.CreatedBy
+                CreatedBy = user?.Id
             };
             var apiResponse = new ApiResponse<string>();
 

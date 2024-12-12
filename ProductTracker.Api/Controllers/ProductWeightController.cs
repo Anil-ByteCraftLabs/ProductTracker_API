@@ -39,12 +39,12 @@ namespace ProductTracker.Api.Controllers
             if (string.IsNullOrEmpty(commonRequestDTOs.Description))
                 throw new Exception("Product weight description can not be blank.");
 
-
+            var user = HttpContext.Items["User"] as dynamic;
             var apiResponse = new ApiResponse<string>();
             var productWeight = new CommonDescription
             {
                 Description = commonRequestDTOs.Description,
-                CreatedBy = commonRequestDTOs.CreatedBy
+                CreatedBy = user?.Id
             };
 
             var data = await _unitOfWork.ProductWeights.AddAsync(productWeight);
@@ -63,13 +63,14 @@ namespace ProductTracker.Api.Controllers
             if (string.IsNullOrEmpty(commonRequestDTOs.Description))
                 throw new Exception("Product weight description can not be blank.");
 
+            var user = HttpContext.Items["User"] as dynamic;
             var apiResponse = new ApiResponse<string>();
             var productType = new CommonDescription
             {
                 Id = commonRequestDTOs.Id,
                 Description = commonRequestDTOs.Description,
                 IsActive = commonRequestDTOs.IsActive,
-                UpdatedBy = commonRequestDTOs.CreatedBy
+                UpdatedBy = user?.Id
             };
             var data = await _unitOfWork.ProductWeights.UpdateAsync(productType);
             apiResponse.Success = true;

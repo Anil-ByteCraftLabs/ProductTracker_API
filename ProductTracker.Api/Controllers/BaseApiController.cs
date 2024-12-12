@@ -8,5 +8,6 @@ namespace ProductTracker.Api.Controllers
     [ApiController]
     public class BaseApiController : ControllerBase
     {
+
     }
 }

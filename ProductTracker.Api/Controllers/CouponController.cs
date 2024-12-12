@@ -84,8 +84,8 @@ namespace ProductTracker.Api.Controllers
             
 
             var apiResponse = new ApiResponse<string>();
-
-            var data = await _unitOfWork.Coupons.GenerateCoupons(couponRequestDTOs.BatchId, couponRequestDTOs.OrgAlias, couponRequestDTOs.NoOfCoupons, couponRequestDTOs.CreatedBy);
+            var user = HttpContext.Items["User"] as dynamic;
+            var data = await _unitOfWork.Coupons.GenerateCoupons(couponRequestDTOs.BatchId, couponRequestDTOs.OrgAlias, couponRequestDTOs.NoOfCoupons, user?.Id);
             if(data !=1)
                 throw new Exception("Total nomber of coupens available for the selected batch is : "+ data.ToString());
             apiResponse.Success = true;

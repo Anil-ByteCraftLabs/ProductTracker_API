@@ -11,6 +11,7 @@ namespace ProductTracker.Core.Entities
     {
         public string? OrgName { get; set; }
         public string? AliasName { get; set; }
+        public string? Description { get; set; }
         public string? DBPath { get; set; }
         [JsonIgnore]
         public DateTime? DeActivationDate { get; set; }
