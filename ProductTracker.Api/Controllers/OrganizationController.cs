@@ -71,15 +71,16 @@ namespace ProductTracker.Api.Controllers
                 if (!DateTime.TryParse(organizationRequestDTO.DeactivationDate, out result))
                     throw new Exception("Please select a valid date as deactivation date.");
             }
-            
+            var user = HttpContext.Items["User"] as dynamic;
             var apiResponse = new ApiResponse<string>();
             var organization = new Organization
             {
                 OrgName = organizationRequestDTO.Name, 
                 AliasName= organizationRequestDTO.AliasName,
+                Description = organizationRequestDTO.Description,
                 DBPath= organizationRequestDTO.DBPath,
                 DeActivationDate= string.IsNullOrEmpty(organizationRequestDTO.DeactivationDate)? null: Convert.ToDateTime(organizationRequestDTO.DeactivationDate),
-                CreatedBy= organizationRequestDTO.CreatedBy,
+                CreatedBy= user?.Id,
                 CreatedOn = DateTime.Now,
                 IsActive = true
 
@@ -107,6 +108,7 @@ namespace ProductTracker.Api.Controllers
                 throw new Exception("DBPath name can not be blank.");
 
             var apiResponse = new ApiResponse<string>();
+            var user = HttpContext.Items["User"] as dynamic;
             var organization = new Organization
             {
                 Id = organizationRequestDTO.Id,
@@ -114,7 +116,7 @@ namespace ProductTracker.Api.Controllers
                 AliasName = organizationRequestDTO.Name,
                 DBPath = organizationRequestDTO.DBPath,
                 DeActivationDate = string.IsNullOrEmpty(organizationRequestDTO.DeactivationDate) ? null : Convert.ToDateTime(organizationRequestDTO.DeactivationDate),
-                UpdatedBy = organizationRequestDTO.CreatedBy,
+                UpdatedBy =  user?.Id,
                 IsActive = organizationRequestDTO.IsActive
 
 

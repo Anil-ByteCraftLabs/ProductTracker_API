@@ -16,6 +16,9 @@
         IProductWeightRepository ProductWeights { get; }
         IProductCategoryRepository ProductCategorys { get; }
         ITemplateRepository TemplateRepositorys { get; }
+        IStatesRepository States { get; }
+        IDistrictRepository StateDistricts { get; }
+
 
     }
 }

@@ -69,6 +69,7 @@ namespace ProductTracker.Api.Controllers
                     throw new Exception("Please select a valid price start date.");
             }
 
+            var user = HttpContext.Items["User"] as dynamic;
             var apiResponse = new ApiResponse<string>();
             var product = new Product
             {
@@ -80,7 +81,7 @@ namespace ProductTracker.Api.Controllers
                 ProductWeight = productDTOs.WeightId,
                 Price=productDTOs.Price,
                 PriceStartDate= string.IsNullOrEmpty(productDTOs.PriceStartdate) ? null : Convert.ToDateTime(productDTOs.PriceStartdate),
-                CreatedBy = productDTOs.CreatedBy,
+                CreatedBy = user?.Id,
             };
                 var data = await _unitOfWork.Products.AddAsync(product);
                 apiResponse.Success = true;
@@ -114,6 +115,7 @@ namespace ProductTracker.Api.Controllers
                     throw new Exception("Please select a valid price start date.");
             }
 
+            var user = HttpContext.Items["User"] as dynamic;
             var apiResponse = new ApiResponse<string>();
             var product = new Product
             {
@@ -126,7 +128,7 @@ namespace ProductTracker.Api.Controllers
                 ProductWeight = productDTOs.WeightId,
                 Price = productDTOs.Price,
                 PriceStartDate = string.IsNullOrEmpty(productDTOs.PriceStartdate) ? null : Convert.ToDateTime(productDTOs.PriceStartdate),
-                CreatedBy = productDTOs.CreatedBy,
+                CreatedBy = user?.Id,
             };
             var data = await _unitOfWork.Products.AddAsync(product);
             apiResponse.Success = true;

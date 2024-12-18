@@ -52,13 +52,14 @@ namespace ProductTracker.Api.Controllers
                 throw new Exception("Plant category name can not be blank.");
             if (productCategoryRequestDTOs.ProductTypeId <= 0)
                 throw new Exception("Product type id must be a positive number.");
-            
+
+            var user = HttpContext.Items["User"] as dynamic;
             var apiResponse = new ApiResponse<string>();
 
             var category = new CommonDescription
             {
                 Description= productCategoryRequestDTOs.Name,
-                CreatedBy = productCategoryRequestDTOs.CreatedBy
+                CreatedBy = user?.Id
             };
             var data = await _unitOfWork.ProductCategorys.UpdateProductCategory(category, productCategoryRequestDTOs.ProductTypeId);
             apiResponse.Success = true;
@@ -75,13 +76,13 @@ namespace ProductTracker.Api.Controllers
                 throw new Exception("Product type id must be a positive number.");
 
             var apiResponse = new ApiResponse<string>();
-
+            var user = HttpContext.Items["User"] as dynamic;
             var category = new CommonDescription
             {
                 Id= productCategoryRequestDTOs.Id,
                 Description = productCategoryRequestDTOs.Name,
                 IsActive = productCategoryRequestDTOs.IsActive,
-                UpdatedBy = productCategoryRequestDTOs.CreatedBy
+                UpdatedBy = user?.Id
             };
             var data = await _unitOfWork.ProductCategorys.UpdateProductCategory(category, productCategoryRequestDTOs.ProductTypeId);
             apiResponse.Success = true;

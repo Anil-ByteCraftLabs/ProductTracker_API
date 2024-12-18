@@ -64,6 +64,7 @@ namespace ProductTracker.Api.Controllers
             if (batchRequestDTOs.NumberOfCoupon <= 0)
                 throw new Exception("Number of Coupons must be a positive number.");
 
+            var user = HttpContext.Items["User"] as dynamic;
             var batchData = new BatchData
             {
                 Name = batchRequestDTOs.BatchName,
@@ -71,7 +72,7 @@ namespace ProductTracker.Api.Controllers
                 PlantId = batchRequestDTOs.PlantId,
                 ProductId = batchRequestDTOs.ProductId,
                 NoOfCoupons = batchRequestDTOs.NumberOfCoupon,
-                CreatedBy  = batchRequestDTOs.CreatedBy
+                CreatedBy = user?.Id,
             };
             var apiResponse = new ApiResponse<string>();
 
@@ -98,6 +99,8 @@ namespace ProductTracker.Api.Controllers
             if (batchRequestDTOs.NumberOfCoupon <= 0)
                 throw new Exception("Number of Coupons must be a positive number.");
 
+            var user = HttpContext.Items["User"] as dynamic;
+
             var batchData = new BatchData
             {
                 Id= batchRequestDTOs.Id,
@@ -106,7 +109,7 @@ namespace ProductTracker.Api.Controllers
                 PlantId = batchRequestDTOs.PlantId,
                 ProductId = batchRequestDTOs.ProductId,
                 NoOfCoupons = batchRequestDTOs.NumberOfCoupon,
-                CreatedBy = batchRequestDTOs.CreatedBy
+                CreatedBy = user?.Id
             };
             var apiResponse = new ApiResponse<string>();
 
