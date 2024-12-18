@@ -135,6 +135,21 @@ namespace ProductTracker.Api.Controllers
             return apiResponse;
         }
 
+
+        //[Authorize("Admin")]
+        //[HttpGet("{orgId}/org")]
+        //public async Task<ApiResponse<List<PlantDtos>>> GetPlantByOrg(string prgId)
+        //{
+        //    var apiResponse = new ApiResponse<List<PlantDtos>>();
+
+        //    var data = await _unitOfWork.Plants.GetPlantsByUserId(userId);
+        //    apiResponse.Success = true;
+        //    apiResponse.Result = data.ToList();
+
+        //    return apiResponse;
+        //}
+
+
         #endregion
 
 

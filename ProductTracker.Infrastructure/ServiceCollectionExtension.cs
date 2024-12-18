@@ -29,7 +29,10 @@ namespace ProductTracker.Infrastructure
 
             services.AddSingleton<IFileStorageProvider, AzureBlobStorageProvider>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-            
+            services.AddTransient<IStatesRepository, StatesRepository>();
+
+            services.AddTransient<IDistrictRepository, DistrictRepository>();
+
 
             // JwtUtils : IJwtUtils
 
