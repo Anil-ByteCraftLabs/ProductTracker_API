@@ -16,5 +16,6 @@ namespace ProductTracker.Application.Interfaces
         Task<IReadOnlyList<PlantDtos>> GetPlantsByUserId(string userId);
 
         Task<bool> CheckIfPlantCanBeDelete(long id);
+        Task<IReadOnlyList<PlantDtos>> GetPlantsByOrg(int orgId);
     }
 }

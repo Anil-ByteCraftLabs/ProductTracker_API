@@ -123,7 +123,7 @@ namespace ProductTracker.Api.Controllers
         }
 
         [Authorize("Admin")]
-        [HttpGet("{userId}/org")]
+        [HttpGet("user/{userId}")]
         public async Task<ApiResponse<List<PlantDtos>>> GetPlantByUser(string userId)
         {
             var apiResponse = new ApiResponse<List<PlantDtos>>();
@@ -136,18 +136,18 @@ namespace ProductTracker.Api.Controllers
         }
 
 
-        //[Authorize("Admin")]
-        //[HttpGet("{orgId}/org")]
-        //public async Task<ApiResponse<List<PlantDtos>>> GetPlantByOrg(string prgId)
-        //{
-        //    var apiResponse = new ApiResponse<List<PlantDtos>>();
+        [Authorize("Admin")]
+        [HttpGet("Org/{orgId}")]
+        public async Task<ApiResponse<List<PlantDtos>>> GetPlantByOrg(int orgId)
+        {
+            var apiResponse = new ApiResponse<List<PlantDtos>>();
 
-        //    var data = await _unitOfWork.Plants.GetPlantsByUserId(userId);
-        //    apiResponse.Success = true;
-        //    apiResponse.Result = data.ToList();
+            var data = await _unitOfWork.Plants.GetPlantsByOrg(orgId);
+            apiResponse.Success = true;
+            apiResponse.Result = data.ToList();
 
-        //    return apiResponse;
-        //}
+            return apiResponse;
+        }
 
 
         #endregion
