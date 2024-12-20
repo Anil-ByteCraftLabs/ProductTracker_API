@@ -9,6 +9,7 @@ namespace ProductTracker.Core.Entities
     public class CommonDescription: Entity
     {
         public string Description { get; set; }
+        public int Orgid { get; set; }
     }
 
     // Execute SP in Dapper

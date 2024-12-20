@@ -1,4 +1,5 @@
-﻿using ProductTracker.Core.DTO.Response;
+﻿using ProductTracker.Core.DTO.Request;
+using ProductTracker.Core.DTO.Response;
 using ProductTracker.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace ProductTracker.Application.Interfaces
         Task<IReadOnlyList<BatchResponseDTOs>> GetAllBatches();
         Task<BatchResponseDTOs> GetBatchById(long id);
         Task<IReadOnlyList<BatchResponseDTOs>> GetUserBatches(string userId,string startDate, string endDate);
+        Task<IReadOnlyList<BatchResponseDTOs>> GetFilteredBatch(BatchByOrgRequestDTOs batchByOrgRequestDTOs);
 
     }
 }

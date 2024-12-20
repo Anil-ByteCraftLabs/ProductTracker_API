@@ -47,7 +47,7 @@ namespace ProductTracker.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ApiResponse<string>> Add(CommonRequestDTOs commonRequestDTOs)
+        public async Task<ApiResponse<string>> Add(ProductTypeRequestDTOs commonRequestDTOs)
         {
             if (string.IsNullOrEmpty(commonRequestDTOs.Description))
                 throw new Exception("Product type description can not be blank.");
@@ -57,6 +57,7 @@ namespace ProductTracker.Api.Controllers
             var productType = new CommonDescription
             {
                 Description = commonRequestDTOs.Description,
+                Orgid = commonRequestDTOs.Orgid,
                 CreatedBy = user?.Id
             };
 

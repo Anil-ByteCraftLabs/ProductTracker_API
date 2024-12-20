@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using ProductTracker.Application.Interfaces;
+using ProductTracker.Core.DTO.Request;
 using ProductTracker.Core.DTO.Response;
 using ProductTracker.Core.Entities;
 using ProductTracker.Infrastructure.Context;
@@ -149,5 +150,32 @@ namespace ProductTracker.Infrastructure.Repository
             var result = await connection.ExecuteAsync(BatchDataQueries.SaveBatchData, parameters, commandType: CommandType.StoredProcedure);
             return result.ToString();
         }
+
+        public async Task<IReadOnlyList<BatchResponseDTOs>> GetFilteredBatch(BatchByOrgRequestDTOs batchByOrgRequestDTOs)
+        {
+            using var connection = _dapperContext.CreateManufacturerConnection();
+            var parameters = new DynamicParameters();
+            parameters.Add("OrgId", batchByOrgRequestDTOs.OrgId);
+            parameters.Add("StartDate", batchByOrgRequestDTOs.StartDate);
+            parameters.Add("EndDate", batchByOrgRequestDTOs.EndDate);
+            parameters.Add("ProductTypeId", batchByOrgRequestDTOs.ProductTypeId);
+            parameters.Add("PlantId", batchByOrgRequestDTOs.PlantId);
+
+            var result = await connection.QueryAsync<BatchResponseDTOs>(BatchDataQueries.BatchFilteredData, parameters, commandType: CommandType.StoredProcedure);
+            var data = result.ToList();
+            for (int i = 0; i < data.Count; i++)
+            {
+                data[i].CreatedByName = _userRepository.GetByIdAsync(data[i].CreatedBy).Result?.UserName;
+                data[i].PlantName = _plantRepository.GetAllPlantById(data[i].PlantId).Result?.PlantName;
+                if (!String.IsNullOrEmpty(data[i].UpdatedBy))
+                {
+                    data[i].UpdatedByName = _userRepository.GetByIdAsync(data[i].UpdatedBy).Result?.UserName;
+
+                }
+            }
+
+            return data;
+        }
+
     }
 }

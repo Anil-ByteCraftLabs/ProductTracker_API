@@ -86,6 +86,7 @@ namespace ProductTracker.Infrastructure.Repository
             parameters.Add("ProductTypeId", entity.Id);
             parameters.Add("Description", entity.Description);
             parameters.Add("IsActive", entity.IsActive);
+            parameters.Add("OrgId", entity.Orgid);
             parameters.Add("CreatedBy", entity.CreatedBy);
             parameters.Add("UpdatedBy", entity.UpdatedBy);
 
