@@ -76,3 +76,8 @@ Begin
 End
 
 GO
+
+ALTER TABLE [CouponsData]
+ADD IsPrinted Int, ScanCount Int
+
+GO
