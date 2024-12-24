@@ -126,4 +126,63 @@ namespace ProductTracker.Infrastructure.Repository
             throw new NotImplementedException();
         }
     }
+    public class CityRepository : ICityRepository
+    {
+        private readonly DapperContext _dapperContext;
+        private readonly IUserRepository _userRepository;
+
+        public CityRepository(DapperContext dapperContext, IUserRepository userRepository)
+        {
+            _dapperContext = dapperContext;
+            _userRepository = userRepository;
+        }
+
+        public Task<string> AddAsync(City entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<string> DeleteAsync(long id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IReadOnlyList<City>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<City> GetByIdAsync(long id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<IReadOnlyList<CityDTOs>> GetStateCities(int stateId)
+        {
+            using var connection = _dapperContext.CreateAdminConnection();
+            var parameters = new DynamicParameters();
+            parameters.Add("StateId", stateId);
+            var result = await connection.QueryAsync<CityDTOs>(StatesQueries.StatesCities, parameters, commandType: CommandType.StoredProcedure);
+            var data = result.ToList();
+            for (int i = 0; i < data.Count; i++)
+            {
+                data[i].CreatedByName = _userRepository.GetByIdAsync(data[i].CreatedBy).Result?.UserName;
+                if (!String.IsNullOrEmpty(data[i].UpdatedBy))
+                {
+                    data[i].UpdatedByName = _userRepository.GetByIdAsync(data[i].UpdatedBy).Result.UserName;
+
+                }
+            }
+
+            return data;
+
+        }
+
+        public Task<string> UpdateAsync(City entity)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+
 }

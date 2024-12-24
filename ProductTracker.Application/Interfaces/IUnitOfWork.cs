@@ -18,6 +18,7 @@
         ITemplateRepository TemplateRepositorys { get; }
         IStatesRepository States { get; }
         IDistrictRepository StateDistricts { get; }
+        ICityRepository StateCities { get; }
 
 
     }

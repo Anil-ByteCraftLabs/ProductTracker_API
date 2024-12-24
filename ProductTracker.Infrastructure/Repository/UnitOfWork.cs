@@ -7,7 +7,7 @@ namespace ProductTracker.Infrastructure.Repository
         public UnitOfWork(IUserRepository userRepository, IProductRepository products,
             IOrganizationRepository organizations,IBatchDataRepository batchDataRepository,
             ICouponsDataRepository couponsDataRepository, IPlantRepository plants, IProductTypeRepository producttypes, IProductWeightRepository productWeights, IProductCategoryRepository productCategorys, 
-            ITemplateRepository templateRepositorys, IStatesRepository states, IDistrictRepository districts)
+            ITemplateRepository templateRepositorys, IStatesRepository states, IDistrictRepository districts, ICityRepository stateCities)
         {
             Users = userRepository;
             Products = products;
@@ -21,6 +21,8 @@ namespace ProductTracker.Infrastructure.Repository
             TemplateRepositorys = templateRepositorys;
             States = states;
             StateDistricts = districts;
+            StateCities = stateCities;
+
 
         }
 
@@ -43,5 +45,7 @@ namespace ProductTracker.Infrastructure.Repository
         public IStatesRepository States { get; set; }
 
         public IDistrictRepository StateDistricts { get; set; }
+
+        public ICityRepository StateCities { get; set; }
     }
 }

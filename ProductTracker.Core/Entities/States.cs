@@ -23,4 +23,16 @@ namespace ProductTracker.Core.Entities
         public int? StateId { get; set; }
 
 }
+
+    public class City : Entity
+    {
+        public string? Name { get; set; }
+        public string? DistrictName { get; set; }
+        public int? DistrictId { get; set; }
+
+        public int? StateId { get; set; }
+        public string? StateName { get; set; }
+
+    }
+
 }

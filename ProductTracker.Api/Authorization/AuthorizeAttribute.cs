@@ -22,7 +22,8 @@ namespace ProductTracker.Api.Authorization
 
             // authorization
             var user = (ApplicationUser)context.HttpContext.Items["User"];
-            if (user == null || (user.Role.ToLower() != _role.ToLower()))
+            //if (user == null || (user.Role.ToLower() != _role.ToLower()))
+            if (user == null || _role.ToLower().IndexOf(user.Role.ToLower(), StringComparison.OrdinalIgnoreCase) == -1)
             {
                 // not logged in or role not authorized
                 var apiResponse = new ApiResponse<string>();

@@ -33,7 +33,7 @@ namespace ProductTracker.Api.Controllers
         }
 
         [Authorize("Super Admin")]
-        [HttpGet("{id}")]
+        [HttpGet("State/{id}/Districts")]
         public async Task<ApiResponse<List<DistrictDTOs>>> GetDistricts(int id)
         {
             var apiResponse = new ApiResponse<List<DistrictDTOs>>();
@@ -44,5 +44,19 @@ namespace ProductTracker.Api.Controllers
 
             return apiResponse;
         }
+
+        [Authorize("Super Admin")]
+        [HttpGet("State/{id}/Cities")]
+        public async Task<ApiResponse<List<CityDTOs>>> GetCities(int id)
+        {
+            var apiResponse = new ApiResponse<List<CityDTOs>>();
+
+            var data = await _unitOfWork.StateCities.GetStateCities(id);
+            apiResponse.Success = true;
+            apiResponse.Result = data.ToList();
+
+            return apiResponse;
+        }
+
     }
 }
