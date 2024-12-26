@@ -17,4 +17,9 @@ namespace ProductTracker.Application.Interfaces
     {
         public Task<IReadOnlyList<DistrictDTOs>> GetStateDistricts( int stateId);
     }
+
+    public interface ICityRepository : IRepository<City>
+    {
+        public Task<IReadOnlyList<CityDTOs>> GetStateCities(int stateId);
+    }
 }

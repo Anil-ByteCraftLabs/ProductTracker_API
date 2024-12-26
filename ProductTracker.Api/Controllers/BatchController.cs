@@ -154,6 +154,46 @@ namespace ProductTracker.Api.Controllers
             return apiResponse;
         }
 
+        [HttpPost("GetBatchByOrg")]
+        public async Task<ApiResponse<List<BatchResponseDTOs>>> GetBatchByOrg(BatchByOrgRequestDTOs batchFilterRequestDTOs)
+        {
+            if (batchFilterRequestDTOs.OrgId <= 0)
+                throw new Exception("Selected Organization is not valid.");
+            
+            if (!string.IsNullOrEmpty(batchFilterRequestDTOs.StartDate))
+            {
+                DateTime result;
+                if (!DateTime.TryParse(batchFilterRequestDTOs.StartDate, out result))
+                    throw new Exception("Please select a valid date as start date.");
+            }
+            if (!string.IsNullOrEmpty(batchFilterRequestDTOs.EndDate))
+            {
+                DateTime result;
+                if (!DateTime.TryParse(batchFilterRequestDTOs.EndDate, out result))
+                    throw new Exception("Please select a valid date as end date.");
+            }
+
+
+            var apiResponse = new ApiResponse<List<BatchResponseDTOs>>();
+            var data = await _unitOfWork.Batches.GetFilteredBatch(batchFilterRequestDTOs);
+            apiResponse.Success = true;
+            apiResponse.Result = data.ToList();
+            return apiResponse;
+        }
+
+        [HttpGet("Order/{id}")]
+        public async Task<ApiResponse<BatchResponseDTOs>> GetBatchByOrderId(string id)
+        {
+
+            var apiResponse = new ApiResponse<BatchResponseDTOs>();
+
+            var data = await _unitOfWork.Batches.GetBatchByOrderId(id);
+            apiResponse.Success = true;
+            apiResponse.Result = data;
+            return apiResponse;
+        }
+
+
 
         #endregion
 

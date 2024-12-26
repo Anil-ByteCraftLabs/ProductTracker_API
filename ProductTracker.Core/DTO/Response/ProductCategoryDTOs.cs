@@ -13,5 +13,11 @@ namespace ProductTracker.Core.DTO.Response
         public bool IsActive { get; set; }
         public int ProductTypeId { get; set; }
         public string? ProductTypeName { get; set; }
+
+        public int PlantId { get; set; }
+        public string? PlantName { get; set; }
+
+        public int OrgId { get; set; }
+        public string? OrgName { get; set; }
     }
 }

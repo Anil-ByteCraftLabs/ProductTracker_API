@@ -19,5 +19,13 @@ namespace ProductTracker.Core.DTO.Response
         public int WeightId { get; set; }
         public string? WeightDesc { get; set; }
         public int Price { get; set; }
+        public int ExpiryDays { get; set; }
+
+        public int PlantId { get; set; }
+
+        public int OrgId { get; set; }
+        public string? PlantName { get; set; }
+        public string? OrgName { get; set; }
+
     }
 }

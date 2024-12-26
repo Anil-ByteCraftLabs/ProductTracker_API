@@ -33,6 +33,8 @@ namespace ProductTracker.Infrastructure
 
             services.AddTransient<IDistrictRepository, DistrictRepository>();
 
+            services.AddTransient<ICityRepository, CityRepository>();
+
 
             // JwtUtils : IJwtUtils
 

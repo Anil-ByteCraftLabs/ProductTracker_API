@@ -139,5 +139,27 @@ namespace ProductTracker.Infrastructure.Repository
             return Convert.ToBoolean(result);
 
         }
+
+        public async Task<IReadOnlyList<PlantDtos>> GetPlantsByOrg(int orgId)
+        {
+            //var userOrg = _userRepository.GetByIdAsync(userId).Result.OrganizationId;
+
+            using var connection = _dapperContext.CreateAdminConnection();
+            var result = await connection.QueryAsync<PlantDtos>(PlantQueries.AllPlants, commandType: CommandType.StoredProcedure);
+            var data = result.Where(u => u.OrgId == orgId).ToList();
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                data[i].CreatedByName = _userRepository.GetByIdAsync(data[i].CreatedBy).Result?.UserName;
+                if (!String.IsNullOrEmpty(data[i].UpdatedBy))
+                {
+                    data[i].UpdatedByName = _userRepository.GetByIdAsync(data[i].UpdatedBy).Result.UserName;
+
+                }
+            }
+
+            return data;
+        }
+
     }
 }

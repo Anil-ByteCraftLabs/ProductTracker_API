@@ -101,5 +101,17 @@ namespace ProductTracker.Api.Controllers
             return apiResponse;
         }
 
+        [HttpGet("Organization/{id}")]
+        public async Task<ApiResponse<List<ProductCategoryDTOs>>> GetByOrgId(int id)
+        {
+
+            var apiResponse = new ApiResponse<List<ProductCategoryDTOs>>();
+
+            var data = await _unitOfWork.ProductCategorys.GetProductCategoriesByOrgId(id);
+            apiResponse.Success = true;
+            apiResponse.Result = data.ToList();
+            return apiResponse;
+        }
+
     }
 }

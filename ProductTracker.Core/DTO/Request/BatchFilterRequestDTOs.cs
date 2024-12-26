@@ -12,4 +12,15 @@ namespace ProductTracker.Core.DTO.Request
         public string? StartDate { get; set; }
         public string? EndDate { get; set; }
     }
+
+    public class BatchByOrgRequestDTOs
+    {
+        public int OrgId { get; set; }
+        public string? StartDate { get; set; }
+        public string? EndDate { get; set; }
+        public int ProductTypeId { get; set; }
+        public int ProductId { get; set; }
+        public int PlantId { get; set; }
+    }
+
 }

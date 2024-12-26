@@ -8,13 +8,13 @@ namespace ProductTracker.Sql.Queries
 {
     public class ProductWeightQueries
     {
-        public static string AllProductWeight => "SELECT * FROM [ProductWeight] (NOLOCK)";
+        // public static string AllProductWeight => "SELECT * FROM [ProductWeight] (NOLOCK)";
 
         public static string ProductWeightById => "SELECT * FROM [ProductWeight] (NOLOCK) WHERE [Id] = @Id";
 
         public static string SaveProductWeight => "usp_SaveProductWeight";
 
-
+        public static string AllProductWeight => "usp_GetAllProductWeight";
 
         public static string DeleteProductWeight => "DELETE FROM [ProductWeight] WHERE [Id] = @Id";
 

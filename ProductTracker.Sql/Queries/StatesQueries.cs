@@ -12,5 +12,7 @@ namespace ProductTracker.Sql.Queries
 
 
         public static string StatesDistrict => "usp_GetDistricts";
+
+        public static string StatesCities => "usp_GetCities";
     }
 }

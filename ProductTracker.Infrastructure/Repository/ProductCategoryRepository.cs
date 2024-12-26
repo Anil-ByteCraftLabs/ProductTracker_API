@@ -115,5 +115,26 @@ namespace ProductTracker.Infrastructure.Repository
         {
             return await SaveProductCategory(entity, productTypeId);
         }
+
+        public async Task<IReadOnlyList<ProductCategoryDTOs>> GetProductCategoriesByOrgId(long id)
+        {
+            using var connection = _dapperContext.CreateManufacturerConnection();
+            var result = await connection.QueryAsync<ProductCategoryDTOs>(ProductCategoryQueries.AllProductCategory, commandType: CommandType.StoredProcedure);
+            var data = result.Where(p => p.OrgId == id).ToList();
+            
+            for (int i = 0; i < data.Count; i++)
+            {
+                data[i].CreatedByName = _userRepository.GetByIdAsync(data[i].CreatedBy).Result?.UserName;
+                if (!String.IsNullOrEmpty(data[i].UpdatedBy))
+                {
+                    data[i].UpdatedByName = _userRepository.GetByIdAsync(data[i].UpdatedBy).Result?.UserName;
+
+                }
+            }
+
+
+            return data;
+        }
+
     }
 }

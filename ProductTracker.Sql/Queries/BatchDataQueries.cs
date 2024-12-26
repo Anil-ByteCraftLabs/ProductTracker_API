@@ -12,9 +12,10 @@ namespace ProductTracker.Sql.Queries
     {
 		public static string AllBatches => "usp_GetBatchData";
 		public static string AllUserBatches => "usp_GetUserBatches";
+        public static string BatchFilteredData => "Usp_BatchFilteredData";
 
 
-		public static string BatchById => "SELECT * FROM [BatchData] (NOLOCK) WHERE [Id] = @OrgId";
+        public static string BatchById => "SELECT * FROM [BatchData] (NOLOCK) WHERE [Id] = @OrgId";
 
 		public static string AddBatch =>
 			@"INSERT INTO [Contact] ([FirstName], [LastName], [Email], [PhoneNumber]) 
