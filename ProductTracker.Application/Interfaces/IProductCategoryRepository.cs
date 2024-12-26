@@ -13,5 +13,6 @@ namespace ProductTracker.Application.Interfaces
         Task<IReadOnlyList<ProductCategoryDTOs>> GetAllProductCategories();
         Task<ProductCategoryDTOs> GetProductCategoriesById(long id);
         Task<string> UpdateProductCategory(CommonDescription entity, int productTypeId);
+        Task<IReadOnlyList<ProductCategoryDTOs>> GetProductCategoriesByOrgId(long id);
     }
 }

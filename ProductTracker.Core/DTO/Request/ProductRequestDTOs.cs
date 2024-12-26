@@ -20,4 +20,13 @@ namespace ProductTracker.Core.DTO.Request
         public int WeightId { get; set; }
         public string CreatedBy { get; set; }
     }
+
+    public class ProductByOrgRequestDTOs
+    {
+        public int OrgId { get; set; }
+        public int ProductTypeId { get; set; }
+        public int ProductCategoryId { get; set; }
+        public bool IsActive { get; set; }
+    }
+
 }

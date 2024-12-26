@@ -181,6 +181,18 @@ namespace ProductTracker.Api.Controllers
             return apiResponse;
         }
 
+        [HttpGet("Order/{id}")]
+        public async Task<ApiResponse<BatchResponseDTOs>> GetBatchByOrderId(string id)
+        {
+
+            var apiResponse = new ApiResponse<BatchResponseDTOs>();
+
+            var data = await _unitOfWork.Batches.GetBatchByOrderId(id);
+            apiResponse.Success = true;
+            apiResponse.Result = data;
+            return apiResponse;
+        }
+
 
 
         #endregion

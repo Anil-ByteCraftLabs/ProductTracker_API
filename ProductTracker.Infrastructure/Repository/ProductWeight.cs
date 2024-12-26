@@ -39,7 +39,9 @@ namespace ProductTracker.Infrastructure.Repository
         public async Task<IReadOnlyList<CommonDescription>> GetAllAsync()
         {
             using var connection = _dapperContext.CreateManufacturerConnection();
-            var result = await connection.QueryAsync<CommonDescription>(ProductWeightQueries.AllProductWeight) ;
+            // var result = await connection.QueryAsync<CommonDescription>(ProductWeightQueries.AllProductWeight) ;
+            var result = await connection.QueryAsync<CommonDescription>(ProductWeightQueries.AllProductWeight, commandType: CommandType.StoredProcedure);
+
             var data = result.ToList();
             for (int i = 0; i < data.Count; i++)
             {

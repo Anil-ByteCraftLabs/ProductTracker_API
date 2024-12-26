@@ -15,6 +15,8 @@ namespace ProductTracker.Application.Interfaces
         Task<BatchResponseDTOs> GetBatchById(long id);
         Task<IReadOnlyList<BatchResponseDTOs>> GetUserBatches(string userId,string startDate, string endDate);
         Task<IReadOnlyList<BatchResponseDTOs>> GetFilteredBatch(BatchByOrgRequestDTOs batchByOrgRequestDTOs);
+        Task<BatchResponseDTOs> GetBatchByOrderId(string orderId);
+
 
     }
 }

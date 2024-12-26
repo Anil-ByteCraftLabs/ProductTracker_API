@@ -148,6 +148,20 @@ namespace ProductTracker.Api.Controllers
             return apiResponse;
         }
 
+        [HttpPost("GetProductByOrg")]
+        public async Task<ApiResponse<List<ProductResponseDTOs>>> GetBatchByOrg(ProductByOrgRequestDTOs productByOrgRequestDTOs)
+        {
+            if (productByOrgRequestDTOs.OrgId <= 0)
+                throw new Exception("Selected Organization is not valid.");
+
+            var apiResponse = new ApiResponse<List<ProductResponseDTOs>>();
+            var data = await _unitOfWork.Products.GetProductsByOrg(productByOrgRequestDTOs);
+            apiResponse.Success = true;
+            apiResponse.Result = data.ToList();
+            return apiResponse;
+        }
+
+
         #endregion
 
     }

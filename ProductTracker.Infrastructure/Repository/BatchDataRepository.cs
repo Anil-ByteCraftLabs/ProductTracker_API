@@ -177,5 +177,22 @@ namespace ProductTracker.Infrastructure.Repository
             return data;
         }
 
+        public async Task<BatchResponseDTOs> GetBatchByOrderId(string orderId)
+        {
+            using var connection = _dapperContext.CreateManufacturerConnection();
+            var result = await connection.QueryAsync<BatchResponseDTOs>(BatchDataQueries.AllBatches, commandType: CommandType.StoredProcedure);
+            var data = result.ToList().Where(p => p.OrderId == orderId).SingleOrDefault();
+            data.CreatedByName = _userRepository.GetByIdAsync(data.CreatedBy).Result.UserName;
+            data.PlantName = _plantRepository.GetAllPlantById(data.PlantId).Result?.PlantName;
+            if (!String.IsNullOrEmpty(data.UpdatedBy))
+            {
+                data.UpdatedByName = _userRepository.GetByIdAsync(data.UpdatedBy).Result.UserName;
+
+            }
+
+            return data;
+        }
+
+
     }
 }

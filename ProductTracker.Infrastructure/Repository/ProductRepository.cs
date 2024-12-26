@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Dapper;
 using Microsoft.Extensions.Configuration;
 using ProductTracker.Application.Interfaces;
+using ProductTracker.Core.DTO.Request;
 using ProductTracker.Core.DTO.Response;
 using ProductTracker.Core.Entities;
 using ProductTracker.Infrastructure.Context;
@@ -122,6 +123,25 @@ namespace ProductTracker.Infrastructure.Repository
             var result = await connection.ExecuteAsync(ProductDataQueries.SaveProduct, parameters, commandType: CommandType.StoredProcedure);
             return result.ToString();
 
+        }
+
+        public async Task<IReadOnlyList<ProductResponseDTOs>> GetProductsByOrg(ProductByOrgRequestDTOs productByOrgRequestDTOs)
+        {
+            using var connection = _dapperContext.CreateManufacturerConnection();
+            var result = await connection.QueryAsync<ProductResponseDTOs>(ProductDataQueries.AllProduct, commandType: CommandType.StoredProcedure);
+            //return result.ToList();
+            var data = result.Where(p => p.OrgId == productByOrgRequestDTOs.OrgId).ToList();
+            for (int i = 0; i < data.Count; i++)
+            {
+                data[i].CreatedByName = _userRepository.GetByIdAsync(data[i].CreatedBy).Result?.UserName;
+                if (!String.IsNullOrEmpty(data[i].UpdatedBy))
+                {
+                    data[i].UpdatedByName = _userRepository.GetByIdAsync(data[i].UpdatedBy).Result.UserName;
+
+                }
+            }
+
+            return data;
         }
 
     }
