@@ -11,7 +11,7 @@ using ProductTracker.Core.DTO.Response;
 
 namespace ProductTracker.Api.Controllers
 {
-    [Authorize("Super Admin")]
+    [Authorize("Super Admin, Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class TemplateController : ControllerBase
