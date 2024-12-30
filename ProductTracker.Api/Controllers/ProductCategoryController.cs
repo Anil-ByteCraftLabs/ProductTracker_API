@@ -11,7 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 namespace ProductTracker.Api.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize("Admin")]
+    [Authorize("Super Admin")]
     [ApiController]
     public class ProductCategoryController : ControllerBase
     {

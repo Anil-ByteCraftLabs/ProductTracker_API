@@ -284,3 +284,7 @@ obj/
 /ProductTracker.Infrastructure/obj/Debug/net6.0/ProductTracker.Infrastructure.AssemblyInfo.cs
 /ProductTracker.Test/obj/Debug/net6.0/ProductTracker.Test.csproj.CoreCompileInputs.cache
 /ProductTracker.Test/obj/Debug/net6.0/ProductTracker.Test.csproj.FileListAbsolute.txt
+/ProductTracker.Application/bin/Debug/net6.0/ProductTracker.Application.deps.json
+*.pubxml
+/ProductTracker.Api/ProductTracker.Api.csproj.user
+/ProductTracker.Application/bin/Debug/net6.0/ProductTracker.Application.deps.json

@@ -11,7 +11,7 @@ namespace ProductTracker.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize("Admin")]
+    [Authorize("Super Admin")]
     public class ProductTypeController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
