@@ -13,6 +13,7 @@ namespace ProductTracker.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize("Super Admin")]
     public class OrganizationController : BaseApiController
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -25,7 +26,7 @@ namespace ProductTracker.Api.Controllers
         #region ===[ Public Methods ]==============================================================
 
         [HttpGet]
-        [Authorize("Super Admin")]
+        //[Authorize("Super Admin")]
         public async Task<ApiResponse<List<Organization>>> GetAll()
         {
             var apiResponse = new ApiResponse<List<Organization>>();
@@ -36,7 +37,7 @@ namespace ProductTracker.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize("Super Admin")]
+        //[Authorize("Super Admin")]
         public async Task<ApiResponse<Organization>> GetById(int id)
         {
 
@@ -56,7 +57,7 @@ namespace ProductTracker.Api.Controllers
         }
 
             [HttpPost]
-        [Authorize("Super Admin")]
+        //[Authorize("Super Admin")]
         public async Task<ApiResponse<string>> Add(OrganizationRequestDTOs organizationRequestDTO)
         {
             if (string.IsNullOrEmpty(organizationRequestDTO.Name))
@@ -95,7 +96,7 @@ namespace ProductTracker.Api.Controllers
         }
 
         [HttpPut]
-        [Authorize("Super Admin")]
+        //[Authorize("Super Admin")]
         public async Task<ApiResponse<string>> Update(OrganizationRequestDTOs organizationRequestDTO)
         {
             if (organizationRequestDTO.Id <= 0)
@@ -129,7 +130,7 @@ namespace ProductTracker.Api.Controllers
         }
 
         [HttpDelete]
-        [Authorize("Super Admin")]
+        //[Authorize("Super Admin")]
         public async Task<ApiResponse<string>> Delete(int id)
         {
             var apiResponse = new ApiResponse<string>();
@@ -152,7 +153,7 @@ namespace ProductTracker.Api.Controllers
         //}
 
         [HttpGet("{userId}/Org")]
-        [Authorize("Admin")]
+        //[Authorize("Admin")]
         public async Task<ApiResponse<List<Organization>>> GetOrgByUserId( string userId)
         {
             var apiResponse = new ApiResponse<List<Organization>>();

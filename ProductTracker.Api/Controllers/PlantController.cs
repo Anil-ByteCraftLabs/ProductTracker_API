@@ -14,6 +14,7 @@ namespace ProductTracker.Api.Controllers
     
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize("Super Admin")]
     public class PlantController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -26,7 +27,7 @@ namespace ProductTracker.Api.Controllers
         #region ===[ Public Methods ]==============================================================
 
         [HttpGet]
-        [Authorize("Super Admin")]
+        //[Authorize("Super Admin")]
         public async Task<ApiResponse<List<PlantDtos>>> GetAll()
         {
             var apiResponse = new ApiResponse<List<PlantDtos>>();
@@ -52,7 +53,7 @@ namespace ProductTracker.Api.Controllers
             return apiResponse;
         }
 
-        [Authorize("Super Admin")]
+        //[Authorize("Super Admin")]
         [HttpPost]
         public async Task<ApiResponse<string>> Add(PlantRequestDTOs plantRequestDTOs)
         {
@@ -79,7 +80,7 @@ namespace ProductTracker.Api.Controllers
             return apiResponse;
         }
 
-        [Authorize("Super Admin")]
+       // [Authorize("Super Admin")]
         [HttpPut]
         public async Task<ApiResponse<string>> Update(PlantRequestDTOs plantRequestDTOs)
         {
@@ -110,7 +111,7 @@ namespace ProductTracker.Api.Controllers
             return apiResponse;
         }
 
-        [Authorize("Super Admin")]
+        //[Authorize("Super Admin")]
         [HttpDelete]
         public async Task<ApiResponse<string>> Delete(int id)
         {
@@ -122,7 +123,7 @@ namespace ProductTracker.Api.Controllers
             return apiResponse;
         }
 
-        [Authorize("Admin")]
+        //[Authorize("Admin")]
         [HttpGet("user/{userId}")]
         public async Task<ApiResponse<List<PlantDtos>>> GetPlantByUser(string userId)
         {
@@ -136,7 +137,7 @@ namespace ProductTracker.Api.Controllers
         }
 
 
-        [Authorize("Admin")]
+        //[Authorize("Admin")]
         [HttpGet("Org/{orgId}")]
         public async Task<ApiResponse<List<PlantDtos>>> GetPlantByOrg(int orgId)
         {

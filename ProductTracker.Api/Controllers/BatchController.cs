@@ -13,7 +13,7 @@ using System.Data.SqlClient;
 
 namespace ProductTracker.Api.Controllers
 {
-    [Authorize("Admin")]
+    [Authorize("Super Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class BatchController : BaseApiController

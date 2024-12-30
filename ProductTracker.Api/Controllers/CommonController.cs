@@ -10,6 +10,7 @@ namespace ProductTracker.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize("Super Admin")]
     public class CommonController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -20,7 +21,7 @@ namespace ProductTracker.Api.Controllers
         }
 
         [HttpGet("States")]
-        [Authorize("Super Admin")]
+        //[Authorize("Super Admin")]
         public async Task<ApiResponse<List<StateDTOs>>> GetAll()
         {
             var apiResponse = new ApiResponse<List<StateDTOs>>();
@@ -32,7 +33,7 @@ namespace ProductTracker.Api.Controllers
             return apiResponse;
         }
 
-        [Authorize("Super Admin")]
+        //[Authorize("Super Admin")]
         [HttpGet("State/{id}/Districts")]
         public async Task<ApiResponse<List<DistrictDTOs>>> GetDistricts(int id)
         {
@@ -45,7 +46,7 @@ namespace ProductTracker.Api.Controllers
             return apiResponse;
         }
 
-        [Authorize("Super Admin")]
+        //[Authorize("Super Admin")]
         [HttpGet("State/{id}/Cities")]
         public async Task<ApiResponse<List<CityDTOs>>> GetCities(int id)
         {
