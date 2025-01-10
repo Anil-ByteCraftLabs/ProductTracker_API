@@ -16,11 +16,14 @@ namespace ProductTracker.Infrastructure.Repository
     {
         private readonly DapperContext _dapperContext;
         private readonly IUserRepository _userRepository;
+        private readonly IOrganizationRepository _organizationRepository;
+        
 
-        public ProductType(DapperContext dapperContext, IUserRepository userRepository)
+        public ProductType(DapperContext dapperContext, IUserRepository userRepository, IOrganizationRepository oOrganizationRepository)
         {
             _dapperContext = dapperContext;
             _userRepository = userRepository;
+            _organizationRepository = oOrganizationRepository;
         }
 
         public async Task<string> AddAsync(CommonDescription entity)
@@ -50,6 +53,11 @@ namespace ProductTracker.Infrastructure.Repository
                     data[i].UpdatedByName = _userRepository.GetByIdAsync(data[i].UpdatedBy).Result.UserName;
 
                 }
+                if (data[i].Orgid>0)
+                {
+                    data[i].OrgName = GetOrgById(Convert.ToInt64(data[i].Orgid)).Result.OrgName;
+
+                }
             }
 
             return data;
@@ -67,6 +75,11 @@ namespace ProductTracker.Infrastructure.Repository
                 if (!String.IsNullOrEmpty(result.UpdatedBy))
                 {
                     result.UpdatedByName = _userRepository.GetByIdAsync(result.UpdatedBy).Result.UserName;
+
+                }
+                if (result.Orgid > 0)
+                {
+                    result.OrgName = GetOrgById(Convert.ToInt64(result.Orgid)).Result.OrgName;
 
                 }
 
@@ -93,6 +106,11 @@ namespace ProductTracker.Infrastructure.Repository
             var result = await connection.ExecuteAsync(ProductTypeQueries.SaveProductType, parameters, commandType: CommandType.StoredProcedure);
             return result.ToString();
 
+        }
+
+        private async Task<Organization> GetOrgById(long id)
+        {
+            return await _organizationRepository.GetByIdAsync(id);
         }
     }
 }

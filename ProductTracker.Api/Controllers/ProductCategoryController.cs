@@ -11,7 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 namespace ProductTracker.Api.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize("Super Admin")]
+    [Authorize("Super Admin, Admin")]
     [ApiController]
     public class ProductCategoryController : ControllerBase
     {
@@ -59,7 +59,9 @@ namespace ProductTracker.Api.Controllers
             var category = new CommonDescription
             {
                 Description= productCategoryRequestDTOs.Name,
-                CreatedBy = user?.Id
+                CreatedBy = user?.Id,
+                Orgid = productCategoryRequestDTOs.PlantId
+
             };
             var data = await _unitOfWork.ProductCategorys.UpdateProductCategory(category, productCategoryRequestDTOs.ProductTypeId);
             apiResponse.Success = true;
