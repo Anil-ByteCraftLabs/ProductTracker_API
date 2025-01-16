@@ -133,6 +133,7 @@ namespace ProductTracker.Api.Controllers
                 Price = productDTOs.Price,
                 PriceStartDate = string.IsNullOrEmpty(productDTOs.PriceStartdate) ? null : Convert.ToDateTime(productDTOs.PriceStartdate),
                 CreatedBy = user?.Id,
+                PlantId = productDTOs.PlantId,
             };
             var data = await _unitOfWork.Products.AddAsync(product);
             apiResponse.Success = true;
