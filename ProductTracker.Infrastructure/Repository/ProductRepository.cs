@@ -119,6 +119,7 @@ namespace ProductTracker.Infrastructure.Repository
             }
             parameters.Add("IsActive", entity.IsActive);
             parameters.Add("CreatedBy", entity.CreatedBy);
+            parameters.Add("PlantId", entity.PlantId);
 
             var result = await connection.ExecuteAsync(ProductDataQueries.SaveProduct, parameters, commandType: CommandType.StoredProcedure);
             return result.ToString();
