@@ -17,5 +17,7 @@ namespace ProductTracker.Core.Entities
         public string? FSSICode { get; set; }
         public decimal Price { get; set; }
         public DateTime? PriceStartDate { get; set; }
+
+        public int PlantId { get; set; }
     }
 }

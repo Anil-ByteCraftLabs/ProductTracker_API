@@ -68,6 +68,8 @@ namespace ProductTracker.Api.Controllers
                 if (!DateTime.TryParse(productDTOs.PriceStartdate, out result))
                     throw new Exception("Please select a valid price start date.");
             }
+            if (productDTOs.PlantId <= 0)
+                throw new Exception("Please select a valid plant ID.");
 
             var user = HttpContext.Items["User"] as dynamic;
             var apiResponse = new ApiResponse<string>();
@@ -82,6 +84,8 @@ namespace ProductTracker.Api.Controllers
                 Price=productDTOs.Price,
                 PriceStartDate= string.IsNullOrEmpty(productDTOs.PriceStartdate) ? null : Convert.ToDateTime(productDTOs.PriceStartdate),
                 CreatedBy = user?.Id,
+                PlantId= productDTOs.PlantId,
+                
             };
                 var data = await _unitOfWork.Products.AddAsync(product);
                 apiResponse.Success = true;
@@ -129,6 +133,7 @@ namespace ProductTracker.Api.Controllers
                 Price = productDTOs.Price,
                 PriceStartDate = string.IsNullOrEmpty(productDTOs.PriceStartdate) ? null : Convert.ToDateTime(productDTOs.PriceStartdate),
                 CreatedBy = user?.Id,
+                PlantId = productDTOs.PlantId,
             };
             var data = await _unitOfWork.Products.AddAsync(product);
             apiResponse.Success = true;

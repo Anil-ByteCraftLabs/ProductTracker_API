@@ -18,6 +18,7 @@ namespace ProductTracker.Core.DTO.Request
         public string? PriceStartdate { get; set; }
         public int ProductCategoryId { get; set; }
         public int WeightId { get; set; }
+        public int PlantId { get; set; }
         public string CreatedBy { get; set; }
     }
 
