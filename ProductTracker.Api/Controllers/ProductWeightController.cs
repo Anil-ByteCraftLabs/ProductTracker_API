@@ -38,13 +38,16 @@ namespace ProductTracker.Api.Controllers
         {
             if (string.IsNullOrEmpty(commonRequestDTOs.Description))
                 throw new Exception("Product weight description can not be blank.");
+            if (commonRequestDTOs.OrgId <=0)
+                throw new Exception("Please select a valid organization.");
 
             var user = HttpContext.Items["User"] as dynamic;
             var apiResponse = new ApiResponse<string>();
             var productWeight = new CommonDescription
             {
                 Description = commonRequestDTOs.Description,
-                CreatedBy = user?.Id
+                CreatedBy = user?.Id,
+                Orgid = commonRequestDTOs.OrgId,
             };
 
             var data = await _unitOfWork.ProductWeights.AddAsync(productWeight);
