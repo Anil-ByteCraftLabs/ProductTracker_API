@@ -11,5 +11,6 @@ namespace ProductTracker.Application.Interfaces
     public interface ITemplateRepository : IRepository<Template>
     {
         Task<IReadOnlyList<TemplateResponseDTOs>> GetAllTemplates();
+        Task<TemplateResponseDTOs> GetTemplatesById(int id);
     }
 }

@@ -57,5 +57,18 @@ namespace ProductTracker.Api.Controllers
             return apiResponse;
         }
 
+        [HttpGet("{id}")]
+        public async Task<ApiResponse<TemplateResponseDTOs>> GetById(int id)
+        {
+
+            var apiResponse = new ApiResponse<CommonDescription>();
+
+            var data = await _unitOfWork.ProductWeights.GetByIdAsync(id);
+            apiResponse.Success = true;
+            apiResponse.Result = data;
+            return apiResponse;
+        }
+
+
     }
 }

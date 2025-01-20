@@ -69,6 +69,24 @@ namespace ProductTracker.Infrastructure.Repository
             return data;
         }
 
+        public async Task<TemplateResponseDTOs> GetTemplatesById(int id)
+        {
+            using var connection = _dapperContext.CreateManufacturerConnection();
+            var result = await connection.QueryAsync<TemplateResponseDTOs>(TemplateQueries.AllTemplates, commandType: CommandType.StoredProcedure);
+            var data = result.Where(t => t.TemplateId == id).FirstOrDefault();
+
+            data.CreatedByName = _userRepository?.GetByIdAsync(data?.CreatedBy).Result?.UserName;
+            data.OrgName = _organizationRepository.GetByIdAsync(data.OrgId).Result?.OrgName;
+
+            if (!String.IsNullOrEmpty(data.UpdatedBy))
+            {
+                data.UpdatedByName = _userRepository?.GetByIdAsync(data.UpdatedBy).Result?.UserName;
+
+            }
+
+            return data;
+        }
+
         public Task<Template> GetByIdAsync(long id)
         {
             throw new NotImplementedException();
