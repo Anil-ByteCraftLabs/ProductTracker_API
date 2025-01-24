@@ -43,7 +43,7 @@ namespace ProductTracker.Api.Controllers
                     throw new Exception("Please select a valid date end date.");
             }
 
-            var data = await _unitOfWork.Coupons.GetBatchAllCoupons(batchId, startDate, endDate,isActive, skipRecords,takeRecords);
+            var data = await _unitOfWork.Coupons.GetBatchFilteredCoupons(batchId, startDate, endDate,isActive, skipRecords,takeRecords);
             apiResponse.Success = true;
             apiResponse.Result = data.ToList();
             return apiResponse;
@@ -117,9 +117,20 @@ namespace ProductTracker.Api.Controllers
             return apiResponse;
         }
 
-            #endregion
-
-
-
+        [HttpGet("Batch/{id}")]
+        public async Task<ApiResponse<List<CouponResponseDTO>>> GetBatchAll(int id)
+        {
+            var apiResponse = new ApiResponse<List<CouponResponseDTO>>();
+            var data = await _unitOfWork.Coupons.GetBatchAllCoupons(id);
+            apiResponse.Success = true;
+            apiResponse.Result = data.ToList();
+            return apiResponse;
         }
+
+
+        #endregion
+
+
+
+    }
 }

@@ -11,8 +11,9 @@ namespace ProductTracker.Sql.Queries
     public class CouponsDataQueries
     {
 		public static string AllCoupons => "SELECT * FROM [CouponsData] (NOLOCK)";
-		public static string BatchAllCoupons => "usp_GetBatchCoupons";
-		public static string CouponById => "usp_GetCoupon";
+		public static string BatchFilteredCoupons => "usp_GetBatchCoupons";
+        public static string BatchAllCoupons => "usp_GetBatchAllCoupons";
+        public static string CouponById => "usp_GetCoupon";
 
 		public static string SaveCoupon => "usp_SaveCoupon";
 

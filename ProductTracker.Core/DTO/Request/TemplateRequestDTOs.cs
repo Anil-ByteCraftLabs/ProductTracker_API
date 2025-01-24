@@ -10,10 +10,12 @@ namespace ProductTracker.Core.DTO.Request
     public class TemplateRequestDTOs
     {
         public int OrgId { get; set; }
+        public string? Name { get; set; }
         public bool IsDefault { get; set; }
-       public string? CreatedBy { get; set; }
+        public bool IsActive { get; set; }
+        //public string? CreatedBy { get; set; }
 
-        public List<TempFormat> TempFormat { get; set; }
+        //public List<TempFormat> TempFormat { get; set; }
     }
 
   

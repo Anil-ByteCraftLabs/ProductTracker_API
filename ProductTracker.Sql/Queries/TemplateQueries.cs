@@ -15,5 +15,7 @@ namespace ProductTracker.Sql.Queries
         public static string DeleteTemplate => "DELETE FROM [Template] WHERE [Id] = @TemplateId";
 
         public static string SaveTemplate => "usp_SaveTemplate";
+
+        public static string SaveTemplateFormat => "usp_SaveTemplateFormat";
     }
 }

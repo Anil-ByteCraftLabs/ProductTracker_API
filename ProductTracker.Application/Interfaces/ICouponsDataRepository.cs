@@ -12,9 +12,10 @@ namespace ProductTracker.Application.Interfaces
     public interface ICouponsDataRepository : IRepository<CouponsData>
     {
         Task<int> GenerateCoupons(int batchId, string orgAlias, int noOfCoupons, string createdBy);
-        Task<IReadOnlyList<CouponResponseDTO>> GetBatchAllCoupons(int BatchId, string startDate, string endDate, bool isActive, int skipRecords, int takeRecords);
+        Task<IReadOnlyList<CouponResponseDTO>> GetBatchFilteredCoupons(int BatchId, string startDate, string endDate, bool isActive, int skipRecords, int takeRecords);
         Task<CouponResponseDTO> GetCouponDetails(int CouponId);
         Task<int> UpdateCoupons(CouponPutRequestDTOs couponPutRequestDTOs);
+        Task<IReadOnlyList<CouponResponseDTO>> GetBatchAllCoupons(int BatchId);
 
     }
 }
