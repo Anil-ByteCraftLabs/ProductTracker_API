@@ -64,7 +64,7 @@ namespace ProductTracker.Infrastructure.Repository
             }
         }
 
-        public async Task<IReadOnlyList<CouponResponseDTO>> GetBatchAllCoupons(int BatchId, string startDate, string endDate, bool isActive, int skipRecords, int takeRecords)
+        public async Task<IReadOnlyList<CouponResponseDTO>> GetBatchFilteredCoupons(int BatchId, string startDate, string endDate, bool isActive, int skipRecords, int takeRecords)
         {
             using var connection = _dapperContext.CreateManufacturerConnection();
             var parameters = new DynamicParameters();
@@ -157,6 +157,28 @@ namespace ProductTracker.Infrastructure.Repository
             var result = await connection.ExecuteAsync(CouponsDataQueries.SaveCoupon, parameters, commandType: CommandType.StoredProcedure);
             return result.ToString();
 
+        }
+
+        public async Task<IReadOnlyList<CouponResponseDTO>> GetBatchAllCoupons(int BatchId)
+        {
+            using var connection = _dapperContext.CreateManufacturerConnection();
+            var parameters = new DynamicParameters();
+            parameters.Add("BatchId", BatchId);
+
+            var result = await connection.QueryAsync<CouponResponseDTO>(CouponsDataQueries.BatchAllCoupons, parameters, commandType: CommandType.StoredProcedure);
+
+            var data = result.ToList();
+            for (int i = 0; i < data.Count; i++)
+            {
+                data[i].CreatedByName = _userRepository.GetByIdAsync(data[i].CreatedBy).Result?.UserName;
+                if (!String.IsNullOrEmpty(data[i].UpdatedBy))
+                {
+                    data[i].UpdatedByName = _userRepository.GetByIdAsync(data[i].UpdatedBy).Result?.UserName;
+
+                }
+            }
+
+            return data;
         }
 
     }

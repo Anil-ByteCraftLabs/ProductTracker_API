@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using ProductTracker.Application.Interfaces;
+using ProductTracker.Core.DTO.Request;
 using ProductTracker.Core.DTO.Response;
 using ProductTracker.Core.Entities;
 using ProductTracker.Infrastructure.Context;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Dapper.SqlMapper;
+using System.Text.Json;
 
 namespace ProductTracker.Infrastructure.Repository
 {
@@ -34,10 +36,24 @@ namespace ProductTracker.Infrastructure.Repository
             var parameters = new DynamicParameters();
             parameters.Add("OrgId", entity.OrgId);
             parameters.Add("IsDefault", entity.IsDefault);
-            parameters.Add("TempFormat", entity.TempFormat);
+            parameters.Add("TempName", entity.Name);
+            parameters.Add("IsActive", entity.IsDefault);
             parameters.Add("CreatedBy", entity.CreatedBy);
 
             var result = await connection.ExecuteAsync(TemplateQueries.SaveTemplate, parameters, commandType: CommandType.StoredProcedure);
+            return result.ToString();
+        }
+
+        public async Task<string> SaveTemplateFormat(int Id, string CreatedBy, TempFormat entity)
+        {
+            using var connection = _dapperContext.CreateManufacturerConnection();
+
+            var parameters = new DynamicParameters();
+            parameters.Add("Id", Id);
+            parameters.Add("Format", JsonSerializer.Serialize(entity));
+            parameters.Add("UpdatedBy", CreatedBy);
+
+            var result = await connection.ExecuteAsync(TemplateQueries.SaveTemplateFormat, parameters, commandType: CommandType.StoredProcedure);
             return result.ToString();
         }
 
@@ -69,22 +85,13 @@ namespace ProductTracker.Infrastructure.Repository
             return data;
         }
 
-        public async Task<TemplateResponseDTOs> GetTemplatesById(int id)
+        public async Task<TempFormat> GetTemplatesById(int id)
         {
             using var connection = _dapperContext.CreateManufacturerConnection();
             var result = await connection.QueryAsync<TemplateResponseDTOs>(TemplateQueries.AllTemplates, commandType: CommandType.StoredProcedure);
-            var data = result.Where(t => t.TemplateId == id).FirstOrDefault();
-
-            data.CreatedByName = _userRepository?.GetByIdAsync(data?.CreatedBy).Result?.UserName;
-            data.OrgName = _organizationRepository.GetByIdAsync(data.OrgId).Result?.OrgName;
-
-            if (!String.IsNullOrEmpty(data.UpdatedBy))
-            {
-                data.UpdatedByName = _userRepository?.GetByIdAsync(data.UpdatedBy).Result?.UserName;
-
-            }
-
-            return data;
+            // TempFormat = JsonSerializer.Serialize(templateRequestDTOs.TempFormat),
+            var data = result.Where(t => t.Id == id).FirstOrDefault();
+            return JsonSerializer.Deserialize<TempFormat>(data.TempFormat);
         }
 
         public Task<Template> GetByIdAsync(long id)
@@ -96,5 +103,7 @@ namespace ProductTracker.Infrastructure.Repository
         {
             throw new NotImplementedException();
         }
+
+      
     }
 }

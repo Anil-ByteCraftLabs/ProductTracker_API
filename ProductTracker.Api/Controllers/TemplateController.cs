@@ -25,8 +25,8 @@ namespace ProductTracker.Api.Controllers
         [HttpPost]
         public async Task<ApiResponse<string>> Add(TemplateRequestDTOs templateRequestDTOs)
         {
-            if (templateRequestDTOs.TempFormat.Count <= 0)
-                throw new Exception("Template format can not be blank.");
+            if ( String.IsNullOrEmpty( templateRequestDTOs.Name))
+                throw new Exception("Template name can not be blank.");
             if (templateRequestDTOs.OrgId <= 0)
                 throw new Exception("Organization Id is not valid.");
 
@@ -34,8 +34,9 @@ namespace ProductTracker.Api.Controllers
             var template = new Template
             {
                 OrgId = templateRequestDTOs.OrgId,
-                TempFormat = JsonSerializer.Serialize(templateRequestDTOs.TempFormat),
                 IsDefault = templateRequestDTOs.IsDefault,
+                IsActive = templateRequestDTOs.IsActive,
+                Name = templateRequestDTOs.Name,
                 CreatedBy = user?.Id
             };
             var apiResponse = new ApiResponse<string>();
@@ -57,18 +58,37 @@ namespace ProductTracker.Api.Controllers
             return apiResponse;
         }
 
-        [HttpGet("{id}")]
-        public async Task<ApiResponse<TemplateResponseDTOs>> GetById(int id)
+        [HttpGet("{id}/format")]
+        public async Task<ApiResponse<TempFormat>> GetById(int id)
         {
 
-            var apiResponse = new ApiResponse<CommonDescription>();
+            var apiResponse = new ApiResponse<TempFormat>();
 
-            var data = await _unitOfWork.ProductWeights.GetByIdAsync(id);
+            var data = await _unitOfWork.TemplateRepositorys.GetTemplatesById(id);
             apiResponse.Success = true;
             apiResponse.Result = data;
             return apiResponse;
         }
 
+        [HttpPost("{id}/format")]
+        public async Task<ApiResponse<string>>  SaveFormat(int id, TempFormat tempFormat)
+        {
 
+           if (id <= 0)
+                throw new Exception("Please select a valid template Id.");
+
+            var user = HttpContext.Items["User"] as dynamic;
+           
+            var apiResponse = new ApiResponse<string>();
+
+            var data = await _unitOfWork.TemplateRepositorys.SaveTemplateFormat(id, user?.Id, tempFormat);
+            apiResponse.Success = true;
+            apiResponse.Result = data;
+            return apiResponse;
+        }
     }
+
+
+
+    
 }

@@ -12,6 +12,7 @@ namespace ProductTracker.Core.Entities
         public int OrgId { get; set; }
         public bool IsDefault { get; set; }
         public string? TempFormat { get; set; }
-        
+        public string? Name { get; set; }
+
     }
 }
