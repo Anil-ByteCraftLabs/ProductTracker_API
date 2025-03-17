@@ -52,16 +52,16 @@ namespace ProductTracker.Api.Controllers
         //    return apiResponse;
         //}
 
-        //[HttpPost]
-        //public async Task<ApiResponse<string>> Add(User contact)
-        //{
-        //    var apiResponse = new ApiResponse<string>();
+        [HttpPost]
+        public async Task<ApiResponse<string>> Add(User contact)
+        {
+            var apiResponse = new ApiResponse<string>();
 
-        //    var data = await _unitOfWork.Users.AddAsync(contact);
-        //    apiResponse.Success = true;
-        //    apiResponse.Result = data;
-        //    return apiResponse;
-        //}
+            var data = await _unitOfWork.Users.AddAsync(contact);
+            apiResponse.Success = true;
+            apiResponse.Result = data;
+            return apiResponse;
+        }
 
         //[HttpPut]
         //public async Task<ApiResponse<string>> Update(User contact)

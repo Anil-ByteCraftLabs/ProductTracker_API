@@ -17,7 +17,12 @@ namespace ProductTracker.Sql.Queries
 
 		public static string SaveCoupon => "usp_SaveCoupon";
 
-		public static string GenerateCoupons => "usp_GenerateCoupons";
+        public static string SaveScannedCoupon => "usp_SaveScannedCoupon";
+        public static string ValidateCoupon => "usp_validateCoupon";
+        public static string GetuserScannedCoupon => "usp_GetuserScannedCoupon";
+        public static string GetFilteredUserScannedCoupon => "usp_GetFilteredUserScannedCoupon";
+
+        public static string GenerateCoupons => "usp_GenerateCoupons";
 		public static string UpdateCoupons => "usp_UpdateCoupons";
 
 

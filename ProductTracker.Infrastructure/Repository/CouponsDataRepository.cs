@@ -8,9 +8,11 @@ using ProductTracker.Sql.Queries;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Dapper.SqlMapper;
 
 namespace ProductTracker.Infrastructure.Repository
 {
@@ -180,6 +182,87 @@ namespace ProductTracker.Infrastructure.Repository
 
             return data;
         }
+
+        public async Task<string> ScanCoupon(CouponScanRequestDTOs couponScanRequestDTOs)
+        {
+            using var connection = _dapperContext.CreateManufacturerConnection();
+
+            var parameters = new DynamicParameters();
+            parameters.Add("CouponCode", couponScanRequestDTOs.CouponCode);
+            parameters.Add("ScannedBy", couponScanRequestDTOs.ScannedBy);
+            parameters.Add("Latitude", couponScanRequestDTOs.Latitude);
+            parameters.Add("Longitude", couponScanRequestDTOs.Longitude);
+
+            var result = await connection.ExecuteAsync(CouponsDataQueries.SaveScannedCoupon, parameters, commandType: CommandType.StoredProcedure);
+            return result.ToString();
+        }
+
+        public async Task<ProductResponseDTOs> Validate(string CouponCode)
+        {
+            using var connection = _dapperContext.CreateManufacturerConnection();
+
+            var parameters = new DynamicParameters();
+            parameters.Add("UniqueId", CouponCode);
+            var result = await connection.QueryAsync<ProductResponseDTOs>(CouponsDataQueries.ValidateCoupon, parameters, commandType: CommandType.StoredProcedure);
+            return result.ToList().FirstOrDefault();
+        }
+
+        public async Task<IReadOnlyList<ScanHistoryResponseDTO>> GetAllScannedCoupon( string userId)
+        {
+            using var connection = _dapperContext.CreateManufacturerConnection();
+            var parameters = new DynamicParameters();
+            parameters.Add("Userid", userId);
+
+            var result = await connection.QueryAsync<ScanHistoryResponseDTO>(CouponsDataQueries.GetuserScannedCoupon, parameters, commandType: CommandType.StoredProcedure);
+            var data = result.ToList();
+            //for (int i = 0; i < data.Count; i++)
+            //{
+            //    data[i].CreatedByName = _userRepository.GetByIdAsync(data[i].CreatedBy).Result?.UserName;
+            //    data[i].PlantName = _plantRepository.GetAllPlantById(data[i].PlantId).Result?.PlantName;
+            //    if (!String.IsNullOrEmpty(data[i].UpdatedBy))
+            //    {
+            //        data[i].UpdatedByName = _userRepository.GetByIdAsync(data[i].UpdatedBy).Result?.UserName;
+
+            //    }
+            //}
+
+            return data;
+        }
+        public async Task<IReadOnlyList<ScanHistoryResponseDTO>> GetFilterScannedCoupon(CouponsFilterRequestDTOs couponsFilterRequestDTOs)
+        {
+            using var connection = _dapperContext.CreateManufacturerConnection();
+            var parameters = new DynamicParameters();
+            parameters.Add("Userid", couponsFilterRequestDTOs.UserId);
+            parameters.Add("OrgId", couponsFilterRequestDTOs.Orgid);
+            if (DateTime.TryParse(couponsFilterRequestDTOs.StartDate, out DateTime startdate))
+            {
+                parameters.Add("StartDate", couponsFilterRequestDTOs.StartDate);
+            }
+            if (DateTime.TryParse(couponsFilterRequestDTOs.EndDate, out DateTime enddate))
+            {
+                parameters.Add("EndDate", couponsFilterRequestDTOs.EndDate);
+            }
+           
+            var result = await connection.QueryAsync<ScanHistoryResponseDTO>(CouponsDataQueries.GetFilteredUserScannedCoupon, parameters, commandType: CommandType.StoredProcedure);
+            var data = result.ToList();
+            //if (couponsFilterRequestDTOs.StartDate !=null && couponsFilterRequestDTOs.EndDate != null)
+            //{
+            //    data = data.Where(c => c.ScannedOn >= couponsFilterRequestDTOs.StartDate && c.ScannedOn <= couponsFilterRequestDTOs.EndDate).ToList();
+            //}
+            //for (int i = 0; i < data.Count; i++)
+            //{
+            //    data[i].CreatedByName = _userRepository.GetByIdAsync(data[i].CreatedBy).Result?.UserName;
+            //    data[i].PlantName = _plantRepository.GetAllPlantById(data[i].PlantId).Result?.PlantName;
+            //    if (!String.IsNullOrEmpty(data[i].UpdatedBy))
+            //    {
+            //        data[i].UpdatedByName = _userRepository.GetByIdAsync(data[i].UpdatedBy).Result?.UserName;
+
+            //    }
+            //}
+
+            return data;
+        }
+
 
     }
 }

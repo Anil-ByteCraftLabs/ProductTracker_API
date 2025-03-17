@@ -40,6 +40,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
            });
 
 var connectionString = builder.Configuration.GetConnectionString("LoginConnection");
+var twilioSettings = builder.Configuration.GetConnectionString("Twilio");
+
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString)
