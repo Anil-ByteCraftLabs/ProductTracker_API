@@ -16,6 +16,11 @@ namespace ProductTracker.Application.Interfaces
         Task<CouponResponseDTO> GetCouponDetails(int CouponId);
         Task<int> UpdateCoupons(CouponPutRequestDTOs couponPutRequestDTOs);
         Task<IReadOnlyList<CouponResponseDTO>> GetBatchAllCoupons(int BatchId);
+        Task<string> ScanCoupon(CouponScanRequestDTOs couponScanRequestDTOs);
+        Task<ProductResponseDTOs> Validate(string CouponCode);
+        Task<IReadOnlyList<ScanHistoryResponseDTO>> GetAllScannedCoupon(string userId);
+
+        Task<IReadOnlyList<ScanHistoryResponseDTO>> GetFilterScannedCoupon(CouponsFilterRequestDTOs couponsFilterRequestDTOs);
 
     }
 }

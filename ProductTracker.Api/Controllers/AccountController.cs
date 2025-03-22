@@ -14,6 +14,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Text.RegularExpressions;
+using Twilio;
+using Twilio.Rest.Verify.V2.Service;
 
 namespace ProductTracker.Api.Controllers
 {
@@ -28,6 +30,7 @@ namespace ProductTracker.Api.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
         private readonly IJwtUtils _jwtUtils;
+
         public AccountController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<ApplicationUser> signInManager, IConfiguration configuration, IJwtUtils jwtUtils, IUnitOfWork unitOfWork)
         {
             _userManager = userManager;
@@ -36,6 +39,10 @@ namespace ProductTracker.Api.Controllers
             _roleManager = roleManager;
             _jwtUtils = jwtUtils;
             _unitOfWork = unitOfWork;
+
+
+            TwilioClient.Init(_configuration["Twilio:accountSid"], _configuration["Twilio:authToken"]);
+
         }
 
         [AllowAnonymousAttribute]
@@ -186,6 +193,90 @@ namespace ProductTracker.Api.Controllers
             return apiResponse;
 
         }
+        string verifyServiceSid = "VA6542ef4b1abdf107bd4101b021eb671f";
+        [AllowAnonymous]
+        [HttpPost("send-otp")]
+        public async Task<IActionResult> SendOtp([FromBody] PhoneNumberRequest request)
+        {
+            try
+            {
+                var verification = await VerificationResource.CreateAsync(
+                    to: request.PhoneNumber,
+                    channel: "sms", // or "whatsapp"
+                    pathServiceSid: verifyServiceSid
+                );
+
+                if (verification.Status == "pending")
+                {
+                    return Ok(new
+                    {
+                        Message = "OTP Sent Successfully",
+                        PhoneNumber = request.PhoneNumber
+                    });
+                }
+                else
+                {
+                    return BadRequest(new
+                    {
+                        Error = "Failed to send OTP"
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    Error = ex.Message
+                });
+            }
+        }
+        
+        [AllowAnonymous]
+        [HttpPost("verify-otp")]
+        public async Task<IActionResult> VerifyOtp([FromBody] VerifyOtpRequest request)
+        {
+            try
+            {
+                var verificationCheck = await VerificationCheckResource.CreateAsync(
+                    to: request.PhoneNumber,
+                    code: request.OtpCode,
+                    pathServiceSid: verifyServiceSid
+                );
+
+                if (verificationCheck.Status == "approved")
+                {
+                    return Ok(new
+                    {
+                        Message = "OTP Verified Successfully",
+                        PhoneNumber = request.PhoneNumber
+                    });
+                }
+                else
+                {
+                    return BadRequest(new
+                    {
+                        Error = "Invalid OTP. Please try again."
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    Error = ex.Message
+                });
+            }
+        }
+        public class VerifyOtpRequest
+        {
+            public string PhoneNumber { get; set; }
+            public string OtpCode { get; set; }
+        }
+        public class PhoneNumberRequest
+        {
+            public string PhoneNumber { get; set; }
+        }
+
 
     }
 }
