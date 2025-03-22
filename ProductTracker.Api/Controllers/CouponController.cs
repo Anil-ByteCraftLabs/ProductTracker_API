@@ -127,6 +127,60 @@ namespace ProductTracker.Api.Controllers
             return apiResponse;
         }
 
+        [HttpPost]
+        public async Task<ApiResponse<string>> Scan(CouponScanRequestDTOs couponScanRequestDTOs)
+        {
+          
+            var apiResponse = new ApiResponse<string>();
+
+            var data = await _unitOfWork.Coupons.ScanCoupon(couponScanRequestDTOs);
+            apiResponse.Success = true;
+            apiResponse.Result = data;
+            return apiResponse;
+        }
+
+        [HttpGet("Validate/{couponId}")]
+        public async Task<ApiResponse<ProductResponseDTOs>> Validate(string couponId)
+        {
+
+            var apiResponse = new ApiResponse<ProductResponseDTOs>
+            {
+                Success = false,
+                Result = null
+            };
+
+            var data = await _unitOfWork.Coupons.Validate(couponId);
+            if (data != null)
+            {
+                apiResponse.Success = true;
+                apiResponse.Result = data;
+            }
+            return apiResponse;
+        }
+
+        [HttpGet("ScannedCoupon/{userId}")]
+        public async Task<ApiResponse<List<ScanHistoryResponseDTO>>> GetAllUserScanned(string userId)
+        {
+            var apiResponse = new ApiResponse<List<ScanHistoryResponseDTO>>();
+
+            var data = await _unitOfWork.Coupons.GetAllScannedCoupon(userId);
+            apiResponse.Success = true;
+            apiResponse.Result = data.ToList();
+            return apiResponse;
+        }
+
+        [HttpPost("UserTransactionHistory")]
+        public async Task<ApiResponse<List<ScanHistoryResponseDTO>>> GetUserTransactionHistory(CouponsFilterRequestDTOs couponsFilterRequestDTOs)
+        {
+            var apiResponse = new ApiResponse<List<ScanHistoryResponseDTO>>();
+
+            var data = await _unitOfWork.Coupons.GetFilterScannedCoupon(couponsFilterRequestDTOs);
+            apiResponse.Success = true;
+            apiResponse.Result = data.ToList();
+            return apiResponse;
+        }
+
+
 
         #endregion
 
