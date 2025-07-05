@@ -212,7 +212,7 @@ namespace ProductTracker.Api.Controllers
             var roleName = await _roleManager.FindByIdAsync(roldId);
 
 
-            if (user != null)
+            if (user != null && roleName !=null)
             {
                 var result = await _userManager.AddToRoleAsync(user, roleName.Name);
                 return result.Succeeded;
