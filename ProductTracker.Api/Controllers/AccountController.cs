@@ -260,7 +260,7 @@ namespace ProductTracker.Api.Controllers
             return apiResponse;
 
         }
-        string verifyServiceSid = "VA6542ef4b1abdf107bd4101b021eb671f";
+        string verifyServiceSid = "VA3c7ca955fb1830e993a8816018746a2b";
         [AllowAnonymous]
         [HttpPost("send-otp")]
         public async Task<IActionResult> SendOtp([FromBody] PhoneNumberRequest request)
