@@ -15,7 +15,7 @@ namespace ProductTracker.Core.DTO.Response
         public string? PlantName { get; set; }
         public int ProductId { get; set; }
         public string? ProductName { get; set; }
-        public int NumberOfCoupon { get; set; }
+        public int NoOfCoupons { get; set; }
         public int NoOfPrintedCoupons { get; set; }
         public int Status { get; set; }
 
