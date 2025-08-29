@@ -91,7 +91,10 @@ namespace ProductTracker.Infrastructure.Repository
             var result = await connection.QueryAsync<TemplateResponseDTOs>(TemplateQueries.AllTemplates, commandType: CommandType.StoredProcedure);
             // TempFormat = JsonSerializer.Serialize(templateRequestDTOs.TempFormat),
             var data = result.Where(t => t.Id == id).FirstOrDefault();
+            if(data.TempFormat!= null)
             return JsonSerializer.Deserialize<TempFormat>(data.TempFormat);
+
+            return null;
         }
 
         public Task<Template> GetByIdAsync(long id)

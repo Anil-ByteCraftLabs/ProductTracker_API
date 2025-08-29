@@ -45,6 +45,73 @@ namespace ProductTracker.Api.Controllers
 
         }
 
+        [AllowAnonymous]
+        [HttpPost("RegisterUser")]
+        public async Task<ApiResponse<string>> RegisterUser(NormalUserRequestDTOs userRequestDTOs)
+        {
+            // Validations 
+            if (string.IsNullOrEmpty(userRequestDTOs.Username))
+                throw new Exception("Please provide a valid user name.");
+            if (!IsValidEmail(userRequestDTOs.Email))
+                throw new Exception("Please provide a valid user email.");
+            if (string.IsNullOrEmpty(userRequestDTOs.Password))
+                throw new Exception("Please provide a valid password.");
+            if (!IsValidPassword(userRequestDTOs.Password))
+                throw new Exception("Please provide a valid password.");
+
+
+
+            var apiResponse = new ApiResponse<string>();
+
+            // Check if a user with the same username already exists
+            var existingUser = await _userManager.FindByNameAsync(userRequestDTOs.Username);
+            if (existingUser != null)
+            {
+                throw new Exception("Username already exists.");
+            }
+
+            // Check if a user with the same email already exists
+            existingUser = await _userManager.FindByEmailAsync(userRequestDTOs.Email);
+            if (existingUser != null)
+            {
+                throw new Exception("Email already exists.");
+            }
+            // Create a new ApplicationUser object
+            var newUser = new ApplicationUser
+            {
+                UserName = userRequestDTOs.Username,
+                Email = userRequestDTOs.Email,
+                OrganizationId = 0,
+                PlantId = 0,
+                IsActive = true
+
+                // You can add additional properties to ApplicationUser here if needed.
+            };
+
+            // Create the user with the specified password
+            var result = await _userManager.CreateAsync(newUser, userRequestDTOs.Password);
+            var newUserDetails = _userManager.Users.FirstOrDefaultAsync(u => u.Email == userRequestDTOs.Email);
+
+
+            if (result.Succeeded)
+            {
+                var userRoleId = "a7d38922-f14b-474b-82f4-d36cbef8cd80";
+                var userId = newUser.Id;
+                await AddUserToRole(userId, userRoleId);
+                apiResponse.Success = true;
+                apiResponse.Message = "User Registered successfully.";
+
+                return apiResponse;
+
+            }
+            else
+            {
+                throw new Exception(result.Errors.ToString());
+                // return BadRequest(result.Errors);
+            }
+        }
+
+
         [AllowAnonymousAttribute]
         [HttpPost("login")]
         public async Task<ApiResponse<string>> Login(LoginViewModel model)
@@ -145,7 +212,7 @@ namespace ProductTracker.Api.Controllers
             var roleName = await _roleManager.FindByIdAsync(roldId);
 
 
-            if (user != null)
+            if (user != null && roleName !=null)
             {
                 var result = await _userManager.AddToRoleAsync(user, roleName.Name);
                 return result.Succeeded;
