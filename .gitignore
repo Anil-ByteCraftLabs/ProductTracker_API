@@ -288,3 +288,4 @@ obj/
 *.pubxml
 /ProductTracker.Api/ProductTracker.Api.csproj.user
 /ProductTracker.Application/bin/Debug/net6.0/ProductTracker.Application.deps.json
+/ProductTracker.Api/bin/Debug/net6.0/appsettings.json
