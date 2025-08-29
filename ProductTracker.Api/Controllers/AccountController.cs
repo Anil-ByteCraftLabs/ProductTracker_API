@@ -41,7 +41,9 @@ namespace ProductTracker.Api.Controllers
             _unitOfWork = unitOfWork;
 
 
-            TwilioClient.Init(_configuration["Twilio:accountSid"], _configuration["Twilio:authToken"]);
+            // TwilioClient.Init(_configuration["Twilio:accountSid"], _configuration["Twilio:authToken"]);
+
+            TwilioClient.Init("AC9087f911c8741ae75bfab554aa5dee46", "b7bf0f7676af729709e6f1b6681fbef9");
 
         }
 
