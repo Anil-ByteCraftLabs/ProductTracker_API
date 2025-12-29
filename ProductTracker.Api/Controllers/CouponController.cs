@@ -128,6 +128,7 @@ namespace ProductTracker.Api.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ApiResponse<string>> Scan(CouponScanRequestDTOs couponScanRequestDTOs)
         {
           
@@ -140,6 +141,7 @@ namespace ProductTracker.Api.Controllers
         }
 
         [HttpGet("Validate/{couponId}")]
+        [AllowAnonymous]
         public async Task<ApiResponse<ProductResponseDTOs>> Validate(string couponId)
         {
 

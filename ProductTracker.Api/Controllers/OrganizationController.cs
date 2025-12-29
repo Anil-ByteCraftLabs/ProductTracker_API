@@ -114,7 +114,7 @@ namespace ProductTracker.Api.Controllers
             {
                 Id = organizationRequestDTO.Id,
                 OrgName = organizationRequestDTO.Name,
-                AliasName = organizationRequestDTO.Name,
+                AliasName = organizationRequestDTO.AliasName,
                 DBPath = organizationRequestDTO.DBPath,
                 DeActivationDate = string.IsNullOrEmpty(organizationRequestDTO.DeactivationDate) ? null : Convert.ToDateTime(organizationRequestDTO.DeactivationDate),
                 UpdatedBy =  user?.Id,

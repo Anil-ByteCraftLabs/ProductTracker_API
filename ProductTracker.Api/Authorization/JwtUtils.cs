@@ -25,7 +25,8 @@ namespace ProductTracker.Api.Authorization
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id),
             new Claim(ClaimTypes.Name, user.UserName),
-            new Claim("IsActive", user.IsActive.ToString())
+            new Claim("IsActive", user.IsActive.ToString()),
+            new Claim("OrgId", user.OrganizationId.ToString())
 
         };
 

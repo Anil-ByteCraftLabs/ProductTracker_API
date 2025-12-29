@@ -8,6 +8,6 @@ namespace ProductTracker.Core.DTO.Request
 {
     public class ProductTypeRequestDTOs : CommonRequestDTOs
     {
-        public int Orgid { get; set; }
+       // public int Orgid { get; set; }
     }
 }

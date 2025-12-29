@@ -80,6 +80,7 @@ namespace ProductTracker.Infrastructure.Repository
             parameters.Add("IsActive", entity.IsActive);
             parameters.Add("CreatedBy", entity.CreatedBy);
             parameters.Add("UpdatedBy", entity.UpdatedBy);
+            parameters.Add("OrgId", entity.Orgid);
 
             var result = await connection.ExecuteAsync(ProductWeightQueries.SaveProductWeight, parameters, commandType: CommandType.StoredProcedure);
             return result.ToString();

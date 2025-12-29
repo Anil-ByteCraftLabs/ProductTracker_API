@@ -15,7 +15,7 @@ namespace ProductTracker.Api.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize("Super Admin, Admin")]
-    public class PlantController : ControllerBase
+    public class PlantController : BaseApiController
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -65,13 +65,13 @@ namespace ProductTracker.Api.Controllers
                 throw new Exception("Please select an organization for plant.");
             var apiResponse = new ApiResponse<string>();
 
-            var user = HttpContext.Items["User"] as dynamic;
+            //var user = HttpContext.Items["User"] as dynamic;
             var plant = new Plant
             {
                 PlantName = plantRequestDTOs.PlantName,   
                 PlantLocation = plantRequestDTOs.Location,
                 Orgid = plantRequestDTOs.OrgId,
-                CreatedBy = user?.Id
+                CreatedBy = LoggedInUser?.Id
             };
             var data = await _unitOfWork.Plants.AddAsync(plant);
             apiResponse.Success = true;
@@ -93,7 +93,7 @@ namespace ProductTracker.Api.Controllers
             if (plantRequestDTOs.OrgId <= 0)
                 throw new Exception("Please select an organization for plant.");
 
-            var user = HttpContext.Items["User"] as dynamic;
+            //var user = HttpContext.Items["User"] as dynamic;
             var apiResponse = new ApiResponse<string>();
 
             var plant = new Plant
@@ -102,7 +102,7 @@ namespace ProductTracker.Api.Controllers
                 PlantName = plantRequestDTOs.PlantName,
                 PlantLocation = plantRequestDTOs.Location,
                 Orgid = plantRequestDTOs.OrgId,
-                UpdatedBy = user?.Id,
+                UpdatedBy = LoggedInUser?.Id,
                 IsActive= plantRequestDTOs.IsActive
             };
             var data = await _unitOfWork.Plants.UpdateAsync(plant);

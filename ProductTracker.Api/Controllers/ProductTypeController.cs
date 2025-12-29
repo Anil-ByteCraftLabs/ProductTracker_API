@@ -57,7 +57,7 @@ namespace ProductTracker.Api.Controllers
             var productType = new CommonDescription
             {
                 Description = commonRequestDTOs.Description,
-                Orgid = commonRequestDTOs.Orgid,
+                Orgid = commonRequestDTOs.OrgId,
                 CreatedBy = user?.Id
             };
 
