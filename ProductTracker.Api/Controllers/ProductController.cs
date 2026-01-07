@@ -31,7 +31,7 @@ namespace ProductTracker.Api.Controllers
 
             var data = await _unitOfWork.Products.GetAllProducts();
             apiResponse.Success = true;
-            apiResponse.Result = data.ToList();
+            apiResponse.Result = data.ToList().Where(org => org.OrgId == LoggedInUser?.OrganizationId).ToList();
             return apiResponse;
         }
 

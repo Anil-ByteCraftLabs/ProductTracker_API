@@ -131,7 +131,7 @@ namespace ProductTracker.Api.Controllers
             var roles = await _userManager.GetRolesAsync(user);
             var token = _jwtUtils.GenerateJwtToken(user, roles);
 
-            HttpContext.Session.SetObject("LoggedInUser", user);
+            //HttpContext.Session.SetObject("LoggedInUser", user);
 
             apiResponse.Success = true;
             apiResponse.Message = "Login Successed.";

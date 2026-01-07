@@ -15,7 +15,8 @@ namespace ProductTracker.Api.Controllers
         {
             get
             {
-                return HttpContext?.Session?.GetObject<ApplicationUser>("LoggedInUser");
+                return (ApplicationUser)HttpContext?.Items["User"];
+                //return HttpContext?.Session?.GetObject<ApplicationUser>("LoggedInUser");
             }
         }
 

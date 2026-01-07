@@ -12,7 +12,7 @@ namespace ProductTracker.Api.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize("Super Admin, Admin")]
-    public class ProductTypeController : ControllerBase
+    public class ProductTypeController : BaseApiController
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -29,7 +29,7 @@ namespace ProductTracker.Api.Controllers
 
             var data = await _unitOfWork.ProductTypes.GetAllAsync();
             apiResponse.Success = true;
-            apiResponse.Result = data.ToList();
+            apiResponse.Result = data.ToList().Where(pt => pt.Orgid ==  LoggedInUser?.OrganizationId).ToList();
 
             return apiResponse;
         }

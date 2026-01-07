@@ -33,8 +33,9 @@ namespace ProductTracker.Api.Controllers
             var apiResponse = new ApiResponse<List<PlantDtos>>();
 
             var data = await _unitOfWork.Plants.GetAllPlants();
+            var testdata = data.ToList();
             apiResponse.Success = true;
-            apiResponse.Result = data.ToList();
+            apiResponse.Result = data.ToList().Where(p=> p.OrgId == LoggedInUser?.OrganizationId ).ToList();
 
             return apiResponse;
         }

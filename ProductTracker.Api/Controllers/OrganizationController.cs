@@ -32,7 +32,7 @@ namespace ProductTracker.Api.Controllers
             var apiResponse = new ApiResponse<List<Organization>>();
             var data = await _unitOfWork.Organizations.GetAllAsync();
             apiResponse.Success = true;
-            apiResponse.Result = data.ToList();
+            apiResponse.Result = data.ToList().Where(Org=> Org.Id == LoggedInUser.OrganizationId).ToList();
             return apiResponse;
         }
 
