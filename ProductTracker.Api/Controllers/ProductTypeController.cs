@@ -84,7 +84,8 @@ namespace ProductTracker.Api.Controllers
                 Id= commonRequestDTOs.Id,
                 Description = commonRequestDTOs.Description,
                 IsActive = commonRequestDTOs.IsActive,
-                UpdatedBy= user?.Id
+                Orgid = commonRequestDTOs.OrgId,
+                UpdatedBy = user?.Id
             };
             var data = await _unitOfWork.ProductTypes.UpdateAsync(productType);
             apiResponse.Success = true;

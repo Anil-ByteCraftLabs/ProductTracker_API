@@ -73,6 +73,7 @@ namespace ProductTracker.Api.Controllers
                 Id = commonRequestDTOs.Id,
                 Description = commonRequestDTOs.Description,
                 IsActive = commonRequestDTOs.IsActive,
+                Orgid = commonRequestDTOs.OrgId,
                 UpdatedBy = user?.Id
             };
             var data = await _unitOfWork.ProductWeights.UpdateAsync(productType);

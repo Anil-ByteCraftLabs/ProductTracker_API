@@ -146,6 +146,24 @@ namespace ProductTracker.Infrastructure.Repository
             return result;
         }
 
+        public async Task<int> UpdateCouponPrinted(CouponPutRequestDTOs couponPutRequestDTOs)
+        {
+            using var connection = _dapperContext.CreateManufacturerConnection();
+            var parameters = new DynamicParameters();
+            parameters.Add("CouponIds", string.Join(", ", couponPutRequestDTOs.CouponIds));
+            parameters.Add("IsPrinted", couponPutRequestDTOs.IsPrinted);
+            parameters.Add("UpdatedBy", couponPutRequestDTOs.UpdatedBy);
+            parameters.Add("Result", DbType.Int32, direction: ParameterDirection.Output);
+
+            await connection.ExecuteAsync(CouponsDataQueries.UpdateCouponPrinted, parameters, commandType: CommandType.StoredProcedure);
+
+            var result = parameters.Get<int>("@Result");
+
+
+            return result;
+        }
+
+
         private async Task<string> SaveCoupon(CouponsData entity)
         {
             using var connection = _dapperContext.CreateManufacturerConnection();

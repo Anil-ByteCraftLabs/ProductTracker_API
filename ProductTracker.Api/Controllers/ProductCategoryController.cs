@@ -60,7 +60,8 @@ namespace ProductTracker.Api.Controllers
             {
                 Description= productCategoryRequestDTOs.Name,
                 CreatedBy = user?.Id,
-                Orgid = productCategoryRequestDTOs.PlantId
+                PlantId = productCategoryRequestDTOs.PlantId
+
 
             };
             var data = await _unitOfWork.ProductCategorys.UpdateProductCategory(category, productCategoryRequestDTOs.ProductTypeId);
@@ -84,6 +85,7 @@ namespace ProductTracker.Api.Controllers
                 Id= productCategoryRequestDTOs.Id,
                 Description = productCategoryRequestDTOs.Name,
                 IsActive = productCategoryRequestDTOs.IsActive,
+                PlantId = productCategoryRequestDTOs.PlantId,
                 UpdatedBy = user?.Id
             };
             var data = await _unitOfWork.ProductCategorys.UpdateProductCategory(category, productCategoryRequestDTOs.ProductTypeId);

@@ -24,9 +24,10 @@ namespace ProductTracker.Sql.Queries
 
         public static string GenerateCoupons => "usp_GenerateCoupons";
 		public static string UpdateCoupons => "usp_UpdateCoupons";
+        public static string UpdateCouponPrinted => "usp_UpdateCouponPrinted";
 
 
 
-		public static string DeleteCoupon => "DELETE FROM [CouponsData] WHERE [Id] = @CouponId";
+        public static string DeleteCoupon => "DELETE FROM [CouponsData] WHERE [Id] = @CouponId";
 	}
 }

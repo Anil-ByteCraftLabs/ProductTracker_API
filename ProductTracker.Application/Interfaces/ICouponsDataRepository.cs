@@ -21,6 +21,7 @@ namespace ProductTracker.Application.Interfaces
         Task<IReadOnlyList<ScanHistoryResponseDTO>> GetAllScannedCoupon(string userId);
 
         Task<IReadOnlyList<ScanHistoryResponseDTO>> GetFilterScannedCoupon(CouponsFilterRequestDTOs couponsFilterRequestDTOs);
+        Task<int> UpdateCouponPrinted(CouponPutRequestDTOs couponPutRequestDTOs);
 
     }
 }

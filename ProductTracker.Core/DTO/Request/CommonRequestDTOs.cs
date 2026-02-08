@@ -13,5 +13,6 @@ namespace ProductTracker.Core.DTO.Request
         public bool IsActive { get; set; }
         public string  CreatedBy { get; set; }
         public int OrgId { get; set; }
+        public int PlantId { get; set; }
     }
 }

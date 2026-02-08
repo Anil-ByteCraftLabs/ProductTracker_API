@@ -106,7 +106,7 @@ namespace ProductTracker.Infrastructure.Repository
             parameters.Add("ProductTypeId", productTypeId);
             parameters.Add("CreatedBy", entity.CreatedBy);
             parameters.Add("UpdatedBy", entity.UpdatedBy);
-            parameters.Add("PlantId", entity.Orgid);
+            parameters.Add("PlantId", entity.PlantId);
 
             var result = await connection.ExecuteAsync(ProductCategoryQueries.SaveProductCategory, parameters, commandType: CommandType.StoredProcedure);
             return result.ToString();

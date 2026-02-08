@@ -27,7 +27,7 @@ namespace ProductTracker.Api.Controllers
         #region ===[ Public Methods ]==============================================================
 
         [HttpGet]
-        public async Task<ApiResponse<List<CouponResponseDTO>>> GetAll(int batchId, string startDate, string endDate, bool isActive, int skipRecords, int takeRecords)
+        public async Task<ApiResponse<List<CouponResponseDTO>>> GetAll(int batchId, string? startDate, string? endDate, bool isActive, int skipRecords, int takeRecords)
         {
             var apiResponse = new ApiResponse<List<CouponResponseDTO>>();
             if (!string.IsNullOrEmpty(startDate))
@@ -109,6 +109,17 @@ namespace ProductTracker.Api.Controllers
         public async Task<ApiResponse<string>> UpdateCoupons(CouponPutRequestDTOs couponPutRequestDTOs)
         {
             var data = await _unitOfWork.Coupons.UpdateCoupons(couponPutRequestDTOs);
+
+            var apiResponse = new ApiResponse<string>();
+            apiResponse.Success = true;
+            apiResponse.Result = data.ToString();
+
+            return apiResponse;
+        }
+        [HttpPut("UpdateCouponPrinted")]
+        public async Task<ApiResponse<string>> UpdateCouponPrinted(CouponPutRequestDTOs couponPutRequestDTOs)
+        {
+            var data = await _unitOfWork.Coupons.UpdateCouponPrinted(couponPutRequestDTOs);
 
             var apiResponse = new ApiResponse<string>();
             apiResponse.Success = true;

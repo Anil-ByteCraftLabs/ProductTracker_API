@@ -33,8 +33,9 @@ namespace ProductTracker.Api.Controllers
             var apiResponse = new ApiResponse<List<BatchResponseDTOs>>();
 
             var data = await _unitOfWork.Batches.GetAllBatches();
+            // apiResponse.Result = data.ToList().Where(pc => pc.OrgId == LoggedInUser?.OrganizationId).ToList()//;
             apiResponse.Success = true;
-            apiResponse.Result = data.ToList(); 
+            apiResponse.Result = data.ToList().Where(pc => pc.PlantId == LoggedInUser?.PlantId).ToList();
             return apiResponse;
         }
 

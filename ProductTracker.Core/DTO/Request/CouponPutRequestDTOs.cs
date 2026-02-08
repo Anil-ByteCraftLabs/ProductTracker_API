@@ -10,6 +10,7 @@ namespace ProductTracker.Core.DTO.Request
     {
         public List<int> CouponIds { get; set; }
         public bool IsActive { get; set; }
+        public bool IsPrinted { get; set; }
         public string UpdatedBy { get; set; }
     }
 }

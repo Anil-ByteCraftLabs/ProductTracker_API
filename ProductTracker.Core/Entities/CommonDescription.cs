@@ -11,6 +11,8 @@ namespace ProductTracker.Core.Entities
         public string? Description { get; set; }
         public int Orgid { get; set; }
         public string? OrgName { get; set; }
+        public int PlantId { get; set; }
+        public string? PlantName { get; set; }
     }
 
     // Execute SP in Dapper
